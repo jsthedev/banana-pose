@@ -1,9 +1,13 @@
-import './App.scss';
+import '@/App.scss';
+
+import LandingPage from './pages';
 
 function App() {
   return (
     <>
-      <div className="app"></div>
+      <div className="app">
+        <LandingPage />
+      </div>
     </>
   );
 }

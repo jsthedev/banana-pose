@@ -1,10 +1,11 @@
-import Landing from './pages';
+import Landing from '@/pages/index.jsx';
+import Products from '@/pages/products/index.jsx';
 
 function App() {
   return (
     <>
       <div className="app">
-        <Landing />
+        <Products />
       </div>
     </>
   );

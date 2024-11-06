@@ -1,0 +1,74 @@
+[
+  {
+    "id": "t-shirt-01",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  },
+  {
+    "id": "t-shirt-02",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  },
+  {
+    "id": "t-shirt-03",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  },
+  {
+    "id": "t-shirt-04",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  },
+  {
+    "id": "t-shirt-05",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  },
+  {
+    "id": "t-shirt-06",
+    "name": "Seal T-shirt in Cotton ",
+    "image": "/public/images/products/IMG_8921.jpg",
+    "price": 100,
+    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "care-instructions": [
+      "100% cotton t-shirt",
+      "Wash at low temperature",
+      "Tumble dry low"
+    ]
+  }
+]

@@ -9,6 +9,7 @@ function Landing() {
       <div className="landing-img-wrapper">
         <img className="landing-img" src={LandingPageImage} />
       </div>
+      <div className="text">BP First Drop - 2025.01.01</div>
     </div>
   );
 }

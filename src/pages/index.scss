@@ -1,5 +1,5 @@
 .landing {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 
   display: flex;
@@ -10,7 +10,16 @@
     width: 74%;
     .landing-img {
       width: 100%;
+      display: block;
     }
+  }
+
+  .text {
+    width: 74%;
+    padding-top: 10px;
+    margin-bottom: 50px;
+    font-family: 'Hand Typist';
+    font-size: 20px;
   }
 }
 
@@ -24,6 +33,10 @@
       .landing-img {
         width: 100%;
       }
+    }
+
+    .text {
+      width: 100%;
     }
   }
 }

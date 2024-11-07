@@ -23,6 +23,10 @@
     }
   }
 
+  .product-img-wrapper:hover + .product-info .product-name {
+    text-decoration: underline;
+  }
+
   .product-info {
     display: flex;
     flex-direction: row;

@@ -7,7 +7,7 @@ function ProductCard({ id, name, image, price }) {
     <div className="card">
       {/* <Link to={`/products/${id}`} className="product normal-link"> */}
       <div className="product">
-        <div className="product-img-wrapper">
+        <div className="product-img-wrapper normal-link">
           <img src={image} alt={name} className="product-img" />
         </div>
         <div className="product-info">

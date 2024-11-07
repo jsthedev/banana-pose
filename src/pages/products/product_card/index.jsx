@@ -6,12 +6,12 @@ function ProductCard({ id, name, image, price }) {
   return (
     <div className="card">
       {/* <Link to={`/products/${id}`} className="product normal-link"> */}
-      <div className="product normal-link">
+      <div className="product">
         <div className="product-img-wrapper">
           <img src={image} alt={name} className="product-img" />
         </div>
         <div className="product-info">
-          <div className="product-name">{name}</div>
+          <div className="product-name normal-link">{name}</div>
           <div className="product-price">$ {price}</div>
         </div>
       </div>

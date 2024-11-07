@@ -49,33 +49,18 @@
     margin-bottom: 50px;
 
     width: calc((100vw - 132px) / 4);
-
-    .product-img-wrapper {
-      .product-img {
-      }
-    }
-    .product-info {
-      .product-name {
-      }
-      .product-price {
-      }
-    }
   }
 }
 
 @media (max-width: 1007px) {
   .product {
     width: calc((100vw - 48px) / 3);
-    .product-img-wrapper {
-      .product-img {
-      }
-    }
+
     .product-info {
       display: flex;
       flex-direction: column;
       align-items: center;
-      .product-name {
-      }
+
       .product-price {
         margin-top: 0px;
       }
@@ -89,15 +74,5 @@
     margin-bottom: 35px;
 
     width: calc((100vw - 14px) / 2);
-    .product-img-wrapper {
-      .product-img {
-      }
-    }
-    .product-info {
-      .product-name {
-      }
-      .product-price {
-      }
-    }
   }
 }

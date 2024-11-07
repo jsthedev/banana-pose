@@ -1,0 +1,84 @@
+.product-details {
+  max-width: 1330px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: row;
+
+  font-family: 'HK Grotesk';
+  font-size: 13px;
+
+  .product-gallery {
+  }
+
+  .product-info-wrapper {
+    width: 350px;
+    margin-top: 70px;
+
+    .product-info {
+      margin-right: 50px;
+      padding-bottom: 40px;
+
+      display: flex;
+      flex-direction: column;
+
+      .product-metadata {
+        margin-bottom: 40px;
+
+        .product-name {
+          margin-top: 2px;
+          margin-bottom: 6px;
+        }
+
+        .product-price {
+          margin-top: 2px;
+          margin-bottom: 6px;
+        }
+      }
+      .product-order-form {
+        margin-bottom: 15px;
+
+        .size-guide-wrapper {
+          margin-bottom: 5px;
+
+          .size-guide {
+            display: inline-block;
+            padding-bottom: 2px;
+            border-bottom: 1px solid transparent;
+          }
+        }
+        .size-select-button {
+          width: 100%;
+          padding: 6px 16px 6px 8px;
+          border: 1px solid black;
+          display: flex;
+          justify-content: space-between;
+
+          .down-shape {
+            margin-top: 3px;
+            font-size: 11px;
+          }
+        }
+      }
+      .buy-button {
+        width: 100%;
+        height: 30px;
+        text-align: center;
+        background-color: black;
+        color: white;
+
+        margin-bottom: 25px;
+      }
+
+      .product-details-list {
+        margin-top: 28px;
+        display: inline-block;
+      }
+
+      .product-care {
+        margin-top: 28px;
+        display: inline-block;
+      }
+    }
+  }
+}

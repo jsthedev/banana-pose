@@ -4,9 +4,11 @@
     "name": "Seal T-shirt in Cotton ",
     "image": "/public/images/products/IMG_8921.jpg",
     "price": 100,
+    "color": "Black",
     "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
     "care-instructions": [
       "100% cotton t-shirt",
+      "Made in Canada",
       "Wash at low temperature",
       "Tumble dry low"
     ]

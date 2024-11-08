@@ -43,9 +43,13 @@ function ProductDetails() {
             <div className="product-description">{product.description}</div>
           </div>
           {/* TODO: Implement product details enlarging list */}
-          <div className="product-details-list">Product details</div>
+          <div className="product-details-list">
+            <div className="text">Product details</div>
+          </div>
           {/* TODO: Implement care instruction enlarging list */}
-          <div className="product-care">Care instructions</div>
+          <div className="product-care">
+            <div className="text">Care instructions</div>
+          </div>
         </div>
       </div>
     </div>

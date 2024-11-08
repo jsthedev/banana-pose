@@ -64,20 +64,30 @@
         width: 100%;
         height: 30px;
         text-align: center;
-        background-color: black;
+        background-color: rgb(33, 33, 33);
         color: white;
 
         margin-bottom: 25px;
+
+        &:hover {
+          background-color: rgb(70, 70, 70);
+        }
       }
 
       .product-details-list {
         margin-top: 28px;
-        display: inline-block;
+        .text {
+          display: inline-block;
+          cursor: pointer;
+        }
       }
 
       .product-care {
         margin-top: 28px;
-        display: inline-block;
+        .text {
+          display: inline-block;
+          cursor: pointer;
+        }
       }
     }
   }

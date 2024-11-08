@@ -1,0 +1,49 @@
+.size-chart-drawer-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+
+  .size-chart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-color: white;
+    padding-top: 72px;
+
+    display: flex;
+    flex-direction: column;
+
+    .close-button-wrapper {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 72px;
+
+      .close-button {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+      }
+    }
+
+    .drawer-content-wrapper {
+      padding-top: 24px;
+      padding-right: 11%;
+      padding-left: 11%;
+
+      font-size: 14px;
+
+      .size-chart-wrapper {
+        .size-chart-name {
+          padding-bottom: 18px;
+        }
+      }
+    }
+  }
+}

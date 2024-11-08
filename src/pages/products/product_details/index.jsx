@@ -2,6 +2,8 @@ import Flickity from 'flickity';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
+import SizeChartDrawer from '@/pages/products/product_details/size_chart_drawer/index.jsx';
+
 import '@/pages/products/product_details/index.scss';
 
 import products from '@/data/products.json';
@@ -43,12 +45,12 @@ function ProductDetails() {
             <div className="product-description">{product.description}</div>
           </div>
           {/* TODO: Implement product details enlarging list */}
-          <div className="product-details-list">
-            <div className="text">Product details</div>
+          <div className="product-details-wrapper">
+            <div className="product-details">Product details</div>
           </div>
           {/* TODO: Implement care instruction enlarging list */}
-          <div className="product-care">
-            <div className="text">Care instructions</div>
+          <div className="product-care-wrapper">
+            <div className="product-care">Care instructions</div>
           </div>
         </div>
       </div>

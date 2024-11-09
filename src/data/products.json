@@ -6,11 +6,10 @@
     "price": 100,
     "color": "Black",
     "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "details": ["100% cotton t-shirt", "Made in Canada"],
     "care-instructions": [
-      "100% cotton t-shirt",
-      "Made in Canada",
       "Wash at low temperature",
-      "Tumble dry low"
+      "Tumble dry low possible, but air drying highly recommended"
     ]
   },
   {

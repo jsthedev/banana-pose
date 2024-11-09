@@ -1,49 +1,91 @@
-.size-chart-drawer-container {
+.size-chart-drawer-overlay {
   position: fixed;
   top: 0;
   right: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
   z-index: 20;
+  background-color: rgba(0, 0, 0);
+  opacity: 0;
+  visibility: hidden;
 
-  .size-chart-drawer {
+  transition:
+    background-color 0.5s ease,
+    visibility 0.5s ease;
+
+  &.open {
+    opacity: 0.3;
+    visibility: visible;
+  }
+}
+
+// .size-chart-drawer-container {
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   z-index: 20;
+//   display: flex;
+//   justify-content: end;
+
+.size-chart-drawer {
+  position: fixed;
+  top: 0;
+  right: -50%;
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  padding-top: 72px;
+  z-index: 30;
+
+  display: flex;
+  flex-direction: column;
+
+  transition:
+    right 0.5s ease,
+    opacity 0.5s ease;
+
+  &.open {
+    right: 0;
+  }
+
+  .close-button-wrapper {
     position: fixed;
     top: 0;
-    right: 0;
+    right: -50%;
     width: 50%;
-    height: 100%;
+    height: 72px;
     background-color: white;
-    padding-top: 72px;
-
     display: flex;
-    flex-direction: column;
+    justify-content: end;
 
-    .close-button-wrapper {
-      position: fixed;
-      top: 0;
+    transition:
+      right 0.5s ease,
+      opacity 0.5s ease;
+
+    &.open {
       right: 0;
-      height: 72px;
-
-      .close-button {
-        position: fixed;
-        top: 30px;
-        right: 30px;
-      }
+      visibility: visible;
     }
 
-    .drawer-content-wrapper {
-      padding-top: 24px;
-      padding-right: 11%;
-      padding-left: 11%;
+    .close-button {
+      padding: 30px;
+    }
+  }
 
-      font-size: 14px;
+  .drawer-content-wrapper {
+    padding-top: 24px;
+    padding-right: 11%;
+    padding-left: 11%;
 
-      .size-chart-wrapper {
-        .size-chart-name {
-          padding-bottom: 18px;
-        }
+    font-size: 14px;
+
+    .size-chart-wrapper {
+      .size-chart-name {
+        padding-bottom: 18px;
       }
     }
   }
 }
+// }

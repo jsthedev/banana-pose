@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <div className="app">
-        <SizeChartDrawer />
+        <ProductDetails />
       </div>
     </>
   );

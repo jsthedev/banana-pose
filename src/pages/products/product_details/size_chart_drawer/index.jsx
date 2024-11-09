@@ -7,25 +7,32 @@ import SizeChartTable from '@/pages/products/product_details/size_chart_drawer/s
 
 import '@/pages/products/product_details/size_chart_drawer/index.scss';
 
-function SizeChartDrawer() {
+const SizeChartDrawer = forwardRef(({ children }, ref) => {
   // // States
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  // // Functions
-  // const handleOverlayClick = () => {
-  //   setIsOpen(false);
-  // };
+  // Functions
+  const handleOverlayClick = () => {
+    setIsDrawerOpen(false);
+  };
 
-  // // Expose open and close methods to the parent
-  // useImperativeHandle(ref, () => ({
-  //   open: () => setIsDrawerOpen(true),
-  //   close: () => setIsDrawerOpen(false),
-  // }));
+  // Expose open and close methods to the parent
+  useImperativeHandle(ref, () => ({
+    open: () => setIsDrawerOpen(true),
+    close: () => setIsDrawerOpen(false),
+  }));
 
   return (
-    <div className="size-chart-drawer-container">
-      <div className="size-chart-drawer">
-        <div className="close-button-wrapper">
+    <>
+      {isDrawerOpen && (
+        <div
+          className={`size-chart-drawer-overlay ${isDrawerOpen ? 'open' : ''}`}
+          onClick={handleOverlayClick}
+        ></div>
+      )}
+      <div className={`size-chart-drawer ${isDrawerOpen ? 'open' : ''}`}>
+        {/* Position fixed in case of adding contents to be scrolled later on */}
+        <div className={`close-button-wrapper ${isDrawerOpen ? 'open' : ''}`}>
           <button
             className="close-button"
             onClick={() => setIsDrawerOpen(false)}
@@ -42,8 +49,8 @@ function SizeChartDrawer() {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
-}
+});
 
 export default SizeChartDrawer;

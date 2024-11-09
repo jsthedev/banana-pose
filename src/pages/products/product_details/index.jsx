@@ -1,4 +1,6 @@
+import { useRef } from 'react';
 import Flickity from 'flickity';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,10 +11,18 @@ import '@/pages/products/product_details/index.scss';
 import products from '@/data/products.json';
 
 function ProductDetails() {
+  // Navigation
   // const { productId } = useParams();
   const productId = 't-shirt-01';
-
   const product = products.find((prod) => prod.id === productId);
+
+  // Size Guide
+  const sizeChartRef = useRef();
+  const handleSizeGuideClick = () => {
+    if (sizeChartRef.current) {
+      sizeChartRef.current.open();
+    }
+  };
 
   if (!product) {
     return <div>Product not found.</div>;
@@ -31,7 +41,12 @@ function ProductDetails() {
             <div className="product-color">Color: {product.color}</div>
             {/* TODO: Implement Size Guide function */}
             <div className="size-guide-wrapper  text-right">
-              <div className="size-guide normal-link">Size Guide</div>
+              <div
+                className="size-guide normal-link"
+                onClick={handleSizeGuideClick}
+              >
+                Size Guide
+              </div>
             </div>
             {/* TODO: Implement Select Size function */}
             <button className="size-select-button">
@@ -45,8 +60,8 @@ function ProductDetails() {
             <div className="product-description">{product.description}</div>
           </div>
           {/* TODO: Implement product details enlarging list */}
-          <div className="product-details-wrapper">
-            <div className="product-details">Product details</div>
+          <div className="product-details-list-wrapper">
+            <div className="product-details-list">Product details</div>
           </div>
           {/* TODO: Implement care instruction enlarging list */}
           <div className="product-care-wrapper">
@@ -54,6 +69,7 @@ function ProductDetails() {
           </div>
         </div>
       </div>
+      <SizeChartDrawer ref={sizeChartRef} />
     </div>
   );
 }

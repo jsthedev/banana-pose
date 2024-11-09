@@ -35,3 +35,13 @@
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .size-chart-table {
+    tbody {
+      th {
+        width: 110px;
+      }
+    }
+  }
+}

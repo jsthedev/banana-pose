@@ -39,7 +39,6 @@ function ProductDetails() {
           </div>
           <div className="product-order-form">
             <div className="product-color">Color: {product.color}</div>
-            {/* TODO: Implement Size Guide function */}
             <div className="size-guide-wrapper  text-right">
               <div
                 className="size-guide normal-link"

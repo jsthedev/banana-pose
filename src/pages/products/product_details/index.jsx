@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Flickity from 'flickity';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,6 +23,12 @@ function ProductDetails() {
       sizeChartRef.current.open();
     }
   };
+
+  // Product Details
+  const [showDetails, setShowDetails] = useState(false);
+
+  // Product Care Instructions
+  const [showCare, setShowCare] = useState(false);
 
   if (!product) {
     return <div>Product not found.</div>;
@@ -60,11 +66,39 @@ function ProductDetails() {
           </div>
           {/* TODO: Implement product details enlarging list */}
           <div className="product-details-list-wrapper">
-            <div className="product-details-list">Product details</div>
+            <div
+              className="product-details-toggle"
+              onClick={() => setShowDetails(!showDetails)}
+            >
+              Product details
+            </div>
+            {showDetails && (
+              <ul
+                className={`product-details-list expandable-list ${showDetails ? 'expanded' : 'collapsed'}`}
+              >
+                {product.details.map((detail, index) => (
+                  <li key={index}>{detail}</li>
+                ))}
+              </ul>
+            )}
           </div>
           {/* TODO: Implement care instruction enlarging list */}
           <div className="product-care-wrapper">
-            <div className="product-care">Care instructions</div>
+            <div
+              className="product-care-toggle"
+              onClick={() => setShowCare(!showCare)}
+            >
+              Care instructions
+            </div>
+            {showCare && (
+              <ul
+                className={`product-care-list expandable-list ${showCare ? 'expanded' : 'collapsed'}`}
+              >
+                {product.care.map((care, index) => (
+                  <li key={index}>{care}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </div>

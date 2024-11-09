@@ -77,7 +77,7 @@
 
       .product-details-list-wrapper {
         margin-top: 28px;
-        .product-details-list {
+        .product-details-toggle {
           display: inline-block;
           cursor: pointer;
         }
@@ -85,7 +85,8 @@
 
       .product-care-wrapper {
         margin-top: 28px;
-        .product-care {
+
+        .product-care-toggle {
           display: inline-block;
           cursor: pointer;
         }

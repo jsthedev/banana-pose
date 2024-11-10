@@ -40,7 +40,7 @@
         margin-bottom: 15px;
 
         .size-guide-wrapper {
-          margin-bottom: 5px;
+          margin-bottom: 10px;
 
           .size-guide {
             display: inline-block;
@@ -48,22 +48,12 @@
             border-bottom: 1px solid transparent;
           }
         }
-        .size-select-button {
-          width: 100%;
-          padding: 6px 16px 6px 8px;
-          border: 1px solid black;
-          display: flex;
-          justify-content: space-between;
-
-          .down-shape {
-            margin-top: 3px;
-            font-size: 11px;
-          }
+        .size-select-button-wrapper {
         }
       }
       .buy-button {
         width: 100%;
-        height: 30px;
+        height: 35px;
         text-align: center;
         background-color: rgb(33, 33, 33);
         color: white;

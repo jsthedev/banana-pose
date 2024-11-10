@@ -1,10 +1,8 @@
 import { useRef, useState } from 'react';
 import Flickity from 'flickity';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
 import SizeChartDrawer from '@/pages/products/product_details/size_chart_drawer/index.jsx';
+import SizeSelector from '@/pages/products/product_details/size_selector/index.jsx';
 
 import '@/pages/products/product_details/index.scss';
 
@@ -54,10 +52,9 @@ function ProductDetails() {
               </div>
             </div>
             {/* TODO: Implement Select Size function */}
-            <button className="size-select-button">
-              <div className="size-select-button-text">Select Size</div>
-              <FontAwesomeIcon className="down-shape" icon={faChevronDown} />
-            </button>
+            <div className="size-select-button-wrapper">
+              <SizeSelector sizes={product.sizes} />
+            </div>
           </div>
           {/* TODO: Implement Buy Button function */}
           <button className="buy-button">Add to Shopping Bag</button>

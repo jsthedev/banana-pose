@@ -61,7 +61,6 @@ function ProductDetails() {
           <div className="product-description-wrapper">
             <div className="product-description">{product.description}</div>
           </div>
-          {/* TODO: Implement product details enlarging list */}
           <div className="product-details-list-wrapper">
             <div
               className="product-details-toggle"
@@ -79,7 +78,6 @@ function ProductDetails() {
               </ul>
             )}
           </div>
-          {/* TODO: Implement care instruction enlarging list */}
           <div className="product-care-wrapper">
             <div
               className="product-care-toggle"

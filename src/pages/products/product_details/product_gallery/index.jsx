@@ -6,12 +6,12 @@ import 'src/pages/products/product_details/product_gallery/index.scss';
 
 import products from '@/data/products.json';
 
-// function ProductGallery({ gallery }) {
-function ProductGallery() {
+function ProductGallery({ gallery }) {
+  // function ProductGallery() {
   // Static data for testing
-  const productId = 't-shirt-01';
-  const product = products.find((prod) => prod.id === productId);
-  const gallery = product.gallery;
+  // const productId = 't-shirt-01';
+  // const product = products.find((prod) => prod.id === productId);
+  // const gallery = product.gallery;
 
   // Flickity Refs
   const mainCarouselRef = useRef(null);

@@ -1,13 +1,12 @@
 import Landing from '@/pages/index.jsx';
 import Products from '@/pages/products/index.jsx';
 import ProductDetails from '@/pages/products/product_details/index.jsx';
-import ProductGallery from '@/pages/products/product_details/product_gallery/index.jsx';
 
 function App() {
   return (
     <>
       <div className="app">
-        <ProductGallery />
+        <ProductDetails />
       </div>
     </>
   );

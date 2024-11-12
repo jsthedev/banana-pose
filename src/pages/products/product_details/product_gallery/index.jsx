@@ -2,16 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import Flickity from 'flickity';
 import 'flickity/css/flickity.css';
 
-import 'src/pages/products/product_details/product_gallery/index.scss';
+import ProductInfo from '@/pages/products/product_details/product_gallery/product_info/index.jsx';
+
+import '@/pages/products/product_details/product_gallery/index.scss';
 
 import products from '@/data/products.json';
 
-function ProductGallery({ gallery }) {
-  // function ProductGallery() {
+// function ProductGallery({ gallery }) {
+function ProductGallery() {
   // Static data for testing
-  // const productId = 't-shirt-01';
-  // const product = products.find((prod) => prod.id === productId);
-  // const gallery = product.gallery;
+  const productId = 't-shirt-01';
+  const product = products.find((prod) => prod.id === productId);
+  const gallery = product.gallery;
 
   // Flickity Refs
   const mainCarouselRef = useRef(null);
@@ -108,6 +110,9 @@ function ProductGallery({ gallery }) {
             <img src={photo} alt={`Thumbnail ${index + 1}`} />
           </div>
         ))}
+      </div>
+      <div className="product-info-container">
+        <ProductInfo />
       </div>
     </div>
   );

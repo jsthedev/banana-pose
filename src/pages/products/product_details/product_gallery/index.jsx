@@ -6,7 +6,9 @@ import ProductInfo from '@/pages/products/product_details/product_gallery/produc
 
 import '@/pages/products/product_details/product_gallery/index.scss';
 
-function ProductGallery({ gallery }) {
+function ProductGallery({ product }) {
+  const images = product.images;
+
   // Flickity Refs
   const mainCarouselRef = useRef(null);
   const navCarouselRef = useRef(null);
@@ -79,7 +81,7 @@ function ProductGallery({ gallery }) {
   return (
     <div className="product-gallery">
       <div className="carousel-nav" ref={navCarouselRef}>
-        {gallery.map((photo, index) => (
+        {images.map((photo, index) => (
           <div
             className={`carousel-cell ${selectedIndex === index ? 'is-selected' : ''}`}
             key={index}
@@ -90,7 +92,7 @@ function ProductGallery({ gallery }) {
         ))}
       </div>
       <div className="carousel-main" ref={mainCarouselRef}>
-        {gallery.map((photo, index) => (
+        {images.map((photo, index) => (
           <div
             className="carousel-cell"
             key={index}
@@ -104,7 +106,7 @@ function ProductGallery({ gallery }) {
         ))}
       </div>
       <div className="product-info-container">
-        <ProductInfo />
+        <ProductInfo product={product} />
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ function ProductDetails() {
   return (
     <div className="product-details page">
       <div className="product-gallery-and-info-wrapper">
-        <ProductGallery gallery={product.gallery} />
+        <ProductGallery product={product} />
       </div>
     </div>
   );

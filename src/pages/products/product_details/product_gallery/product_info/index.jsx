@@ -5,12 +5,7 @@ import SizeSelector from '@/pages/products/product_details/product_gallery/produ
 
 import '@/pages/products/product_details/product_gallery/product_info/index.scss';
 
-import products from '@/data/products.json';
-
-// function ProductInfo({ product }) {
-function ProductInfo() {
-  const productId = 't-shirt-01';
-  const product = products.find((prod) => prod.id === productId);
+function ProductInfo({ product }) {
   // Size Guide
   const sizeChartRef = useRef();
   const handleSizeGuideClick = () => {

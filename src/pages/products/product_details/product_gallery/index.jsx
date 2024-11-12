@@ -6,6 +6,8 @@ import ProductInfo from '@/pages/products/product_details/product_gallery/produc
 
 import '@/pages/products/product_details/product_gallery/index.scss';
 
+// TODO: Make ProductGallery Responsive
+
 function ProductGallery({ product }) {
   const images = product.images;
 

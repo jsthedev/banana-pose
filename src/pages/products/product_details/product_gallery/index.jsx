@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import Flickity from 'flickity';
-import 'flickity-as-nav-for';
 import 'flickity/css/flickity.css';
 
 import 'src/pages/products/product_details/product_gallery/index.scss';

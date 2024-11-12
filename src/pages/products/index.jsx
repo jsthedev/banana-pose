@@ -15,7 +15,7 @@ function Products() {
                 key={product.id}
                 id={product.id}
                 name={product.name}
-                image={product.image}
+                thumbnail={product.thumbnail}
                 price={product.price}
               />
             ))}

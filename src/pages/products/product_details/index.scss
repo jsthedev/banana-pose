@@ -1,123 +1,130 @@
 .product-details {
-  max-width: 1330px;
-  margin: 0 auto;
-  margin-bottom: 65px;
-
-  display: flex;
-  flex-direction: row;
+  width: 100%;
 
   font-family: 'HK Grotesk';
   font-size: 13px;
 
-  .product-gallery {
-  }
+  .product-gallery-and-info-wrapper {
+    max-width: 1330px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 65px;
 
-  .product-info-wrapper {
-    width: 350px;
-    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
 
-    .product-info {
-      margin-right: 50px;
-      padding-bottom: 40px;
-
-      display: flex;
-      flex-direction: column;
-
-      .product-metadata {
-        margin-bottom: 40px;
-
-        .product-name {
-          margin-top: 2px;
-          margin-bottom: 6px;
-        }
-
-        .product-price {
-          margin-top: 2px;
-          margin-bottom: 6px;
-        }
-      }
-      .product-order-form {
-        margin-bottom: 15px;
-
-        .size-guide-wrapper {
-          margin-bottom: 10px;
-
-          .size-guide {
-            display: inline-block;
-            padding-bottom: 2px;
-            border-bottom: 1px solid transparent;
-          }
-        }
-        .size-select-button-wrapper {
-        }
-      }
-      .buy-button {
-        width: 100%;
-        height: 35px;
-        text-align: center;
-        background-color: rgb(33, 33, 33);
-        color: white;
-
-        margin-bottom: 25px;
-
-        &:hover {
-          background-color: rgb(70, 70, 70);
-        }
-      }
-
-      .product-details-list-wrapper {
-        margin-top: 28px;
-        .product-details-toggle {
-          display: inline-block;
-          cursor: pointer;
-        }
-      }
-
-      .product-care-wrapper {
-        margin-top: 28px;
-
-        .product-care-toggle {
-          display: inline-block;
-          cursor: pointer;
-        }
-      }
-    }
-  }
-}
-
-@media (max-width: 1007px) {
-  .product-details {
-    flex-direction: column;
-    .product-info-wrapper {
-      margin: 0px;
-      padding-left: 20px;
-      padding-right: 20px;
+    .product-galler-wrapper {
+      max-width: 980px;
       width: 100%;
+    }
+
+    .product-info-wrapper {
+      width: 350px;
+      margin-top: 70px;
 
       .product-info {
-        width: 500px;
-        margin: 0 auto;
-        padding: 0;
+        margin-right: 50px;
+        padding-bottom: 40px;
+
+        display: flex;
+        flex-direction: column;
 
         .product-metadata {
+          margin-bottom: 40px;
+
           .product-name {
-            text-align: center;
+            margin-top: 2px;
+            margin-bottom: 6px;
+          }
+
+          .product-price {
+            margin-top: 2px;
+            margin-bottom: 6px;
+          }
+        }
+        .product-order-form {
+          margin-bottom: 15px;
+
+          .size-guide-wrapper {
+            margin-bottom: 10px;
+
+            .size-guide {
+              display: inline-block;
+              padding-bottom: 2px;
+              border-bottom: 1px solid transparent;
+            }
+          }
+          .size-select-button-wrapper {
+          }
+        }
+        .buy-button {
+          width: 100%;
+          height: 35px;
+          text-align: center;
+          background-color: rgb(33, 33, 33);
+          color: white;
+
+          margin-bottom: 25px;
+
+          &:hover {
+            background-color: rgb(70, 70, 70);
+          }
+        }
+
+        .product-details-list-wrapper {
+          margin-top: 28px;
+          .product-details-toggle {
+            display: inline-block;
+            cursor: pointer;
+          }
+        }
+
+        .product-care-wrapper {
+          margin-top: 28px;
+
+          .product-care-toggle {
+            display: inline-block;
+            cursor: pointer;
           }
         }
       }
     }
   }
-}
 
-@media (max-width: 768px) {
-  .product-details {
-    .product-info-wrapper {
-      .product-info {
+  @media (max-width: 1007px) {
+    .product-details {
+      flex-direction: column;
+      .product-info-wrapper {
+        margin: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
         width: 100%;
 
-        .product-metadata {
-          .product-name {
-            text-align: left;
+        .product-info {
+          width: 500px;
+          margin: 0 auto;
+          padding: 0;
+
+          .product-metadata {
+            .product-name {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .product-details {
+      .product-info-wrapper {
+        .product-info {
+          width: 100%;
+
+          .product-metadata {
+            .product-name {
+              text-align: left;
+            }
           }
         }
       }

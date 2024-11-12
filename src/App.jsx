@@ -1,13 +1,13 @@
 import Landing from '@/pages/index.jsx';
 import Products from '@/pages/products/index.jsx';
 import ProductDetails from '@/pages/products/product_details/index.jsx';
-import SizeChartDrawer from '@/pages/products/product_details/size_chart_drawer/index.jsx';
+import ProductGallery from '@/pages/products/product_details/product_gallery/index.jsx';
 
 function App() {
   return (
     <>
       <div className="app">
-        <ProductDetails />
+        <ProductGallery />
       </div>
     </>
   );

@@ -53,6 +53,7 @@ function ProductDetails() {
                 >
                   Size Guide
                 </div>
+                <SizeChartDrawer ref={sizeChartRef} />
               </div>
               {/* TODO: Implement Select Size function */}
               <div className="size-select-button-wrapper">
@@ -100,7 +101,6 @@ function ProductDetails() {
             </div>
           </div>
         </div>
-        <SizeChartDrawer ref={sizeChartRef} />
       </div>
     </div>
   );

@@ -16,7 +16,6 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "fizzy-ui-utils": "^3.0.0",
     "flickity": "^3.0.0",
-    "flickity-as-nav-for": "^3.0.0",
     "flickity-fullscreen": "^2.0.0",
     "flickity-imagesloaded": "^2.0.0",
     "react": "^18.3.1",

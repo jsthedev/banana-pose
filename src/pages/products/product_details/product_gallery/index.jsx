@@ -6,15 +6,7 @@ import ProductInfo from '@/pages/products/product_details/product_gallery/produc
 
 import '@/pages/products/product_details/product_gallery/index.scss';
 
-import products from '@/data/products.json';
-
-// function ProductGallery({ gallery }) {
-function ProductGallery() {
-  // Static data for testing
-  const productId = 't-shirt-01';
-  const product = products.find((prod) => prod.id === productId);
-  const gallery = product.gallery;
-
+function ProductGallery({ gallery }) {
   // Flickity Refs
   const mainCarouselRef = useRef(null);
   const navCarouselRef = useRef(null);

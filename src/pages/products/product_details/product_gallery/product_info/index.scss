@@ -71,3 +71,38 @@
     }
   }
 }
+
+@media (max-width: 1007px) {
+  .product-info-wrapper {
+    margin: 0px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+
+    .product-info {
+      width: 500px;
+      margin: 0 auto;
+      padding: 0;
+
+      .product-metadata {
+        .product-name {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-info-wrapper {
+    .product-info {
+      width: 100%;
+
+      .product-metadata {
+        .product-name {
+          text-align: left;
+        }
+      }
+    }
+  }
+}

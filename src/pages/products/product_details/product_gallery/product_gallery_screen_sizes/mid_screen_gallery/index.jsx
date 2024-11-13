@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import Flickity from 'flickity';
 import 'flickity/css/flickity.css';
 

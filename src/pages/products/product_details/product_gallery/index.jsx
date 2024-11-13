@@ -12,7 +12,7 @@ import '@/pages/products/product_details/product_gallery/index.scss';
 function ProductGallery({ product }) {
   return (
     <div className="product-gallery">
-      <WideScreenGallery product={product} />
+      <SmallScreenGallery product={product} />
     </div>
   );
 }

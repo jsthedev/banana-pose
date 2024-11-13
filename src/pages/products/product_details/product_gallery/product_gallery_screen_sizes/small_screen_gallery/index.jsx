@@ -1,4 +1,4 @@
-import '@/pages/products/product_details/product_gallery/product-gallery_screen_sizes/small_screen_gallery/index.scss';
+import '@/pages/products/product_details/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
 
 function SmallScreenGallery() {
   return (

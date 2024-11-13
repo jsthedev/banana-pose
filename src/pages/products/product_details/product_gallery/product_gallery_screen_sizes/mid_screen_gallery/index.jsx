@@ -6,6 +6,7 @@ import ProductInfo from '@/pages/products/product_details/product_gallery/produc
 
 import '@/pages/products/product_details/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
 
+// at 1139px, carousel-nav should disappear
 function MidScreenGallery({ product }) {
   const images = product.images;
 
@@ -34,14 +35,7 @@ function MidScreenGallery({ product }) {
     <div className="mid-screen-gallery">
       <div className="carousel-main" ref={mainCarouselRef}>
         {images.map((photo, index) => (
-          <div
-            className="carousel-cell"
-            key={index}
-            id={photo}
-            ref={(currentImage) =>
-              (currentImageRefs.current[index] = currentImage)
-            }
-          >
+          <div className="carousel-cell" key={index} id={photo}>
             <img src={photo} alt={`Thumbnail ${index + 1}`} />
           </div>
         ))}

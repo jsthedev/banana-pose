@@ -6,8 +6,6 @@
 
   .carousel-main {
     width: 100%;
-    max-width: 650px;
-    padding-left: 60px;
 
     .carousel-cell {
       width: 100%;
@@ -30,7 +28,7 @@
 
   .product-info-container {
     position: sticky;
-    top: 0;
+    top: 56px; // same height as nav-bar
     align-self: flex-start;
   }
 }

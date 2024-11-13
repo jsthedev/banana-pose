@@ -1,0 +1,25 @@
+.nav-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  width: 100%;
+  height: 60px;
+
+  padding: 10px 10px;
+
+  display: flex;
+  align-items: center;
+
+  background-color: black;
+  color: white;
+
+  z-index: 999;
+
+  .link {
+    color: white;
+    text-decoration: none;
+
+    margin: 0 10px 0 0;
+  }
+}

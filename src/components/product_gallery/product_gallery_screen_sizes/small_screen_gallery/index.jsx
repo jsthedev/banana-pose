@@ -15,9 +15,6 @@ function SmallScreenGallery({ product }) {
 
   const pagination = {
     clickable: true,
-    renderBullet: function (index, className) {
-      return `<span class="${className}"></span>`;
-    },
   };
 
   return (
@@ -26,14 +23,11 @@ function SmallScreenGallery({ product }) {
         pagination={pagination}
         modules={[Pagination]}
         className="carousel-main"
-        direction="vertical"
         height={0}
       >
         {images.map((photo, index) => (
-          <SwiperSlide>
-            <div className="carousel-cell" key={index} id={photo}>
-              <img src={photo} alt={`Thumbnail ${index + 1}`} />
-            </div>
+          <SwiperSlide className="carousel-cell" key={index}>
+            <img src={photo} alt={`Thumbnail ${index + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>

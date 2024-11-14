@@ -7,7 +7,7 @@ import SizeSelector from '@/components/size_selector/index.jsx';
 import '@/components/product_info/index.scss';
 
 function ProductInfo({ product }) {
-  // Size Guide
+  // Size Chart
   const sizeChartRef = useRef();
   const handleSizeGuideClick = () => {
     if (sizeChartRef.current) {
@@ -30,12 +30,12 @@ function ProductInfo({ product }) {
         </div>
         <div className="product-order-form">
           <div className="product-color">Color: {product.color}</div>
-          <div className="size-guide-wrapper">
+          <div className="size-chart-click-wrapper">
             <div
-              className="size-guide normal-link"
+              className="size-chart-click normal-link"
               onClick={handleSizeGuideClick}
             >
-              Size Guide
+              Size Chart
             </div>
             <SizeChartDrawer ref={sizeChartRef}>
               <SizeChartTable />

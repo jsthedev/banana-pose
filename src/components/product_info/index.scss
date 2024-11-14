@@ -11,7 +11,7 @@
     flex-direction: column;
 
     .product-metadata {
-      margin-bottom: 40px;
+      margin-bottom: 35px;
 
       .product-name {
         margin-top: 2px;
@@ -26,11 +26,11 @@
     .product-order-form {
       margin-bottom: 15px;
 
-      .size-guide-wrapper {
+      .size-chart-click-wrapper {
         text-align: right;
         margin-bottom: 10px;
 
-        .size-guide {
+        .size-chart-click {
           display: inline-block;
           padding-bottom: 2px;
           border-bottom: 1px solid transparent;
@@ -86,6 +86,7 @@
       padding: 0;
 
       .product-metadata {
+        margin-bottom: 20px;
         .product-name {
           text-align: center;
         }

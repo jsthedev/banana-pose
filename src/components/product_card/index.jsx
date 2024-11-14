@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 
-import '@/pages/products/product_card/index.scss';
+import '@/components/product_card/index.scss';
 
 function ProductCard({ id, name, thumbnail, price }) {
   return (
     <div className="card">
+      {/* TODO: Enable link to product-details page */}
       {/* <Link to={`/products/${id}`} className="product normal-link"> */}
       <div className="product">
         <div className="product-img-wrapper normal-link">

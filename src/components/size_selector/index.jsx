@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import 'src/pages/products/product_details/size_selector/index.scss';
+import '@/components/size_selector/index.scss';
 
 function SizeSelector({ sizes }) {
   // State

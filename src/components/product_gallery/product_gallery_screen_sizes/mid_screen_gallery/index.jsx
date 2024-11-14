@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import Flickity from 'flickity';
 import 'flickity/css/flickity.css';
 
-import ProductInfo from '@/pages/products/product_details/product_gallery/product_info/index.jsx';
+import ProductInfo from '@/components/product_info/index.jsx';
 
-import '@/pages/products/product_details/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
+import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
 
 // at 1139px, carousel-nav should disappear
 function MidScreenGallery({ product }) {

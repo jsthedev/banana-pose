@@ -1,6 +1,6 @@
-import ProductGallery from '@/pages/products/product_details/product_gallery/index.jsx';
+import ProductGallery from '@/components/product_gallery/index.jsx';
 
-import '@/pages/products/product_details/index.scss';
+import '@/pages/product_details/index.scss';
 
 import products from '@/data/products.json';
 

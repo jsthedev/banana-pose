@@ -4,7 +4,7 @@ import WideScreenGallery from './product_gallery_screen_sizes/wide_screen_galler
 import MidScreenGallery from './product_gallery_screen_sizes/mid_screen_gallery';
 import SmallScreenGallery from './product_gallery_screen_sizes/small_screen_gallery';
 
-import '@/pages/products/product_details/product_gallery/index.scss';
+import '@/components/product_gallery/index.scss';
 
 // TODO: Make ProductGallery Responsive
 // at 1139px, carousel-nav should disappear

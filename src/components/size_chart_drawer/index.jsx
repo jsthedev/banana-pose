@@ -3,9 +3,9 @@ import { useState, useImperativeHandle, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import SizeChartTable from '@/pages/products/product_details/product_gallery/product_info/size_chart_drawer/size_chart_table/index.jsx';
+import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 
-import '@/pages/products/product_details/product_gallery/product_info/size_chart_drawer/index.scss';
+import '@/components/size_chart_drawer/index.scss';
 
 const SizeChartDrawer = forwardRef(({ children }, ref) => {
   // // States

@@ -1,4 +1,4 @@
-import 'src/pages/products/product_details/size_chart_drawer/size_chart_table/index.scss';
+import '@/components/size_chart_drawer/size_chart_table/index.scss';
 
 function SizeChartTable() {
   return (

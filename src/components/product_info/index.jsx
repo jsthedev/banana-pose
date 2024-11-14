@@ -1,9 +1,9 @@
 import { useRef, useState } from 'react';
 
-import SizeChartDrawer from '@/pages/products/product_details/product_gallery/product_info/size_chart_drawer/index.jsx';
-import SizeSelector from '@/pages/products/product_details/product_gallery/product_info/size_selector/index.jsx';
+import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
+import SizeSelector from '@/components/size_selector/index.jsx';
 
-import '@/pages/products/product_details/product_gallery/product_info/index.scss';
+import '@/components/product_info/index.scss';
 
 function ProductInfo({ product }) {
   // Size Guide

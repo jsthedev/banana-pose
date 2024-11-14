@@ -1,6 +1,6 @@
 import '@/pages/products/index.scss';
 
-import ProductCard from '@/pages/products/product_card/index.jsx';
+import ProductCard from '@/components/product_card/index.jsx';
 
 import products from '@/data/products.json';
 

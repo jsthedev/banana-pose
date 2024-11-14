@@ -2,9 +2,9 @@ import { useEffect, useRef } from 'react';
 import Flickity from 'flickity';
 import 'flickity/css/flickity.css';
 
-import ProductInfo from '@/pages/products/product_details/product_gallery/product_info/index.jsx';
+import ProductInfo from '@/components/product_info/index.jsx';
 
-import '@/pages/products/product_details/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
+import '@/components/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
 
 // at 1007px, carousel-main becomes normal horizontal carousel
 // at 1007px, the flex-direction changes to column

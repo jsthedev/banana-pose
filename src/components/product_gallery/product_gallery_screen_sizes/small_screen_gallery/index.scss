@@ -15,19 +15,6 @@
         height: auto;
         display: block; // Removes extra space below images
       }
-
-      &:before {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
     }
 
     .swiper-pagination-bullets {
@@ -55,8 +42,6 @@
   }
 
   .product-info-container {
-    position: sticky;
-    top: 56px; // same height as nav-bar
-    align-self: flex-start;
+    width: 100%;
   }
 }

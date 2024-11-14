@@ -26,6 +26,8 @@ function SmallScreenGallery({ product }) {
         pagination={pagination}
         modules={[Pagination]}
         className="carousel-main"
+        direction="vertical"
+        height={0}
       >
         {images.map((photo, index) => (
           <SwiperSlide>

@@ -3,8 +3,6 @@ import { useState, useImperativeHandle, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
-
 import '@/components/size_chart_drawer/index.scss';
 
 const SizeChartDrawer = forwardRef(({ children }, ref) => {
@@ -43,9 +41,7 @@ const SizeChartDrawer = forwardRef(({ children }, ref) => {
         <div className="drawer-content-wrapper">
           <div className="size-chart-wrapper">
             <div className="size-chart-name">Ready to wear</div>
-            <div className="size-chart-table-wrapper">
-              <SizeChartTable />
-            </div>
+            <div className="size-chart-table-wrapper">{children}</div>
           </div>
         </div>
       </div>

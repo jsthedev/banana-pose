@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
+import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
 import '@/components/product_info/index.scss';
@@ -36,7 +37,9 @@ function ProductInfo({ product }) {
             >
               Size Guide
             </div>
-            <SizeChartDrawer ref={sizeChartRef} />
+            <SizeChartDrawer ref={sizeChartRef}>
+              <SizeChartTable />
+            </SizeChartDrawer>
           </div>
           {/* TODO: Implement Select Size function */}
           <div className="size-select-button-wrapper">

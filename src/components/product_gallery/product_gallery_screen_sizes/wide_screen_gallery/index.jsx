@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import Flickity from 'flickity';
-import 'flickity/css/flickity.css';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
@@ -9,9 +7,8 @@ import '@/components/product_gallery/product_gallery_screen_sizes/wide_screen_ga
 function WideScreenGallery({ product }) {
   const images = product.images;
 
-  // Flickity Refs
-  const mainCarouselRef = useRef(null);
-  const navCarouselRef = useRef(null);
+  // Nav Bar Height in px
+  const navBarHeight = 56;
 
   // Scroll Event Handler Refs
   const currentImageRefs = useRef([]);
@@ -20,32 +17,14 @@ function WideScreenGallery({ product }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
-    // Flickity Initialization
-    const mainFlkty = new Flickity(mainCarouselRef.current, {
-      prevNextButtons: false,
-      pageDots: false,
-      adaptiveHeight: true,
-      watchCSS: true,
-      dragThreshold: 8,
-      initialIndex: 0,
-      draggable: true,
-    });
-
-    const navFlkty = new Flickity(navCarouselRef.current, {
-      contain: true,
-      pageDots: false,
-      watchCSS: true,
-    });
-
     // Scroll Event Handler
-
     const handleScroll = () => {
       let foundIndex = -1;
 
       currentImageRefs.current.forEach((item, index) => {
         if (item) {
           const rect = item.getBoundingClientRect();
-          if (rect.top <= 0 && rect.bottom >= 0) {
+          if (rect.top <= navBarHeight && rect.bottom >= navBarHeight) {
             foundIndex = index;
           }
         }
@@ -60,8 +39,6 @@ function WideScreenGallery({ product }) {
 
     // Unmount Cleanup
     return () => {
-      mainFlkty.destroy();
-      navFlkty.destroy();
       window.removeEventListener('scroll', handleScroll);
     };
   }, [selectedIndex]);
@@ -70,7 +47,11 @@ function WideScreenGallery({ product }) {
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+      const offsetPosition = elementPosition - navBarHeight;
+
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     } else {
       console.warn(
         `element ID ${sectionId} is invalid. Check src/data/products.json.`
@@ -80,7 +61,7 @@ function WideScreenGallery({ product }) {
 
   return (
     <div className="wide-screen-gallery">
-      <div className="carousel-nav" ref={navCarouselRef}>
+      <div className="carousel-nav">
         {images.map((photo, index) => (
           <div
             className={`carousel-cell ${selectedIndex === index ? 'is-selected' : ''}`}
@@ -91,7 +72,7 @@ function WideScreenGallery({ product }) {
           </div>
         ))}
       </div>
-      <div className="carousel-main" ref={mainCarouselRef}>
+      <div className="carousel-main">
         {images.map((photo, index) => (
           <div
             className="carousel-cell"

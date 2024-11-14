@@ -29,7 +29,7 @@ function ProductInfo({ product }) {
         </div>
         <div className="product-order-form">
           <div className="product-color">Color: {product.color}</div>
-          <div className="size-guide-wrapper text-right">
+          <div className="size-guide-wrapper">
             <div
               className="size-guide normal-link"
               onClick={handleSizeGuideClick}

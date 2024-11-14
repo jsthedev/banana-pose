@@ -1,7 +1,3 @@
-import { useEffect, useRef } from 'react';
-import Flickity from 'flickity';
-import 'flickity/css/flickity.css';
-
 import ProductInfo from '@/components/product_info/index.jsx';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
@@ -10,30 +6,9 @@ import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gal
 function MidScreenGallery({ product }) {
   const images = product.images;
 
-  // Flickity Refs
-  const mainCarouselRef = useRef(null);
-
-  useEffect(() => {
-    // Flickity Initialization
-    const mainFlkty = new Flickity(mainCarouselRef.current, {
-      prevNextButtons: false,
-      pageDots: false,
-      adaptiveHeight: true,
-      watchCSS: true,
-      dragThreshold: 8,
-      initialIndex: 0,
-      draggable: true,
-    });
-
-    // Unmount Cleanup
-    return () => {
-      mainFlkty.destroy();
-    };
-  }, []);
-
   return (
     <div className="mid-screen-gallery">
-      <div className="carousel-main" ref={mainCarouselRef}>
+      <div className="carousel-main">
         {images.map((photo, index) => (
           <div className="carousel-cell" key={index} id={photo}>
             <img src={photo} alt={`Thumbnail ${index + 1}`} />

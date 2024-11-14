@@ -10,9 +10,13 @@
 
 // WARNING: Must be used with ${showList ? 'expanded' : 'collapsed'}
 .expandable-list {
-  padding-left: 8px;
   padding-top: 8px;
   overflow: hidden;
+  list-style: none;
+
+  li {
+    padding-left: 8px;
+  }
 
   li:before {
     content: '\b7';

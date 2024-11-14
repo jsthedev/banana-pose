@@ -1,6 +1,8 @@
-import { useEffect, useRef } from 'react';
-import Flickity from 'flickity';
-import 'flickity/css/flickity.css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
@@ -11,36 +13,28 @@ import '@/components/product_gallery/product_gallery_screen_sizes/small_screen_g
 function SmallScreenGallery({ product }) {
   const images = product.images;
 
-  // Flickity Refs
-  const mainCarouselRef = useRef(null);
-
-  useEffect(() => {
-    // Flickity Initialization
-    const mainFlkty = new Flickity(mainCarouselRef.current, {
-      prevNextButtons: false,
-      pageDots: true,
-      adaptiveHeight: true,
-      // watchCSS: false,
-      dragThreshold: 8,
-      initialIndex: 0,
-      draggable: true,
-    });
-
-    // Unmount Cleanup
-    return () => {
-      mainFlkty.destroy();
-    };
-  }, []);
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return `<span class="${className}"></span>`;
+    },
+  };
 
   return (
     <div className="small-screen-gallery">
-      <div className="carousel-main" ref={mainCarouselRef}>
+      <Swiper
+        pagination={pagination}
+        modules={[Pagination]}
+        className="carousel-main"
+      >
         {images.map((photo, index) => (
-          <div className="carousel-cell" key={index} id={photo}>
-            <img src={photo} alt={`Thumbnail ${index + 1}`} />
-          </div>
+          <SwiperSlide>
+            <div className="carousel-cell" key={index} id={photo}>
+              <img src={photo} alt={`Thumbnail ${index + 1}`} />
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
       <div className="product-info-container">
         <ProductInfo product={product} />
       </div>

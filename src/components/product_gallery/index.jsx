@@ -6,11 +6,9 @@ import SmallScreenGallery from './product_gallery_screen_sizes/small_screen_gall
 
 import '@/components/product_gallery/index.scss';
 
-// TODO: Make ProductGallery Responsive
 // at 1139px, carousel-nav should disappear
 // at 1007px, carousel-main becomes normal horizontal carousel
 // at 1007px, the flex-direction changes to column
-
 function ProductGallery({ product }) {
   // Functions
   const getScreenType = () => {

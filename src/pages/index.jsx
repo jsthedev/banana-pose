@@ -1,14 +1,18 @@
-// Landing Page
+import { Outlet } from 'react-router-dom';
+
+import NavBar from '@/components/header/nav_bar';
+
 import '@/pages/index.scss';
-import LandingPageImage from '@/assets/images/BANFF-1.jpg';
 
 function Landing() {
   return (
-    <div className="landing page">
-      <div className="landing-img-wrapper">
-        <img className="landing-img" src={LandingPageImage} />
-      </div>
-      <div className="text">BP First Drop - 2025.01.01</div>
+    <div>
+      <header>
+        <NavBar />
+      </header>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }

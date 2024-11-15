@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 import ProductGallery from '@/components/product_gallery/index.jsx';
 
 import '@/pages/product_details/index.scss';
@@ -6,8 +8,7 @@ import products from '@/data/products.json';
 
 function ProductDetails() {
   // Navigation
-  // const { productId } = useParams();
-  const productId = 't-shirt-01';
+  const { productId } = useParams();
   const product = products.find((prod) => prod.id === productId);
 
   if (!product) {

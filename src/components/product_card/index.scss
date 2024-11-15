@@ -1,0 +1,80 @@
+.product {
+  display: flex;
+  flex-direction: column;
+
+  font-family: 'HK Grotesk';
+
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 60px;
+
+  .product-img-wrapper {
+    width: 100%;
+    height: auto;
+
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+
+    .product-img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .product-img-wrapper:hover + .product-info .product-name {
+    text-decoration: underline;
+  }
+
+  .product-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .product-name {
+      margin-top: 7px;
+      margin-bottom: 7px;
+      font-size: 13px;
+    }
+
+    .product-price {
+      flex: none;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 1139px) {
+  .product {
+    padding-left: 24px;
+    padding-right: 0px;
+    margin-bottom: 50px;
+
+    width: calc((100vw - 132px) / 4);
+  }
+}
+
+@media (max-width: 1007px) {
+  .product {
+    width: calc((100vw - 48px) / 3);
+
+    .product-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .product-price {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .product {
+    padding-left: 10px;
+    margin-bottom: 35px;
+
+    width: calc((100vw - 14px) / 2);
+  }
+}

@@ -1,10 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @font-face {
   font-family: 'Hand Typist';
   src: url('./assets/fonts/HandTypist.ttf') format(truetype);
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  src: url('./assets/fonts/HKGrotesk-Regular.ttf') format(truetype);
 }
 
 * {
@@ -14,5 +15,5 @@
 }
 
 .page {
-  padding-top: 56px;
+  padding-top: 56px; // space for nav bar
 }

@@ -1,0 +1,20 @@
+.size-select-buttons-wrapper {
+  .size-select-buttons {
+    display: flex;
+    flex-direction: row;
+
+    .size-option {
+      font-family: 'HK Grotesk';
+      font-size: 12px;
+      height: 40px;
+      width: 40px;
+      border: 1px solid rgb(120, 120, 120, 0.3);
+      background-color: white;
+      margin-right: 12px;
+
+      &.selected {
+        border: 1px solid rgb(120, 120, 120, 1);
+      }
+    }
+  }
+}

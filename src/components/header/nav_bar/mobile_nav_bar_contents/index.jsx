@@ -40,6 +40,24 @@ function MobileNavBar() {
           />
         </div>
       </div>
+      {isMobileMenuOpen && (
+        <div className="expandable-menu">
+          <div className="expandable-menu-contents">
+            <div className="expandable-menu-links">
+              <div className="nav-link-wrapper">
+                <Link
+                  to={'/products'}
+                  className="nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  READY TO WEAR
+                </Link>
+              </div>
+            </div>
+            {/* TODO: Add contacts */}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

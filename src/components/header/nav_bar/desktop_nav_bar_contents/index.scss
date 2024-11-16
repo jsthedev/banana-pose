@@ -16,13 +16,17 @@
   }
 
   .nav-bar-icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding-right: 20px;
+    padding-top: 3px;
+
     .nav-bar-icon-wrapper {
       padding-left: 20px;
       .nav-bar-icon {
-        font-size: 24px;
-        width: 24px;
-        height: 24px;
+        width: 17px;
+        height: 17px;
       }
     }
   }

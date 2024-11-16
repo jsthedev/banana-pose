@@ -17,7 +17,9 @@ function DesktopNavBarContents() {
         </Link>
       </div>
       <div className="nav-bar-icons">
-        <FontAwesomeIcon icon={faBagShopping} />
+        <div className="nav-bar-icon-wrapper">
+          <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
+        </div>
       </div>
     </div>
   );

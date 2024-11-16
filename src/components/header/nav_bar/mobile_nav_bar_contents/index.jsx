@@ -29,12 +29,16 @@ function MobileNavBar() {
   return (
     <div className="mobile-nav-bar-contents">
       <div className="nav-bar-icons">
-        <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
-        <FontAwesomeIcon
-          icon={isMobileMenuOpen ? faTimes : faBars}
-          className="nav-bar-icon"
-          onClick={toggleMobileMenu}
-        />
+        <div className="nav-bar-icon-wrapper">
+          <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
+        </div>
+        <div className="nav-bar-icon-wrapper">
+          <FontAwesomeIcon
+            icon={isMobileMenuOpen ? faTimes : faBars}
+            className="nav-bar-icon"
+            onClick={toggleMobileMenu}
+          />
+        </div>
       </div>
     </div>
   );

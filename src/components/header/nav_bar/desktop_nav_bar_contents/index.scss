@@ -5,7 +5,7 @@
   justify-content: space-between;
 
   .menu {
-    padding: 0 15px 0 40px;
+    padding: 3px 20px 0 calc(13vw - 128px);
 
     .nav-bar-products-link {
       text-decoration: none;
@@ -24,10 +24,6 @@
 
     .nav-bar-icon-wrapper {
       padding-left: 20px;
-      .nav-bar-icon {
-        width: 17px;
-        height: 17px;
-      }
     }
   }
 }

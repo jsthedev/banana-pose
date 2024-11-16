@@ -2,11 +2,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBagShopping,
-  faBars,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
 
 import '@/components/header/nav_bar/mobile_nav_bar_contents/index.scss';
 
@@ -30,7 +28,7 @@ function MobileNavBar() {
     <div className="mobile-nav-bar-contents">
       <div className="nav-bar-icons">
         <div className="nav-bar-icon-wrapper">
-          <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
+          <ShoppingBagIcon />
         </div>
         <div className="nav-bar-icon-wrapper">
           <FontAwesomeIcon

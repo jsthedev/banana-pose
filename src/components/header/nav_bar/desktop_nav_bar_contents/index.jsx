@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
+import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
 
 import 'src/components/header/nav_bar/desktop_nav_bar_contents/index.scss';
 
@@ -18,7 +17,7 @@ function DesktopNavBarContents() {
       </div>
       <div className="nav-bar-icons">
         <div className="nav-bar-icon-wrapper">
-          <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
+          <ShoppingBagIcon />
         </div>
       </div>
     </div>

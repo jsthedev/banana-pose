@@ -13,11 +13,6 @@
 
     .nav-bar-icon-wrapper {
       padding-left: 20px;
-
-      .nav-bar-icon {
-        width: 17px;
-        height: 17px;
-      }
     }
   }
 
@@ -25,6 +20,7 @@
     position: fixed;
     top: 56px;
     left: 0;
+    z-index: 1000;
 
     width: 100vw;
     height: 100vh;

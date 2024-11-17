@@ -6,7 +6,7 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
 
-import '@/components/header/nav_bar/mobile_nav_bar_contents/index.scss';
+import '@/components/header/nav_bar/mobile_nav_bar/index.scss';
 
 // TODO:
 // 1. Create Shopping Bag Page and connect to faBagShopping

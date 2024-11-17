@@ -25,17 +25,26 @@ function MobileNavBar() {
   };
 
   return (
-    <div className="mobile-nav-bar-contents">
-      <div className="nav-bar-icons">
-        <div className="nav-bar-icon-wrapper">
-          <ShoppingBagIcon />
+    <div className="mobile-nav-bar">
+      <div className="mobile-nav-bar-top-contents">
+        <div className="logo-wrapper">
+          <Link to={'/home'} className="nav-bar-home-link">
+            <div className="banana-pose">Banana Pose</div>
+          </Link>
         </div>
-        <div className="nav-bar-icon-wrapper">
-          <FontAwesomeIcon
-            icon={isMobileMenuOpen ? faTimes : faBars}
-            className="nav-bar-icon"
-            onClick={toggleMobileMenu}
-          />
+        <div className="mobile-nav-bar-contents">
+          <div className="nav-bar-icons">
+            <div className="nav-bar-icon-wrapper">
+              <ShoppingBagIcon />
+            </div>
+            <div className="nav-bar-icon-wrapper">
+              <FontAwesomeIcon
+                icon={isMobileMenuOpen ? faTimes : faBars}
+                className="nav-bar-icon"
+                onClick={toggleMobileMenu}
+              />
+            </div>
+          </div>
         </div>
       </div>
       {isMobileMenuOpen && (

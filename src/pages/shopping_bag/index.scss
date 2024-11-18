@@ -1,0 +1,48 @@
+.shopping-bag {
+  font-family: 'HK Grotesk', sans-serif;
+  font-size: 13px;
+
+  .shopping-bag-container {
+    padding: 10px 80px 0 80px;
+
+    .shopping-bag-page-name {
+      max-width: 1400px;
+      padding-top: 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .empty-prompt {
+      padding: 164px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 408px;
+      justify-content: space-between;
+
+      .continue-shopping-link {
+        text-decoration: none;
+        color: white;
+        background-color: black;
+        padding: 15px 20px 15px 20px;
+        width: fit-content;
+      }
+    }
+
+    .shopping-bag-contents {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top: 1px solid rgb(170, 170, 170);
+      border-bottom: 1px solid rgb(170, 170, 170);
+
+      .shopping-bag-item-list {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  }
+}

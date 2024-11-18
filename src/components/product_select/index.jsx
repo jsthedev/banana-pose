@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRef, useState, useContext } from 'react';
+import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
@@ -12,6 +13,32 @@ function ProductSelect({ product }) {
   const handleSizeGuideClick = () => {
     if (sizeChartRef.current) {
       sizeChartRef.current.open();
+    }
+  };
+
+  // Size Select
+  const [selectedSize, setSelectedSize] = useState(null);
+  const [sizeSelectError, setSizeSelectError] = useState('');
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+    setSizeSelectError('');
+  };
+
+  // Add to Shopping Bag
+  const { dispatch } = useContext(ShoppingBagContext);
+  const addToShoppingBag = () => {
+    if (selectedSize) {
+      dispatch({
+        type: 'ADD',
+        payload: {
+          id: product.id,
+          size: selectedSize,
+          name: product.name,
+          price: product.price,
+        },
+      });
+    } else {
+      setSizeSelectError('Please select a size');
     }
   };
 
@@ -34,13 +61,18 @@ function ProductSelect({ product }) {
             <SizeChartTable />
           </SizeChartDrawer>
         </div>
-        {/* TODO: Implement Select Size function */}
+        {sizeSelectError && (
+          <div className="size-error-message error-style">
+            {sizeSelectError}
+          </div>
+        )}
         <div className="size-select-button-wrapper">
-          <SizeSelector sizes={product.sizes} />
+          <SizeSelector sizes={product.sizes} onSizeSelect={handleSizeSelect} />
         </div>
       </div>
-      {/* TODO: Implement Buy Button function */}
-      <button className="buy-button">Add to Shopping Bag</button>
+      <button className="buy-button" onClick={addToShoppingBag}>
+        Add to Shopping Bag
+      </button>
     </div>
   );
 }

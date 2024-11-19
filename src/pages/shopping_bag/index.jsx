@@ -1,29 +1,22 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+
+import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
+
+import EmptyPrompt from '@/components/shopping_bag/empty_prompt';
+import ShoppingBagContents from '@/components/shopping_bag/shopping_bag_contents';
 
 import '@/pages/shopping_bag/index.scss';
 
 function ShoppingBag() {
-  const [isBagEmpty, setIsBagEmpty] = useState(true);
+  const { state } = useContext(ShoppingBagContext);
+
+  const isBagEmpty = state.shoppingBagItems.length === 0;
 
   return (
     <div className="shopping-bag page">
       <div className="shopping-bag-container">
         <div className="shopping-bag-page-name">Shopping bag</div>
-        {isBagEmpty && (
-          <div className="empty-prompt">
-            <p>Your shopping bag is empty</p>
-            <Link to={'/products'} className="continue-shopping-link">
-              CONTINUE SHOPPING
-            </Link>
-          </div>
-        )}
-        {isBagEmpty === false && (
-          <div className="shopping-bag-contents">
-            <div className="shopping-bag-item-list"></div>
-            <div className="shopping-bag-footer"></div>
-          </div>
-        )}
+        {isBagEmpty ? <EmptyPrompt /> : <ShoppingBagContents />}
       </div>
     </div>
   );

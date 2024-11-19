@@ -1,0 +1,17 @@
+.empty-prompt {
+  padding: 164px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 408px;
+  justify-content: space-between;
+
+  .continue-shopping-link {
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    padding: 15px 20px 15px 20px;
+    width: fit-content;
+  }
+}

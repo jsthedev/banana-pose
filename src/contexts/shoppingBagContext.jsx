@@ -6,18 +6,18 @@ const initialState = {
 
 const shoppingBagReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD':
+    case 'ADD': {
       const { id, size } = action.payload;
       const existItem = state.shoppingBagItems.find(
-        (x) => (x.id === id) & (x.size === size)
+        (item) => item.id === id && item.size === size
       );
       if (existItem) {
         return {
           ...state,
-          shoppingBagItems: state.shoppingBagItems.map((x) =>
-            x.id === id && x.size === size
-              ? { ...x, quantity: x.quantity + 1 }
-              : x
+          shoppingBagItems: state.shoppingBagItems.map((item) =>
+            item.id === addId && item.size === addSize
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
           ),
         };
       } else {
@@ -29,13 +29,22 @@ const shoppingBagReducer = (state, action) => {
           ],
         };
       }
-    case 'REMOVE':
+    }
+    case 'REMOVE': {
+      const { id, size } = action.payload;
       return {
         ...state,
         shoppingBagItems: state.shoppingBagItems.filter(
-          (x) => !(x.id === action.payload && x.size === size)
+          (item) => !(item.id === id && item.size === size)
         ),
       };
+    }
+    case 'CLEAR': {
+      return {
+        ...state,
+        shoppingBagItems: [],
+      };
+    }
     default:
       return state;
   }

@@ -6,7 +6,7 @@ function EmptyPrompt() {
   return (
     <div className="empty-prompt">
       <p>Your shopping bag is empty</p>
-      <Link to={'/products'} className="continue-shopping-link">
+      <Link to={'/products'} className="link-button">
         CONTINUE SHOPPING
       </Link>
     </div>

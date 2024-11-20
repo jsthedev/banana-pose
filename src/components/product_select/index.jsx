@@ -32,6 +32,7 @@ function ProductSelect({ product }) {
         type: 'ADD',
         payload: {
           id: product.id,
+          thumbnail: product.thumbnail,
           size: selectedSize,
           name: product.name,
           price: product.price,

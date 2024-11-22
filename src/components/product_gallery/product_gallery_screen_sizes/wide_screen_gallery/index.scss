@@ -10,6 +10,7 @@
     align-self: flex-start;
     width: 68px;
     margin-left: 150px;
+    z-index: 1;
 
     .carousel-cell {
       width: 68px;
@@ -49,5 +50,6 @@
     position: sticky;
     top: 56px; // same height as nav-bar
     align-self: flex-start;
+    z-index: 1;
   }
 }

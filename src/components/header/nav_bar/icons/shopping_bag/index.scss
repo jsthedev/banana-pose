@@ -1,0 +1,15 @@
+.shopping-bag-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .shopping-bag-icon-link {
+    text-decoration: none;
+    color: black;
+    width: 17px;
+    height: 17px;
+    .shopping-bag-icon {
+      font-size: 17px;
+    }
+  }
+}

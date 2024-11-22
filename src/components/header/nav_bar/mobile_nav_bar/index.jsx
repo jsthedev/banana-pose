@@ -2,13 +2,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBagShopping,
-  faBars,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import '@/components/header/nav_bar/mobile_nav_bar_contents/index.scss';
+import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
+
+import '@/components/header/nav_bar/mobile_nav_bar/index.scss';
 
 // TODO:
 // 1. Create Shopping Bag Page and connect to faBagShopping
@@ -27,17 +25,26 @@ function MobileNavBar() {
   };
 
   return (
-    <div className="mobile-nav-bar-contents">
-      <div className="nav-bar-icons">
-        <div className="nav-bar-icon-wrapper">
-          <FontAwesomeIcon icon={faBagShopping} className="nav-bar-icon" />
+    <div className="mobile-nav-bar">
+      <div className="mobile-nav-bar-top-contents">
+        <div className="logo-wrapper">
+          <Link to={'/home'} className="nav-bar-home-link">
+            <div className="banana-pose">Banana Pose</div>
+          </Link>
         </div>
-        <div className="nav-bar-icon-wrapper">
-          <FontAwesomeIcon
-            icon={isMobileMenuOpen ? faTimes : faBars}
-            className="nav-bar-icon"
-            onClick={toggleMobileMenu}
-          />
+        <div className="mobile-nav-bar-contents">
+          <div className="nav-bar-icons">
+            <div className="nav-bar-icon-wrapper">
+              <ShoppingBagIcon />
+            </div>
+            <div className="nav-bar-icon-wrapper">
+              <FontAwesomeIcon
+                icon={isMobileMenuOpen ? faTimes : faBars}
+                className="nav-bar-icon"
+                onClick={toggleMobileMenu}
+              />
+            </div>
+          </div>
         </div>
       </div>
       {isMobileMenuOpen && (

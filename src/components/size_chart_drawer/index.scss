@@ -24,9 +24,10 @@
   top: 0;
   right: -50%;
   width: 50%;
+  max-width: 630px;
   height: 100%;
   background-color: white;
-  padding-top: 72px;
+  padding-top: 128px;
   z-index: 30;
 
   display: flex;
@@ -42,9 +43,10 @@
 
   .close-button-wrapper {
     position: fixed;
-    top: 0;
+    top: 56px;
     right: -50%;
     width: 50%;
+    max-width: 630px;
     height: 72px;
     background-color: white;
     display: flex;
@@ -63,6 +65,10 @@
       padding: 30px;
       background-color: white;
       border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -85,6 +91,7 @@
   .size-chart-drawer {
     right: 0;
     width: 100%;
+    max-width: 100%;
 
     transform: translateY(100%);
     transition: transform 0.2s ease;

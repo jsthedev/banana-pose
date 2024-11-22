@@ -1,0 +1,20 @@
+.our-mission {
+  .full-screen-title {
+    .wide-image-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .our-mission-title {
+      position: absolute;
+      top: 50vh;
+      left: 50vw;
+      transform: translate(-50%, -50%);
+
+      color: white;
+      font-family: 'HK Grotesk Extra Light', sans-serif;
+      font-size: 35px;
+    }
+  }
+}

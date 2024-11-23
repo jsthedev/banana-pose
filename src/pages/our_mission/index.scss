@@ -13,8 +13,42 @@
       transform: translate(-50%, -50%);
 
       color: white;
+      opacity: 0.85;
       font-family: 'HK Grotesk Extra Light', sans-serif;
       font-size: 35px;
+    }
+
+    .full-screen-title-spacer {
+      height: calc(100vh - 56px);
+    }
+  }
+
+  .our-mission-main-text {
+    padding: 20px 32px 0 32px;
+    max-width: 480px;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-family: 'HK Grotesk';
+
+    .logo-image-wrapper {
+      width: 120px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    p {
+      text-align: center;
     }
   }
 }

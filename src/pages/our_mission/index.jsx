@@ -2,7 +2,11 @@ import '@/pages/our_mission/index.scss';
 
 import Placeholder from '@/assets/images/our_mission/35242676104_61abae6693_o.jpg';
 import LogoImage from '@/assets/images/logo/seal_logo.png';
+import QualityImage from '@/assets/images/our_mission/quality.webp';
+import ComfortImage from '@/assets/images/our_mission/IMG_0558.jpg';
+import SustainabilityImage from '@/assets/images/our_mission/Cotton_field_kv17.jpg';
 
+// TODO: Replace placeholder images
 function OurMission() {
   return (
     <div className="our-mission page">
@@ -28,7 +32,52 @@ function OurMission() {
           experiences.
         </p>
       </div>
-      <div className="photo-text-boxes"></div>
+      <div className="photo-text-boxes">
+        <div className="photo-text-box">
+          <div className="img-wrapper">
+            <img src={QualityImage} />
+          </div>
+          <div className="text-box">
+            <h2>Quality</h2>
+            <p>
+              We take pride in making high-quality garments locally in North
+              America. Every piece in our collection is thoughtfully designed
+              and crafted to ensure it lasts. We respect our customers, our
+              craft, our community, and the environment by delivering clothes
+              that stand the test of time.
+            </p>
+          </div>
+        </div>
+        <div className="text-photo-box">
+          <div className="text-box">
+            <h2>Comfort</h2>
+            <p>
+              Comfort is the foundation of everything we create. We believe that
+              the true essence of great clothing lies in how it feels, both
+              physically and mentally. Our goal is to create garments as tools
+              to add a little more comfort in your everyday life.
+            </p>
+          </div>
+          <div className="img-wrapper">
+            <img src={ComfortImage} />
+          </div>
+        </div>
+        <div className="photo-text-box">
+          <div className="img-wrapper">
+            <img src={SustainabilityImage} />
+          </div>
+          <div className="text-box">
+            <h2>Sustainability</h2>
+            <p>
+              Sustainability is at the heart of everything we do. Every decision
+              we make—from manufacturing to operations—is guided by our
+              commitment to environmental responsibility. We are dedicated to
+              minimizing our impact on the planet and promoting sustainable
+              practices within the fashion industry.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

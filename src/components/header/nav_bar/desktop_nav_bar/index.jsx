@@ -17,9 +17,16 @@ function DesktopNavBar() {
       </div>
       <div className="desktop-nav-bar-contents">
         <div className="menu">
-          <Link className="nav-bar-products-link" to="/products">
-            READY TO WEAR
-          </Link>
+          <div className="nav-bar-link-wrapper">
+            <Link className="nav-bar-link" to="/products">
+              READY TO WEAR
+            </Link>
+          </div>
+          <div className="nav-bar-link-wrapper">
+            <Link className="nav-bar-link" to="/our-mission">
+              OUR MISSION
+            </Link>
+          </div>
         </div>
         <div className="nav-bar-icons">
           <div className="nav-bar-icon-wrapper">

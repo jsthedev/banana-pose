@@ -1,4 +1,9 @@
 @font-face {
+  font-family: 'Tough Cookies';
+  src: url('./assets/fonts/ToughCookies-Bold.ttf') format(truetype);
+}
+
+@font-face {
   font-family: 'Hand Typist';
   src: url('./assets/fonts/HandTypist.ttf') format(truetype);
 }
@@ -9,8 +14,13 @@
 }
 
 @font-face {
-  font-family: 'Tough Cookies';
-  src: url('./assets/fonts/ToughCookies-Bold.ttf') format(truetype);
+  font-family: 'HK Grotesk Light';
+  src: url('./assets/fonts/HKGrotesk-Light.ttf') format(truetype);
+}
+
+@font-face {
+  font-family: 'HK Grotesk Extra Light';
+  src: url('./assets/fonts/HKGrotesk-ExtraLight.ttf') format(truetype);
 }
 
 * {

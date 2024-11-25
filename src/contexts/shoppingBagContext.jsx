@@ -30,6 +30,28 @@ const shoppingBagReducer = (state, action) => {
         };
       }
     }
+    case 'INCREMENT': {
+      const { id, size } = action.payload;
+      return {
+        ...state,
+        shoppingBagItems: state.shoppingBagItems.map((item) =>
+          item.id === id && item.size === size
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      };
+    }
+    case 'DECREMENT': {
+      const { id, size } = action.payload;
+      return {
+        ...state,
+        shoppingBagItems: state.shoppingBagItems.map((item) =>
+          item.id === id && item.size === size
+            ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+            : item
+        ),
+      };
+    }
     case 'REMOVE': {
       const { id, size } = action.payload;
       return {

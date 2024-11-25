@@ -38,6 +38,18 @@
         .item-detail {
           margin-bottom: 13px;
         }
+
+        .item-quantity {
+          display: flex;
+          flex-direction: row;
+
+          button {
+            padding: 1px 10px;
+            background: none;
+            color: inherit;
+            border: none;
+          }
+        }
       }
     }
 

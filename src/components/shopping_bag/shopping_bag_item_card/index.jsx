@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import '@/components/shopping_bag/shopping_bag_item_card/index.scss';
 
-function ShoppingBagItemCard({ item, onRemove }) {
+function ShoppingBagItemCard({ item, onDecrement, onIncrement, onRemove }) {
   return (
     <div className="shopping-bag-item">
       <Link to={`/products/${item.id}`}>
@@ -18,7 +18,20 @@ function ShoppingBagItemCard({ item, onRemove }) {
             </Link>
             <div className="item-size item-detail">Size: {item.size}</div>
             <div className="item-quantity item-detail">
-              Quantity: {item.quantity}
+              <div className="quantity-text">Quantity:</div>
+              <button
+                className="decrement-button"
+                onClick={() => onDecrement(item.id, item.size)}
+              >
+                -
+              </button>
+              <div className="quantity-number">{item.quantity}</div>
+              <button
+                className="increment-button"
+                onClick={() => onIncrement(item.id, item.size)}
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="item-price">${item.price}</div>

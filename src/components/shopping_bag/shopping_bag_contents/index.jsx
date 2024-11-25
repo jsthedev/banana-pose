@@ -10,6 +10,20 @@ import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 function ShoppingBagContents() {
   const { state, dispatch } = useContext(ShoppingBagContext);
 
+  const incrementItem = (id, size) => {
+    dispatch({
+      type: 'INCREMENT',
+      payload: { id, size },
+    });
+  };
+
+  const decrementItem = (id, size) => {
+    dispatch({
+      type: 'DECREMENT',
+      payload: { id, size },
+    });
+  };
+
   const removeItem = (id, size) => {
     dispatch({
       type: 'REMOVE',
@@ -32,6 +46,8 @@ function ShoppingBagContents() {
             <ShoppingBagItemCard
               key={`${item.id}-${item.size}`}
               item={item}
+              onDecrement={decrementItem}
+              onIncrement={incrementItem}
               onRemove={removeItem}
             />
           ))}

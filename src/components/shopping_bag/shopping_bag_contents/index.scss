@@ -9,80 +9,65 @@
     margin-right: 5px;
   }
 
-  .shopping-bag-item-list {
+  .shopping-bag-item-list-wrapper {
     width: calc(1200%);
-    margin-top: 10px;
-    border-top: 1px solid rgb(170, 170, 170);
 
-    .shopping-bag-item {
-      width: 100%;
-      padding: 20px 0 20px 0;
-      display: flex;
-      flex-direction: row;
-      border-bottom: 1px solid rgb(170, 170, 170);
+    .shopping-bag-page-name {
+      margin-top: 20px;
+    }
 
-      .item-thumbnail {
-        img {
-          height: 300px;
-          width: auto;
-          display: block;
-        }
-      }
-
-      .shopping-bag-item-contents-wrapper {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 20px 20px 0 20px;
-
-        .top-content {
-          width: 100%;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-
-          .item-details {
-            display: flex;
-            flex-direction: column;
-
-            .item-detail {
-              margin-bottom: 13px;
-            }
-          }
-        }
-
-        .bottom-content {
-          padding-bottom: 3px;
-          display: flex;
-          justify-content: flex-end;
-        }
-      }
+    .shopping-bag-item-list {
+      margin-top: 10px;
+      border-top: 1px solid rgb(170, 170, 170);
     }
   }
 
   .shopping-bag-sidebar {
     width: 320px;
     flex: 0 0 auto;
-    margin-top: 13px;
+    margin-top: 20px;
 
     .order-total {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      padding-bottom: 7px;
 
       .order-total-text {
-        padding-top: 7px;
+        padding-top: 1px;
       }
     }
 
-    .sidebar-line {
-      padding-bottom: 10px;
+    .shipping-cost-warning {
+      padding-bottom: 16px;
     }
 
     .checkout-button {
       text-align: center;
       width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1023px) {
+  .shopping-bag-contents {
+    .left-column {
+      width: 0;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .shopping-bag-contents {
+    flex-direction: column-reverse;
+
+    .shopping-bag-item-list-wrapper {
+      width: 100%;
+    }
+
+    .shopping-bag-sidebar {
+      width: 100%;
+      margin: 15px 0 0 0;
     }
   }
 }

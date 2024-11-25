@@ -15,7 +15,6 @@ function ShoppingBag() {
   return (
     <div className="shopping-bag page">
       <div className="shopping-bag-container">
-        <div className="shopping-bag-page-name">Shopping bag</div>
         {isBagEmpty ? <EmptyPrompt /> : <ShoppingBagContents />}
       </div>
     </div>

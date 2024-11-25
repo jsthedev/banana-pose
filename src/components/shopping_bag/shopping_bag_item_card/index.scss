@@ -30,6 +30,11 @@
         display: flex;
         flex-direction: column;
 
+        .item-link {
+          text-decoration: none;
+          color: black;
+        }
+
         .item-detail {
           margin-bottom: 13px;
         }

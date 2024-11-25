@@ -15,7 +15,7 @@ const shoppingBagReducer = (state, action) => {
         return {
           ...state,
           shoppingBagItems: state.shoppingBagItems.map((item) =>
-            item.id === addId && item.size === addSize
+            item.id === id && item.size === size
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),

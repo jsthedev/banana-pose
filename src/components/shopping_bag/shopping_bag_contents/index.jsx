@@ -62,7 +62,7 @@ function ShoppingBagContents() {
         <div className="shipping-cost-warning">
           Shipping cost calculated at the checkout
         </div>
-        <div className="checkout-button link-button">PROCEED TO CHECKOUT</div>
+        <div className="checkout-button link-button">Proceed to Checkout</div>
       </div>
     </div>
   );

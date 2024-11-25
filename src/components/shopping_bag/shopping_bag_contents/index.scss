@@ -19,52 +19,6 @@
     .shopping-bag-item-list {
       margin-top: 10px;
       border-top: 1px solid rgb(170, 170, 170);
-
-      .shopping-bag-item {
-        width: 100%;
-        padding: 20px 0 20px 0;
-        display: flex;
-        flex-direction: row;
-        border-bottom: 1px solid rgb(170, 170, 170);
-
-        .item-thumbnail {
-          img {
-            height: 300px;
-            width: auto;
-            display: block;
-          }
-        }
-
-        .shopping-bag-item-contents-wrapper {
-          width: 100%;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          padding: 20px 20px 0 20px;
-
-          .top-content {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-
-            .item-details {
-              display: flex;
-              flex-direction: column;
-
-              .item-detail {
-                margin-bottom: 13px;
-              }
-            }
-          }
-
-          .bottom-content {
-            padding-bottom: 3px;
-            display: flex;
-            justify-content: flex-end;
-          }
-        }
-      }
     }
   }
 
@@ -100,21 +54,6 @@
     .left-column {
       width: 0;
     }
-    .shopping-bag-item-list-wrapper {
-      .shopping-bag-item-list {
-        .shopping-bag-item {
-          .item-thumbnail {
-            img {
-              height: 210px;
-            }
-          }
-
-          .shopping-bag-item-contents-wrapper {
-            padding: 0 0 0 20px;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -124,16 +63,6 @@
 
     .shopping-bag-item-list-wrapper {
       width: 100%;
-
-      .shopping-bag-item-list {
-        .shopping-bag-item {
-          .item-thumbnail {
-            img {
-              height: 150px;
-            }
-          }
-        }
-      }
     }
 
     .shopping-bag-sidebar {

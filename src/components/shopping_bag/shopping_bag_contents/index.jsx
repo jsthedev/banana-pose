@@ -2,9 +2,11 @@ import { useContext } from 'react';
 
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
+import ShoppingBagItemCard from '@/components/shopping_bag/shopping_bag_item_card/index.jsx';
+
 import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 
-// TODO: implement styling and link to checkout page
+// TODO: implement link to checkout page
 function ShoppingBagContents() {
   const { state, dispatch } = useContext(ShoppingBagContext);
 
@@ -27,33 +29,11 @@ function ShoppingBagContents() {
         <div className="shopping-bag-page-name">Shopping bag</div>
         <div className="shopping-bag-item-list">
           {state.shoppingBagItems.map((item) => (
-            <div className="shopping-bag-item" key={`${item.id}-${item.size}`}>
-              <div className="item-thumbnail">
-                <img src={item.thumbnail} alt={`${item.thumbnail}`} />
-              </div>
-              <div className="shopping-bag-item-contents-wrapper">
-                <div className="top-content">
-                  <div className="item-details">
-                    <div className="item-name item-detail">{item.name}</div>
-                    <div className="item-size item-detail">
-                      Size: {item.size}
-                    </div>
-                    <div className="item-quantity item-detail">
-                      Quantity: {item.quantity}
-                    </div>
-                  </div>
-                  <div className="item-price">${item.price}</div>
-                </div>
-                <div className="bottom-content">
-                  <div
-                    className="remove-button normal-link"
-                    onClick={() => removeItem(item.id, item.size)}
-                  >
-                    Remove
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ShoppingBagItemCard
+              key={`${item.id}-${item.size}`}
+              item={item}
+              onRemove={removeItem}
+            />
           ))}
         </div>
       </div>

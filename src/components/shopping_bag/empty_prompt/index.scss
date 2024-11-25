@@ -1,9 +1,31 @@
 .empty-prompt {
-  padding: 164px 0;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 408px;
-  justify-content: space-between;
+  .shopping-bag-page-name {
+    max-width: 1400px;
+    padding-top: 20px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .empty-prompt-contents {
+    padding: 164px 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 408px;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 767px) {
+  .empty-prompt {
+    .empty-prompt-contents {
+      padding: 20px 0;
+      height: 123px;
+
+      .link-button {
+        width: 100%;
+      }
+    }
+  }
 }

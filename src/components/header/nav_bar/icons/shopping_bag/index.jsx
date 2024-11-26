@@ -8,7 +8,7 @@ import 'src/components/header/nav_bar/icons/shopping_bag/index.scss';
 function ShoppingBagIcon() {
   return (
     <div className="shopping-bag-icon-wrapper">
-      <Link to={'/shoppingbag'} className="shopping-bag-icon-link">
+      <Link to={'/shopping-bag'} className="shopping-bag-icon-link">
         <FontAwesomeIcon icon={faBagShopping} className="shopping-bag-icon" />
       </Link>
     </div>

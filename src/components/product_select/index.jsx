@@ -80,7 +80,7 @@ function ProductSelect({ product }) {
         </div>
       </div>
       {addedToBag ? (
-        <Link to={'/shoppingbag'} className="checkout-link">
+        <Link to={'/shopping-bag'} className="checkout-link">
           <button className="buy-button">Proceed to Checkout</button>
         </Link>
       ) : (

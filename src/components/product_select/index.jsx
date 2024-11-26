@@ -20,14 +20,19 @@ function ProductSelect({ product }) {
   // Size Select
   const [selectedSize, setSelectedSize] = useState(null);
   const [sizeSelectError, setSizeSelectError] = useState('');
+
+  const [addedToBag, setAddedToBag] = useState(false);
+  const { dispatch } = useContext(ShoppingBagContext);
+
   const handleSizeSelect = (size) => {
+    if (size !== selectedSize) {
+      setAddedToBag(false);
+    }
     setSelectedSize(size);
     setSizeSelectError('');
   };
 
   // Add to Shopping Bag
-  const [addedToBag, setAddedToBag] = useState(false);
-  const { dispatch } = useContext(ShoppingBagContext);
   const addToShoppingBag = () => {
     if (selectedSize) {
       dispatch({

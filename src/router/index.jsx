@@ -16,7 +16,7 @@ function Router() {
         <Route path="/home" element={<Home />} />
         <Route path="/products" element={<Products />} />
         <Route path="/products/:productId" element={<ProductDetails />} />
-        <Route path="/our-mission" element={<OurMission />} />
+        <Route path="/ourmission" element={<OurMission />} />
         <Route path="/shoppingbag" element={<ShoppingBag />} />
         <Route path="*" element={<NotFound />} />
       </Route>

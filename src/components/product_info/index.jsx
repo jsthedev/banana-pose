@@ -23,7 +23,7 @@ function ProductInfo({ product }) {
             className="product-details-toggle"
             onClick={() => setShowDetails(!showDetails)}
           >
-            Product details
+            Product details {showDetails ? '-' : '+'}
           </div>
           {showDetails && (
             <ul
@@ -40,7 +40,7 @@ function ProductInfo({ product }) {
             className="product-care-toggle"
             onClick={() => setShowCare(!showCare)}
           >
-            Care instructions
+            Care instructions {showCare ? '-' : '+'}
           </div>
           {showCare && (
             <ul

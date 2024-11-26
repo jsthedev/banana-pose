@@ -64,7 +64,7 @@ function ProductSelect({ product }) {
             className="size-chart-click normal-link"
             onClick={handleSizeGuideClick}
           >
-            Size Chart
+            Size Guide
           </div>
           <SizeChartDrawer ref={sizeChartRef}>
             <SizeChartTable />

@@ -27,6 +27,11 @@ function DesktopNavBar() {
               OUR MISSION
             </Link>
           </div>
+          <div className="nav-bar-link-wrapper">
+            <Link className="nav-bar-link" to="/contact-us">
+              CONTACT US
+            </Link>
+          </div>
         </div>
         <div className="nav-bar-icons">
           <div className="nav-bar-icon-wrapper">

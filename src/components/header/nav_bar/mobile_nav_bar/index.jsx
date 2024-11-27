@@ -69,6 +69,15 @@ function MobileNavBar() {
                   OUR MISSION
                 </Link>
               </div>
+              <div className="nav-link-wrapper">
+                <Link
+                  to={'/contact-us'}
+                  className="nav-link"
+                  onClick={closeMobileMenu}
+                >
+                  CONTACT US
+                </Link>
+              </div>
             </div>
           </div>
           {/* TODO: Add contacts */}

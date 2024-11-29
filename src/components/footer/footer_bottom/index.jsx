@@ -2,6 +2,7 @@ import '@/components/footer/footer_bottom/index.scss';
 
 import InstagramIcon from '@/assets/images/icons/icons8-instagram-120.png';
 import TiktokIcon from '@/assets/images/icons/icons8-tiktok-120.png';
+import YoutubeIcon from 'src/assets/images/icons/icons8-youtube-150.png';
 
 function FooterBottom() {
   return (
@@ -24,6 +25,14 @@ function FooterBottom() {
                 className="icon-link"
               >
                 <img src={TiktokIcon} className="icon-img" />
+              </a>
+            </div>
+            <div className="icon-wrapper">
+              <a
+                href="https://www.youtube.com/@bananapose"
+                className="icon-link"
+              >
+                <img src={YoutubeIcon} className="icon-img" />
               </a>
             </div>
           </div>

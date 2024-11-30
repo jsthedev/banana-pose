@@ -4,33 +4,8 @@
   align-items: center;
   font-family: 'HK Grotesk';
 
-  .full-screen-title {
-    .wide-image-wrapper {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .our-mission-title {
-      position: absolute;
-      top: 50vh;
-      left: 50vw;
-      transform: translate(-50%, -50%);
-
-      color: white;
-      opacity: 0.85;
-      font-family: 'HK Grotesk Light', sans-serif;
-      font-size: 40px;
-    }
-
-    .full-screen-title-spacer {
-      height: calc(100vh - 56px);
-      width: 0px;
-    }
-  }
-
   .our-mission-main-text {
-    padding: 20px 32px 0 32px;
+    padding: 32px 32px 0 32px;
     max-width: 480px;
     margin: 0 auto;
 
@@ -60,9 +35,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 96px 0;
+    gap: 96px;
 
     .photo-text-box {
-      margin: 96px auto;
+      margin: 0 auto;
       padding: 0 32px;
       max-width: 1264px;
 
@@ -102,7 +79,7 @@
     }
 
     .text-photo-box {
-      margin: 96px auto;
+      margin: 0 auto;
       padding: 0 32px;
       max-width: 1264px;
 
@@ -176,11 +153,19 @@
   }
 
   .our-mission {
+    .our-mission-main-text {
+      padding: 32px;
+    }
+
     .photo-text-boxes {
+      margin: 32px 0;
+      gap: 32px;
+
       .photo-text-box {
-        margin: 32px 0;
+        margin: 0;
         display: flex;
         flex-direction: column;
+        gap: 1.5rem;
 
         .img-wrapper {
           max-width: 100%;
@@ -197,9 +182,10 @@
         }
       }
       .text-photo-box {
-        margin: 32px 0;
+        margin: 0;
         display: flex;
         flex-direction: column-reverse;
+        gap: 1.5rem;
 
         .text-box {
           padding: 0;

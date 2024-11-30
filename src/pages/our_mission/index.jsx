@@ -1,6 +1,5 @@
 import '@/pages/our_mission/index.scss';
 
-import Placeholder from '@/assets/images/our_mission/35242676104_61abae6693_o.jpg';
 import LogoImage from '@/assets/images/logo/seal_logo.png';
 import QualityImage from '@/assets/images/our_mission/quality.webp';
 import ComfortImage from '@/assets/images/our_mission/IMG_0558.jpg';
@@ -10,13 +9,6 @@ import SustainabilityImage from '@/assets/images/our_mission/Cotton_field_kv17.j
 function OurMission() {
   return (
     <div className="our-mission page">
-      <div className="full-screen-title">
-        <div className="wide-image-wrapper">
-          <img src={Placeholder} />
-        </div>
-        <div className="our-mission-title">Our Mission</div>
-        <div className="full-screen-title-spacer" />
-      </div>
       <div className="our-mission-main-text">
         <div className="logo-image-wrapper">
           <img src={LogoImage} />
@@ -50,23 +42,6 @@ function OurMission() {
         </div>
         <div className="text-photo-box">
           <div className="text-box">
-            <h2>Comfort</h2>
-            <p>
-              Comfort is the foundation of everything we create. We believe that
-              the true essence of great clothing lies in how it feels, both
-              physically and mentally. Our goal is to create garments as tools
-              to add a little more comfort in your everyday life.
-            </p>
-          </div>
-          <div className="img-wrapper">
-            <img src={ComfortImage} />
-          </div>
-        </div>
-        <div className="photo-text-box">
-          <div className="img-wrapper">
-            <img src={SustainabilityImage} />
-          </div>
-          <div className="text-box">
             <h2>Sustainability</h2>
             <p>
               Sustainability is at the heart of everything we do. Every decision
@@ -74,6 +49,23 @@ function OurMission() {
               commitment to environmental responsibility. We are dedicated to
               minimizing our impact on the planet and promoting sustainable
               practices within the fashion industry.
+            </p>
+          </div>
+          <div className="img-wrapper">
+            <img src={SustainabilityImage} />
+          </div>
+        </div>
+        <div className="photo-text-box">
+          <div className="img-wrapper">
+            <img src={ComfortImage} />
+          </div>
+          <div className="text-box">
+            <h2>Comfort</h2>
+            <p>
+              Comfort is the foundation of everything we create. We believe that
+              the true essence of great clothing lies in how it feels, both
+              physically and mentally. Our goal is to create garments as tools
+              to add a little more comfort in your everyday life.
             </p>
           </div>
         </div>

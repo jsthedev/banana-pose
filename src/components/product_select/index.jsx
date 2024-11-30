@@ -80,9 +80,14 @@ function ProductSelect({ product }) {
         </div>
       </div>
       {addedToBag ? (
-        <Link to={'/shopping-bag'} className="checkout-link">
-          <button className="buy-button">Proceed to Checkout</button>
-        </Link>
+        <div className="checkout-link-wrapper">
+          <Link to={'/shopping-bag'} className="checkout-link">
+            <button className="checkout-button">Proceed to Checkout</button>
+          </Link>
+          <div className="checkout-notice">
+            Size {selectedSize} added to shopping bag.
+          </div>
+        </div>
       ) : (
         <button className="buy-button" onClick={addToShoppingBag}>
           Add to Shopping Bag

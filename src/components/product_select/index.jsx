@@ -1,14 +1,22 @@
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { Link } from 'react-router-dom';
 
+import ProductDetailsColorSelect from '@/components/color_select/product_details';
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
-import 'src/components/product_select/index.scss';
+import { useProduct, useVariant } from '@/contexts/productVariantContext';
 
-function ProductSelect({ product }) {
+import '@/components/product_select/index.scss';
+
+function ProductSelect() {
+  const product = useProduct();
+  const variant = useVariant();
+  const color = variant.color;
+  const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
+
   // Size Chart
   const sizeChartRef = useRef();
   const handleSizeGuideClick = () => {
@@ -32,14 +40,22 @@ function ProductSelect({ product }) {
     setSizeSelectError('');
   };
 
+  // Reset selected size when color changes
+  useEffect(() => {
+    setSelectedSize(null);
+    setAddedToBag(false);
+    setSizeSelectError('');
+  }, [color]);
+
   // Add to Shopping Bag
   const addToShoppingBag = () => {
     if (selectedSize) {
       dispatch({
         type: 'ADD',
         payload: {
-          id: product.id,
-          thumbnail: product.thumbnail,
+          id: variant.id,
+          thumbnail: variant.thumbnail,
+          color: colorCapital,
           size: selectedSize,
           name: product.name,
           price: product.price,
@@ -58,7 +74,8 @@ function ProductSelect({ product }) {
         <div className="product-price">${product.price}</div>
       </div>
       <div className="product-order-form">
-        <div className="product-color">Color: {product.color}</div>
+        <div className="product-color">Color: {colorCapital}</div>
+        <ProductDetailsColorSelect product={product} variant={variant} />
         <div className="size-chart-click-wrapper">
           <div
             className="size-chart-click normal-link"
@@ -76,13 +93,22 @@ function ProductSelect({ product }) {
           </div>
         )}
         <div className="size-select-button-wrapper">
-          <SizeSelector sizes={product.sizes} onSizeSelect={handleSizeSelect} />
+          <SizeSelector
+            sizes={product.sizes}
+            selectedSize={selectedSize}
+            onSizeSelect={handleSizeSelect}
+          />
         </div>
       </div>
       {addedToBag ? (
-        <Link to={'/shopping-bag'} className="checkout-link">
-          <button className="buy-button">Proceed to Checkout</button>
-        </Link>
+        <div className="checkout-link-wrapper">
+          <Link to={'/shopping-bag'} className="checkout-link">
+            <button className="checkout-button">Proceed to Checkout</button>
+          </Link>
+          <div className="checkout-notice">
+            Size {selectedSize} added to shopping bag.
+          </div>
+        </div>
       ) : (
         <button className="buy-button" onClick={addToShoppingBag}>
           Add to Shopping Bag

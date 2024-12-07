@@ -9,7 +9,7 @@ import '@/components/product_gallery/index.scss';
 // at 1139px, carousel-nav should disappear
 // at 1007px, carousel-main becomes normal horizontal carousel
 // at 1007px, the flex-direction changes to column
-function ProductGallery({ product }) {
+function ProductGallery() {
   // Functions
   const getScreenType = () => {
     const width = window.innerWidth;
@@ -43,9 +43,9 @@ function ProductGallery({ product }) {
 
   return (
     <div className="product-gallery">
-      {screenType === 'wide' && <WideScreenGallery product={product} />}
-      {screenType === 'mid' && <MidScreenGallery product={product} />}
-      {screenType === 'small' && <SmallScreenGallery product={product} />}
+      {screenType === 'wide' && <WideScreenGallery />}
+      {screenType === 'mid' && <MidScreenGallery />}
+      {screenType === 'small' && <SmallScreenGallery />}
     </div>
   );
 }

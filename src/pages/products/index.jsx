@@ -11,13 +11,7 @@ function Products() {
         <div className="product-list-wrapper">
           <div className="product-list">
             {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                id={product.id}
-                name={product.name}
-                thumbnail={product.thumbnail}
-                price={product.price}
-              />
+              <ProductCard key={`${product.id}`} product={product} />
             ))}
           </div>
         </div>

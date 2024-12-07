@@ -12,6 +12,10 @@
       background-color: white;
       margin-right: 12px;
 
+      &:hover {
+        cursor: pointer;
+      }
+
       &.selected {
         border: 1px solid rgb(120, 120, 120, 1);
       }

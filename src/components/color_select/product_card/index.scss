@@ -1,0 +1,25 @@
+.color-select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+  .color-card-wrapper {
+    width: 15px;
+    height: 15px;
+    padding: 2px;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.selected {
+      border: 1px solid black;
+    }
+
+    .color-card {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -31,6 +31,28 @@
     }
   }
 
+  .checkout-link-wrapper {
+    margin-bottom: 25px;
+
+    .checkout-button {
+      width: 100%;
+      height: 35px;
+      text-align: center;
+      background-color: rgb(33, 33, 33);
+      color: white;
+      margin-bottom: 10px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(70, 70, 70);
+      }
+    }
+
+    .checkout-notice {
+      text-decoration: underline;
+    }
+  }
+
   .buy-button {
     width: 100%;
     height: 35px;
@@ -41,6 +63,7 @@
     margin-bottom: 25px;
 
     &:hover {
+      cursor: pointer;
       background-color: rgb(70, 70, 70);
     }
   }

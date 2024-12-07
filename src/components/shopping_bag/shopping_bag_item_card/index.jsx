@@ -17,6 +17,7 @@ function ShoppingBagItemCard({ item, onDecrement, onIncrement, onRemove }) {
               <div className="item-name item-detail">{item.name}</div>
             </Link>
             <div className="item-size item-detail">Size: {item.size}</div>
+            <div className="item-color item-detail">Color: {item.color}</div>
             <div className="item-quantity item-detail">
               <div className="quantity-text">Quantity:</div>
               <button

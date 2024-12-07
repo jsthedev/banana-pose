@@ -1,10 +1,12 @@
 import ProductInfo from '@/components/product_info/index.jsx';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
+import { useVariant } from '@/contexts/productVariantContext';
 
 // at 1139px, carousel-nav should disappear
-function MidScreenGallery({ product }) {
-  const images = product.images;
+function MidScreenGallery() {
+  const variant = useVariant();
+  const images = variant.images;
 
   return (
     <div className="mid-screen-gallery">
@@ -16,7 +18,7 @@ function MidScreenGallery({ product }) {
         ))}
       </div>
       <div className="product-info-container">
-        <ProductInfo product={product} />
+        <ProductInfo />
       </div>
     </div>
   );

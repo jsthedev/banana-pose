@@ -6,9 +6,23 @@ import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
-import 'src/components/product_select/index.scss';
+import { useProduct, useVariant } from '@/contexts/productVariantContext';
 
-function ProductSelect({ product }) {
+import '@/components/product_select/index.scss';
+
+function ProductSelect() {
+  const product = useProduct();
+  const variant = useVariant();
+  const color = variant.color;
+
+  // Color Select
+  const [selectedColor, setSelectedColor] = useState(color);
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+  const colorCapital =
+    selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1);
+
   // Size Chart
   const sizeChartRef = useRef();
   const handleSizeGuideClick = () => {
@@ -38,8 +52,8 @@ function ProductSelect({ product }) {
       dispatch({
         type: 'ADD',
         payload: {
-          id: product.id,
-          thumbnail: product.thumbnail,
+          id: variant.id,
+          thumbnail: variant.thumbnail,
           size: selectedSize,
           name: product.name,
           price: product.price,
@@ -58,7 +72,7 @@ function ProductSelect({ product }) {
         <div className="product-price">${product.price}</div>
       </div>
       <div className="product-order-form">
-        <div className="product-color">Color: {product.color}</div>
+        <div className="product-color">Color: {colorCapital}</div>
         <div className="size-chart-click-wrapper">
           <div
             className="size-chart-click normal-link"

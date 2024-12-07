@@ -2,10 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
+import { useVariant } from '@/contexts/productVariantContext';
+
 import '@/components/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
 
-function WideScreenGallery({ product }) {
-  const images = product.images;
+function WideScreenGallery() {
+  const variant = useVariant();
+  const images = variant.images;
 
   // Nav Bar Height in px
   const navBarHeight = 56;
@@ -68,7 +71,7 @@ function WideScreenGallery({ product }) {
             key={index}
             onClick={() => scrollToSection(photo)}
           >
-            <img src={photo} alt={`Thumbnail ${index + 1}`} />
+            <img src={photo} alt={`Nav ${index + 1}`} />
           </div>
         ))}
       </div>
@@ -82,12 +85,12 @@ function WideScreenGallery({ product }) {
               (currentImageRefs.current[index] = currentImage)
             }
           >
-            <img src={photo} alt={`Thumbnail ${index + 1}`} />
+            <img src={photo} alt={`Main ${index + 1}`} />
           </div>
         ))}
       </div>
       <div className="product-info-container">
-        <ProductInfo product={product} />
+        <ProductInfo />
       </div>
     </div>
   );

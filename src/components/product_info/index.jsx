@@ -2,9 +2,13 @@ import { useState } from 'react';
 
 import ProductSelect from '@/components/product_select/index.jsx';
 
+import { useProduct } from '@/contexts/productVariantContext';
+
 import '@/components/product_info/index.scss';
 
-function ProductInfo({ product }) {
+function ProductInfo() {
+  const product = useProduct();
+
   // Product Details
   const [showDetails, setShowDetails] = useState(false);
 
@@ -14,7 +18,7 @@ function ProductInfo({ product }) {
   return (
     <div className="product-info-wrapper">
       <div className="product-info">
-        <ProductSelect product={product} />
+        <ProductSelect />
         <div className="product-description-wrapper">
           <div className="product-description">{product.description}</div>
         </div>

@@ -6,12 +6,13 @@ import 'swiper/css/pagination';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
+import { useVariant } from '@/contexts/productVariantContext';
+
 import '@/components/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
 
-// at 1007px, carousel-main becomes normal horizontal carousel
-// at 1007px, the flex-direction changes to column
-function SmallScreenGallery({ product }) {
-  const images = product.images;
+function SmallScreenGallery() {
+  const variant = useVariant();
+  const images = variant.images;
 
   const pagination = {
     clickable: true,
@@ -32,7 +33,7 @@ function SmallScreenGallery({ product }) {
         ))}
       </Swiper>
       <div className="product-info-container">
-        <ProductInfo product={product} />
+        <ProductInfo />
       </div>
     </div>
   );

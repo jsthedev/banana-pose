@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { Link } from 'react-router-dom';
 
@@ -39,6 +39,13 @@ function ProductSelect() {
     setSelectedSize(size);
     setSizeSelectError('');
   };
+
+  // Reset selected size when color changes
+  useEffect(() => {
+    setSelectedSize(null);
+    setAddedToBag(false);
+    setSizeSelectError('');
+  }, [color]);
 
   // Add to Shopping Bag
   const addToShoppingBag = () => {
@@ -86,7 +93,11 @@ function ProductSelect() {
           </div>
         )}
         <div className="size-select-button-wrapper">
-          <SizeSelector sizes={product.sizes} onSizeSelect={handleSizeSelect} />
+          <SizeSelector
+            sizes={product.sizes}
+            selectedSize={selectedSize}
+            onSizeSelect={handleSizeSelect}
+          />
         </div>
       </div>
       {addedToBag ? (

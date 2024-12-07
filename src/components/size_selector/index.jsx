@@ -1,13 +1,8 @@
-import { useState } from 'react';
 import '@/components/size_selector/index.scss';
 
-function SizeSelector({ sizes, onSizeSelect }) {
-  // State
-  const [selectedSize, setSelectedSize] = useState(null);
-
+function SizeSelector({ sizes, selectedSize, onSizeSelect }) {
   // Function
   const handledSizeClick = (size) => {
-    setSelectedSize(size);
     if (onSizeSelect) {
       onSizeSelect(size);
     }

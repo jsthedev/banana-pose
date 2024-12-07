@@ -9,20 +9,5 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-
-    .text {
-      font-family: 'Tough Cookies';
-      font-size: 10vw;
-      line-height: 30px;
-      color: white;
-      opacity: 0.85;
-
-      position: sticky;
-      top: 50vh;
-      bottom: 10vh;
-      text-align: center;
-      z-index: 1;
-      margin-bottom: -30px;
-    }
   }
 }

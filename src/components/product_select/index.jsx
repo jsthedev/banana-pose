@@ -2,6 +2,7 @@ import { useRef, useState, useContext } from 'react';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { Link } from 'react-router-dom';
 
+import ProductDetailsColorSelect from '@/components/color_select/product_details';
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
@@ -14,14 +15,7 @@ function ProductSelect() {
   const product = useProduct();
   const variant = useVariant();
   const color = variant.color;
-
-  // Color Select
-  const [selectedColor, setSelectedColor] = useState(color);
-  const handleColorSelect = (color) => {
-    setSelectedColor(color);
-  };
-  const colorCapital =
-    selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1);
+  const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
 
   // Size Chart
   const sizeChartRef = useRef();
@@ -54,6 +48,7 @@ function ProductSelect() {
         payload: {
           id: variant.id,
           thumbnail: variant.thumbnail,
+          color: colorCapital,
           size: selectedSize,
           name: product.name,
           price: product.price,
@@ -73,6 +68,7 @@ function ProductSelect() {
       </div>
       <div className="product-order-form">
         <div className="product-color">Color: {colorCapital}</div>
+        <ProductDetailsColorSelect product={product} variant={variant} />
         <div className="size-chart-click-wrapper">
           <div
             className="size-chart-click normal-link"

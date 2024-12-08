@@ -4,12 +4,26 @@
   justify-content: center;
 
   .shopping-bag-icon-link {
+    display: flex;
+    flex-direction: row;
+
     text-decoration: none;
     color: black;
-    width: 17px;
     height: 17px;
+
     .shopping-bag-icon {
       font-size: 17px;
+    }
+
+    .shopping-bag-count {
+      font-family: 'HK Grotesk Bold', sans-serif;
+
+      padding-top: 2px;
+      padding-left: 7px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 }

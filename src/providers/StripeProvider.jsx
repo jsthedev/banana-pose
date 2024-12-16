@@ -2,7 +2,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 const stripePromise = loadStripe(
-  import.meta.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
+  import.meta.env.VITE_REACT_APP_STRIPE_PUBLISHABLE_KEY
 );
 
 const StripeProvider = ({ children }) => {

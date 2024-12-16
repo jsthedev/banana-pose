@@ -11,9 +11,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ShoppingBagProvider>
       <BrowserRouter>
-        <StripeProvider>
-          <App />
-        </StripeProvider>
+        <App />
       </BrowserRouter>
     </ShoppingBagProvider>
   </StrictMode>

@@ -1,23 +1,45 @@
-// functions/index.js
 const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const Stripe = require('stripe');
+const express = require('express');
+const cors = require('cors');
+const stripe = require('stripe')(functions.config().stripe.secret);
 
-admin.initializeApp();
+const app = express();
+app.use(cors({ origin: true }));
+// If needed, also serve static files from 'public' if deploying them via Hosting
 
-const stripe = require('stripe')(functions.config().stripe.secret_key);
+const YOUR_DOMAIN = 'http://localhost:5173'; // Adjust as needed
 
-exports.createPaymentIntent = functions.https.onCall(async (data, context) => {
-  const { amount, currency } = data;
-
+app.post('/create-checkout-session', async (req, res) => {
   try {
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount,
-      currency,
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: 'embedded',
+      line_items: [
+        {
+          price: 'price_1QUp5rP2TrmAZ42h9igVUyNF', // Replace with your actual price ID
+          quantity: 1,
+        },
+      ],
+      mode: 'payment',
+      return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
     });
-
-    return { clientSecret: paymentIntent.client_secret };
+    res.send({ clientSecret: session.client_secret });
   } catch (error) {
-    throw new functions.https.HttpsError('unknown', error.message, error);
+    res.status(500).send(error.message);
   }
 });
+
+app.get('/session-status', async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(
+      req.query.session_id
+    );
+    res.send({
+      status: session.status,
+      customer_email: session.customer_details.email,
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+exports.api = functions.https.onRequest(app);

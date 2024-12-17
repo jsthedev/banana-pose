@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import colorsData from "@/data/colors.json";
 
 import "@/components/color_select/product_card/index.scss";

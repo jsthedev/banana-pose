@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+
+import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
 
 import '@/components/checkout/return/index.scss';
 
 function Return() {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
+
+  const { state, dispatch } = useContext(ShoppingBagContext);
 
   useEffect(() => {
     const queryString = window.location.search;
@@ -21,6 +25,12 @@ function Return() {
       });
   }, []);
 
+  useEffect(() => {
+    if (status === 'complete') {
+      dispatch({ type: 'CLEAR' });
+    }
+  }, [status, dispatch]);
+
   if (status === 'open') {
     return <Navigate to="/checkout" />;
   }
@@ -33,7 +43,7 @@ function Return() {
           to {customerEmail}. <br />
           <br />
           If you have any questions, please email{' '}
-          <a href="mailto:orders@example.com">orders@bananapose.com</a>.
+          <a href="mailto:orders@bananapose.com">orders@bananapose.com</a>.
         </p>
       </section>
     );

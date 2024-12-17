@@ -42,8 +42,8 @@
     "id": "denim-01",
     "name": "Straight Jean in Selvedge Denim",
     "price": 300,
-    "sizes": ["XS", "S", "M", "L", "XL"],
-    "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
+    "sizes": ["28", "30", "32", "34"],
+    "description": "Straight fit jeans made with Japanese selvedge denim",
     "details": ["100% Cotton", "Made in USA"],
     "care": [
       "Wash at low temperature",

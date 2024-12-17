@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
@@ -62,7 +63,9 @@ function ShoppingBagContents() {
         <div className="shipping-cost-warning">
           Shipping cost calculated at the checkout
         </div>
-        <div className="checkout-button link-button">Proceed to Checkout</div>
+        <Link to={'/checkout'}>
+          <div className="checkout-button link-button">Proceed to Checkout</div>
+        </Link>
       </div>
     </div>
   );

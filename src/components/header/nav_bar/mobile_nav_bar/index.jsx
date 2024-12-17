@@ -28,7 +28,11 @@ function MobileNavBar() {
     <div className="mobile-nav-bar">
       <div className="mobile-nav-bar-top-contents">
         <div className="logo-wrapper">
-          <Link to={'/home'} className="nav-bar-home-link">
+          <Link
+            to={'/home'}
+            className="nav-bar-home-link"
+            onClick={closeMobileMenu}
+          >
             <div className="banana-pose">Banana Pose</div>
           </Link>
         </div>

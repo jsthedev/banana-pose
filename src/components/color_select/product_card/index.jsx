@@ -19,7 +19,6 @@ function ProductCardColorSelect({ selectedColor, colors, onColorSelect }) {
           className={`color-card-wrapper ${selectedColor === color ? "selected" : ""}`}
           key={color}
         >
-          {/* {typeof colorMap[selectedColor]} */}
           <div
             className="color-card"
             onClick={() => handledColorClick(color)}

@@ -1,18 +1,14 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import colorsData from '@/data/colors.json';
+import colorsData from "@/data/colors.json";
 
-import '@/components/color_select/product_card/index.scss';
+import "@/components/color_select/product_card/index.scss";
 
-function ProductCardColorSelect({ color, colors, onColorSelect }) {
-  const colorMap = colorsData[0];
-
-  // State
-  const [selectedColor, setSelectedColor] = useState(color);
+function ProductCardColorSelect({ selectedColor, colors, onColorSelect }) {
+  const colorMap = colorsData;
 
   // Function
   const handledColorClick = (color) => {
-    setSelectedColor(color);
     if (onColorSelect) {
       onColorSelect(color);
     }
@@ -22,9 +18,10 @@ function ProductCardColorSelect({ color, colors, onColorSelect }) {
     <div className="color-select">
       {colors.map((color) => (
         <div
-          className={`color-card-wrapper ${selectedColor === color ? 'selected' : ''}`}
+          className={`color-card-wrapper ${selectedColor === color ? "selected" : ""}`}
           key={color}
         >
+          {/* {typeof colorMap[selectedColor]} */}
           <div
             className="color-card"
             onClick={() => handledColorClick(color)}

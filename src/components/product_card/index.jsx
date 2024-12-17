@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-import ProductCardColorSelect from '@/components/color_select/product_card/index.jsx';
+import ProductCardColorSelect from "@/components/color_select/product_card/index.jsx";
 
-import '@/components/product_card/index.scss';
+import "@/components/product_card/index.scss";
 
 function ProductCard({ product }) {
   const { id, name, price, variants } = product;
@@ -38,7 +38,7 @@ function ProductCard({ product }) {
         </div>
         <div className="color-cards">
           <ProductCardColorSelect
-            color={selectedVariant.color}
+            selectedColor={selectedVariant.color}
             colors={variants.map((variant) => variant.color)}
             onColorSelect={handleColorSelect}
           />

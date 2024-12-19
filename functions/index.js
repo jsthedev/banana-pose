@@ -38,6 +38,9 @@ app.post('/create-checkout-session', async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       ui_mode: 'embedded',
       line_items: line_items,
+      automatic_tax: {
+        enabled: true,
+      },
       mode: 'payment',
       return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
     });

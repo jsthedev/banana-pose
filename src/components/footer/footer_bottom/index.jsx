@@ -15,6 +15,8 @@ function FooterBottom() {
               <a
                 href="https://www.instagram.com/banana.pose/"
                 className="icon-link"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={InstagramIcon} className="icon-img" />
               </a>
@@ -23,6 +25,8 @@ function FooterBottom() {
               <a
                 href="https://www.tiktok.com/@bananapose"
                 className="icon-link"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={TiktokIcon} className="icon-img" />
               </a>
@@ -31,6 +35,8 @@ function FooterBottom() {
               <a
                 href="https://www.youtube.com/@bananapose"
                 className="icon-link"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={YoutubeIcon} className="icon-img" />
               </a>

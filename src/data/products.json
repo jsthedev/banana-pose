@@ -24,17 +24,6 @@
           "/images/products/t-shirt-01-black/t-shirt-01_03.webp",
           "/images/products/t-shirt-01-black/t-shirt-01_04.webp"
         ]
-      },
-      {
-        "id": "t-shirt-01-white",
-        "color": "white",
-        "thumbnail": "/images/products/t-shirt-01-white/t-shirt-01_01.webp",
-        "images": [
-          "/images/products/t-shirt-01-white/t-shirt-01_01.webp",
-          "/images/products/t-shirt-01-white/t-shirt-01_02.webp",
-          "/images/products/t-shirt-01-white/t-shirt-01_03.webp",
-          "/images/products/t-shirt-01-white/t-shirt-01_04.webp"
-        ]
       }
     ]
   },

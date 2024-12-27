@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
 
+import { formatPrice } from '@/utils/utilities';
+
 import '@/components/shopping_bag/shopping_bag_item_card/index.scss';
 
-function ShoppingBagItemCard({ item, onDecrement, onIncrement, onRemove }) {
+function ShoppingBagItemCard({
+  item,
+  price,
+  onDecrement,
+  onIncrement,
+  onRemove,
+}) {
+  const { unit_amount, currency } = price || {};
+
   return (
     <div className="shopping-bag-item">
       <Link to={`/products/${item.id}`}>
@@ -35,7 +45,11 @@ function ShoppingBagItemCard({ item, onDecrement, onIncrement, onRemove }) {
               </button>
             </div>
           </div>
-          <div className="item-price">${item.price}</div>
+          <div className="item-price">
+            {unit_amount && currency
+              ? formatPrice(unit_amount, currency)
+              : 'Price not available'}
+          </div>
         </div>
         <div className="bottom-content">
           <div

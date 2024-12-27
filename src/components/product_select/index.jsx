@@ -1,6 +1,7 @@
 import { useRef, useState, useContext, useEffect } from 'react';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import ProductDetailsColorSelect from '@/components/color_select/product_details';
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
@@ -8,6 +9,9 @@ import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/inde
 import SizeSelector from '@/components/size_selector/index.jsx';
 
 import { useProduct, useVariant } from '@/contexts/productVariantContext';
+import { CurrencyContext } from '@/contexts/currencyContext';
+
+import { formatPrice } from '@/utils/utilities';
 
 import '@/components/product_select/index.scss';
 
@@ -16,6 +20,7 @@ function ProductSelect() {
   const variant = useVariant();
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
   // Size Chart
   const sizeChartRef = useRef();
@@ -31,6 +36,46 @@ function ProductSelect() {
 
   const [addedToBag, setAddedToBag] = useState(false);
   const { dispatch } = useContext(ShoppingBagContext);
+
+  // Price state
+  const [price, setPrice] = useState(null);
+  const [priceLoading, setPriceLoading] = useState(true);
+  const [priceError, setPriceError] = useState('');
+
+  const fetchPrice = async (currentCurrency) => {
+    try {
+      setPriceLoading(true);
+      setPriceError('');
+
+      const response = await axios.get(
+        'http://127.0.0.1:5001/banana-pose/us-central1/api/get-price',
+        {
+          params: {
+            productId: variant.id,
+            size: 'Template',
+            currency: currentCurrency,
+          },
+        }
+      );
+
+      if (response.data.price) {
+        setPrice(response.data.price);
+      } else {
+        setPriceError('Price not available.');
+      }
+    } catch (error) {
+      console.error('Error fetching price:', error);
+      setPriceError('Unable to fetch price.');
+    } finally {
+      setPriceLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (variant.id && currency) {
+      fetchPrice(currency);
+    }
+  }, [currency, variant.id]);
 
   const handleSizeSelect = (size) => {
     if (size !== selectedSize) {
@@ -58,7 +103,6 @@ function ProductSelect() {
           color: colorCapital,
           size: selectedSize,
           name: product.name,
-          price: product.price,
         },
       });
       setAddedToBag(true);
@@ -71,7 +115,15 @@ function ProductSelect() {
     <div className="product-select">
       <div className="product-metadata">
         <div className="product-name">{product.name}</div>
-        <div className="product-price">${product.price}</div>
+        <div className="product-price">
+          {priceLoading && <span>Loading price...</span>}
+          {priceError && <span>{priceError}</span>}
+          {price && !priceLoading && !priceError && (
+            <span>
+              {formatPrice(price.unit_amount, price.currency.toUpperCase())}
+            </span>
+          )}
+        </div>
       </div>
       <div className="product-order-form">
         <div className="product-color">Color: {colorCapital}</div>

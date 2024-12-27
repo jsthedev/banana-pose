@@ -6,6 +6,7 @@ import {
 } from '@stripe/react-stripe-js';
 
 import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
+import { CurrencyContext } from '@/contexts/currencyContext';
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_TEST_REACT_APP_STRIPE_PUBLISHABLE_KEY
@@ -13,6 +14,7 @@ const stripePromise = loadStripe(
 
 function CheckoutForm() {
   const { state, dispatch } = useContext(ShoppingBagContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
@@ -23,14 +25,21 @@ function CheckoutForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ shoppingBagItems: state.shoppingBagItems }),
+        body: JSON.stringify({
+          shoppingBagItems: state.shoppingBagItems,
+          currency: currency,
+        }),
       }
     )
       .then((res) => res.json())
       .then((data) => data.clientSecret);
-  }, []);
+  }, [currency, state.shoppingBagItems]);
 
   const options = { fetchClientSecret };
+
+  if (currencyLoading) {
+    return <div>Loading...</div>; // Optional: Show a loading state
+  }
 
   return (
     <div id="checkout" className="page">

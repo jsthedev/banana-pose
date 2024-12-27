@@ -5,12 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
+import CurrencySelector from '@/components/currency_selector';
 
 import '@/components/header/nav_bar/mobile_nav_bar/index.scss';
-
-// TODO:
-// 1. Create Shopping Bag Page and connect to faBagShopping
-// 2. Create vertical menu and connect to isMobileMenuOpen
 
 function MobileNavBar() {
   // States
@@ -38,7 +35,8 @@ function MobileNavBar() {
         </div>
         <div className="mobile-nav-bar-contents">
           <div className="nav-bar-icons">
-            <div className="nav-bar-icon-wrapper">
+            <CurrencySelector />
+            <div className="nav-bar-icon-wrapper" onClick={closeMobileMenu}>
               <ShoppingBagIcon />
             </div>
             <div className="nav-bar-icon-wrapper">

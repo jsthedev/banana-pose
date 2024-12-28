@@ -1,8 +1,8 @@
-import ProductCard from '@/components/product_card/index.jsx';
+import ProductCard from "@/components/product_card/index.jsx";
 
-import products from '@/data/products.json';
+import products from "@/data/products.json";
 
-import '@/pages/products/index.scss';
+import "@/pages/products/index.scss";
 
 function Products() {
   return (

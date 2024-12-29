@@ -2,7 +2,11 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBars,
+  faTimes,
+  faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
 import MobileCurrencySelector from '@/components/currency_selector/mobile_currency_selector/index.jsx';
@@ -58,7 +62,10 @@ function MobileNavBar() {
                   className="nav-link"
                   onClick={closeMobileMenu}
                 >
-                  READY TO WEAR
+                  <div className="nav-link-text">READY TO WEAR</div>
+                  <div className="chevron-right">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
                 </Link>
               </div>
               <div className="nav-link-wrapper">
@@ -67,7 +74,10 @@ function MobileNavBar() {
                   className="nav-link"
                   onClick={closeMobileMenu}
                 >
-                  OUR MISSION
+                  <div className="nav-link-text">OUR MISSION</div>
+                  <div className="chevron-right">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
                 </Link>
               </div>
               <div className="nav-link-wrapper">
@@ -76,7 +86,10 @@ function MobileNavBar() {
                   className="nav-link"
                   onClick={closeMobileMenu}
                 >
-                  CONTACT US
+                  <div className="nav-link-text">CONTACT US</div>
+                  <div className="chevron-right">
+                    <FontAwesomeIcon icon={faChevronRight} />
+                  </div>
                 </Link>
               </div>
             </div>

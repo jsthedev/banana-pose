@@ -55,6 +55,7 @@
           flex-shrink: 0;
           .nav-bar-icon {
             font-size: 17px;
+            cursor: pointer;
           }
         }
       }
@@ -73,13 +74,27 @@
       .expandable-menu-links {
         padding-bottom: 10px;
         .nav-link-wrapper {
-          padding: 10px 0;
-
           .nav-link {
+            padding: 10px 0;
+
             text-decoration: none;
             font-family: 'HK Grotesk', sans-serif;
             font-size: 14px;
             color: black;
+
+            &:hover {
+              color: #71797f;
+            }
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+
+            .chevron-right {
+              font-size: 12px;
+              padding-right: 3px;
+            }
           }
         }
       }

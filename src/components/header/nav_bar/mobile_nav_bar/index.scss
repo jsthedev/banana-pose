@@ -62,7 +62,7 @@
   }
 
   .expandable-menu {
-    height: 100vh;
+    height: calc(100vh - 56px);
     background-color: white;
 
     display: flex;
@@ -71,6 +71,7 @@
     .expandable-menu-contents {
       padding: 25px 20px 0 20px;
       .expandable-menu-links {
+        padding-bottom: 10px;
         .nav-link-wrapper {
           padding: 10px 0;
 
@@ -81,6 +82,10 @@
             color: black;
           }
         }
+      }
+
+      .currency-selector-wrapper {
+        border-top: 1px solid #e9e9e9;
       }
     }
   }

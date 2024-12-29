@@ -1,50 +1,15 @@
 import { useContext, useState } from 'react';
-import { CurrencyContext } from '@/contexts/CurrencyContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import auFlag from '@/assets/images/flags/au.svg';
-import caFlag from '@/assets/images/flags/ca.svg';
-import cnFlag from '@/assets/images/flags/cn.svg';
-import euFlag from '@/assets/images/flags/eu.svg';
-import jpFlag from '@/assets/images/flags/jp.svg';
-import krFlag from '@/assets/images/flags/kr.svg';
-import nzFlag from '@/assets/images/flags/nz.svg';
-import ukFlag from '@/assets/images/flags/uk.svg';
-import usFlag from '@/assets/images/flags/us.svg';
+import { CurrencyContext } from '@/contexts/CurrencyContext';
 
-import '@/components/currency_selector/index.scss';
+import { CURRENCY_FLAGS, CURRENCY_SYMBOLS } from '@/constants/currencies';
 
-const SUPPORTED_CURRENCIES = {
-  CAD: caFlag,
-  USD: usFlag,
-  KRW: krFlag,
-  CNY: cnFlag,
-  JPY: jpFlag,
-  EUR: euFlag,
-  GBP: ukFlag,
-  AUD: auFlag,
-  NZD: nzFlag,
-};
+import '@/components/currency_selector/desktop_currency_selector/index.scss';
 
-const CURRENCY_SYMBOLS = {
-  CAD: '$',
-  USD: '$',
-  KRW: '₩',
-  CNY: '¥',
-  JPY: '¥',
-  EUR: '€',
-  GBP: '£',
-  AUD: '$',
-  NZD: '$',
-};
-
-function CurrencySelector() {
+function DesktopCurrencySelector() {
   const { currency, changeCurrency } = useContext(CurrencyContext);
-
-  const handleChange = (e) => {
-    changeCurrency(e.target.value);
-  };
 
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const toggleSelector = () => {
@@ -58,7 +23,7 @@ function CurrencySelector() {
         onClick={toggleSelector}
       >
         <div className="flag-img-wrapper">
-          <img src={SUPPORTED_CURRENCIES[currency]} className="flag-img" />
+          <img src={CURRENCY_FLAGS[currency]} className="flag-img" />
         </div>
         <div className="chevron-down">
           <FontAwesomeIcon icon={faChevronDown} />
@@ -66,7 +31,7 @@ function CurrencySelector() {
       </div>
       {isSelectorOpen && (
         <div className="expanded-selector">
-          {Object.entries(SUPPORTED_CURRENCIES).map(([curr, flag]) => (
+          {Object.entries(CURRENCY_FLAGS).map(([curr, flag]) => (
             <div
               className="currency-option"
               onClick={() => {
@@ -88,4 +53,4 @@ function CurrencySelector() {
   );
 }
 
-export default CurrencySelector;
+export default DesktopCurrencySelector;

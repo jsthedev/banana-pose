@@ -1,0 +1,134 @@
+.mobile-currency-selector {
+  padding-top: 10px;
+
+  .mobile-currency-selector-button {
+    padding: 10px 0;
+
+    font-family: 'HK Grotesk';
+    font-size: 14px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .current-currency {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .flag-img-wrapper {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 10px;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .flag-img {
+          height: 100%;
+          width: auto;
+          border: 1px solid #e5e7eb;
+        }
+      }
+    }
+
+    .chevron-right {
+      font-size: 12px;
+      padding-right: 3px;
+    }
+  }
+
+  .mobile-currency-selector-menu {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    height: calc(100vh - 56px);
+    width: 100vw;
+
+    font-family: 'HK Grotesk';
+
+    background-color: white;
+
+    .sub-header {
+      height: 50px;
+      padding: 0 24px;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .left-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .chevron-left {
+          padding: 3px;
+          font-size: 12px;
+        }
+
+        .sub-header-title {
+          font-size: 14px;
+          margin-left: 10px;
+        }
+      }
+
+      .close-button {
+        font-size: 14px;
+      }
+    }
+
+    .current-currency-reminder {
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+
+      border-top: 1px solid #e9e9e9;
+      border-bottom: 1px solid #e9e9e9;
+    }
+
+    .currency-option {
+      padding: 16px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      border-bottom: 1px solid #e9e9e9;
+
+      &:hover {
+        background-color: #7878784d;
+      }
+
+      .flag-img-wrapper {
+        height: 18px;
+        width: 18px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .flag-img {
+          height: 100%;
+          width: auto;
+          border: 1px solid #e5e7eb;
+        }
+      }
+
+      .currency-name {
+        font-family: 'HK Grotesk';
+        font-size: 14px;
+      }
+    }
+  }
+}

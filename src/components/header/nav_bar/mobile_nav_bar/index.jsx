@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
-import CurrencySelector from '@/components/currency_selector';
+import MobileCurrencySelector from '@/components/currency_selector/mobile_currency_selector/index.jsx';
 
 import '@/components/header/nav_bar/mobile_nav_bar/index.scss';
 
@@ -35,7 +35,6 @@ function MobileNavBar() {
         </div>
         <div className="mobile-nav-bar-contents">
           <div className="nav-bar-icons">
-            <CurrencySelector />
             <div className="nav-bar-icon-wrapper" onClick={closeMobileMenu}>
               <ShoppingBagIcon />
             </div>
@@ -80,6 +79,9 @@ function MobileNavBar() {
                   CONTACT US
                 </Link>
               </div>
+            </div>
+            <div className="currency-selector-wrapper">
+              <MobileCurrencySelector />
             </div>
           </div>
         </div>

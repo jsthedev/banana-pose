@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
-import CurrencySelector from '@/components/currency_selector';
+import DesktopCurrencySelector from '@/components/currency_selector/desktop_currency_selector/index.jsx';
 
 import 'src/components/header/nav_bar/desktop_nav_bar/index.scss';
 
@@ -32,7 +32,7 @@ function DesktopNavBar() {
           </div>
         </div>
         <div className="nav-bar-icons">
-          <CurrencySelector />
+          <DesktopCurrencySelector />
           <div className="nav-bar-icon-wrapper">
             <ShoppingBagIcon />
           </div>

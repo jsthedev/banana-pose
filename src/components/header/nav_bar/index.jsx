@@ -7,10 +7,6 @@ import MobileNavBar from '@/components/header/nav_bar/mobile_nav_bar';
 
 import '@/components/header/nav_bar/index.scss';
 
-// TODO: Make NavBar responsive
-// desktop > 1279 shows extended menu
-// mobile <= 1279 menu becomes hamburger icon at the right
-// TODO: add shopping bag icon to both desktop and mobile nav bars
 function NavBar() {
   const DESKTOP_DIMENSION = 1280;
 

@@ -1,0 +1,93 @@
+.currency-selector {
+  position: relative;
+
+  .selector-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    cursor: pointer;
+    border-radius: 0.125rem;
+    border: 1px solid transparent;
+
+    &:hover {
+      background-color: #7878784d;
+    }
+
+    &.opened {
+      border: 1px solid #7878784d;
+    }
+
+    .flag-img-wrapper {
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      .flag-img {
+        height: 100%;
+        width: auto;
+        border: 1px solid #e5e7eb;
+      }
+    }
+
+    .chevron-down {
+      margin-left: 8px;
+      font-size: 13px;
+    }
+  }
+
+  .expanded-selector {
+    position: absolute;
+    right: 0;
+    top: 36px;
+    width: 250px;
+    border: 1px solid #7878784d;
+    padding: 8px;
+
+    background-color: white;
+
+    .currency-option {
+      padding: 8px;
+
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      &:hover {
+        background-color: #7878784d;
+      }
+
+      .flag-img-wrapper {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        overflow: hidden;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .flag-img {
+          height: 100%;
+          width: auto;
+          border: 1px solid #e5e7eb;
+        }
+      }
+
+      .currency-name {
+        font-family: 'HK Grotesk';
+        font-size: 13px;
+      }
+    }
+  }
+}

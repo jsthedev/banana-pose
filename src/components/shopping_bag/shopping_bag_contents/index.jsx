@@ -10,7 +10,6 @@ import { formatPrice } from '@/utils/utilities';
 
 import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 
-// TODO: implement link to checkout page
 function ShoppingBagContents() {
   const { state, dispatch } = useContext(ShoppingBagContext);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);

@@ -5,9 +5,6 @@ import CurrencySelector from '@/components/currency_selector';
 
 import 'src/components/header/nav_bar/desktop_nav_bar/index.scss';
 
-// TODO:
-// 1. Create Shopping Bag Page and connect to faBagShopping
-
 function DesktopNavBar() {
   return (
     <div className="desktop-nav-bar">

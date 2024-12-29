@@ -82,7 +82,6 @@ function MobileNavBar() {
               </div>
             </div>
           </div>
-          {/* TODO: Add contacts */}
         </div>
       )}
     </div>

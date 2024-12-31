@@ -34,6 +34,7 @@ function DesktopCurrencySelector() {
           {Object.entries(CURRENCY_FLAGS).map(([curr, flag]) => (
             <div
               className="currency-option"
+              key={curr}
               onClick={() => {
                 changeCurrency(curr);
                 setIsSelectorOpen(false); // Close selector on selection

@@ -58,6 +58,7 @@ function MobileCurrencySelector() {
           {Object.entries(CURRENCY_FLAGS).map(([curr, flag]) => (
             <div
               className="currency-option"
+              key={curr}
               onClick={() => {
                 changeCurrency(curr);
               }}

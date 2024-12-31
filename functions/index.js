@@ -78,6 +78,26 @@ app.get("/list-products", async (req, res) => {
   }
 });
 
+app.get("/list-prices", async (req, res) => {
+  try {
+    if (!req.query.currency) {
+      return res.status(400).json({ error: "Currency is required" });
+    }
+
+    const prices = await stripe.prices.list({
+      currency: req.query.currency,
+      limit: 100,
+    });
+    res.json({ prices });
+  } catch (error) {
+    console.error(
+      "Error retrieving list of prices from Stripe:",
+      error.message
+    );
+    res.status(500).json({ error: "Unable to list prices" });
+  }
+});
+
 app.get("/get-price", async (req, res) => {
   const { productId, size, currency } = req.query;
   log(currency);

@@ -10,14 +10,14 @@ import App from "@/App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ProductsProvider>
-      <CurrencyProvider>
+    <CurrencyProvider>
+      <ProductsProvider>
         <ShoppingBagProvider>
           <BrowserRouter>
             <App />
           </BrowserRouter>
         </ShoppingBagProvider>
-      </CurrencyProvider>
-    </ProductsProvider>
+      </ProductsProvider>
+    </CurrencyProvider>
   </StrictMode>
 );

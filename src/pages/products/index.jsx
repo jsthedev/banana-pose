@@ -5,6 +5,8 @@ import products from "@/data/products.json";
 import "@/pages/products/index.scss";
 
 function Products() {
+  // TODO 20250101: Get products from context and filter out products without prices
+
   return (
     <div className="products page">
       <div className="products-page-main">

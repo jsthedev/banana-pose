@@ -83,14 +83,15 @@ export const ProductsProvider = ({ children }) => {
           }
           // Add the size of the product to the final collection
           if (
-            "size" in productsCollection[productBpId].variants[productVariantId]
+            "sizes" in
+            productsCollection[productBpId].variants[productVariantId]
           ) {
             // Should not happen
-            productsCollection[productBpId].variants[productVariantId].size[
+            productsCollection[productBpId].variants[productVariantId].sizes[
               productSize
             ] = productStripePriceId;
           } else {
-            productsCollection[productBpId].variants[productVariantId].size = {
+            productsCollection[productBpId].variants[productVariantId].sizes = {
               [productSize]: productStripePriceId,
             };
           }

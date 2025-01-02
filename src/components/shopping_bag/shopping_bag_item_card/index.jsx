@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { formatPrice } from '@/utils/utilities';
+
+import { CurrencyContext } from '@/contexts/currencyContext';
 
 import '@/components/shopping_bag/shopping_bag_item_card/index.scss';
 
@@ -11,11 +14,12 @@ function ShoppingBagItemCard({
   onIncrement,
   onRemove,
 }) {
-  const { unit_amount, currency } = price || {};
+  const colorCapital = item.color.charAt(0).toUpperCase() + item.color.slice(1);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
   return (
     <div className="shopping-bag-item">
-      <Link to={`/products/${item.id}`}>
+      <Link to={`/products/${item.productVariant}`}>
         <div className="item-thumbnail">
           <img src={item.thumbnail} alt={`${item.thumbnail}`} />
         </div>
@@ -23,11 +27,11 @@ function ShoppingBagItemCard({
       <div className="shopping-bag-item-contents-wrapper">
         <div className="top-content">
           <div className="item-details">
-            <Link to={`/products/${item.id}`} className="item-link">
+            <Link to={`/products/${item.productVariant}`} className="item-link">
               <div className="item-name item-detail">{item.name}</div>
             </Link>
             <div className="item-size item-detail">Size: {item.size}</div>
-            <div className="item-color item-detail">Color: {item.color}</div>
+            <div className="item-color item-detail">Color: {colorCapital}</div>
             <div className="item-quantity item-detail">
               <div className="quantity-text">Quantity:</div>
               <button
@@ -46,8 +50,8 @@ function ShoppingBagItemCard({
             </div>
           </div>
           <div className="item-price">
-            {unit_amount && currency
-              ? formatPrice(unit_amount, currency)
+            {price && !currencyLoading
+              ? formatPrice(price, currency)
               : 'Price not available'}
           </div>
         </div>

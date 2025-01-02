@@ -7,6 +7,7 @@ import {
 
 import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
+import { ProductsContext } from '@/contexts/productsContext';
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_TEST_REACT_APP_STRIPE_PUBLISHABLE_KEY
@@ -15,6 +16,34 @@ const stripePromise = loadStripe(
 function CheckoutForm() {
   const { state, dispatch } = useContext(ShoppingBagContext);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
+
+  if (currencyLoading || productsLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const lineItems = state.shoppingBagItems
+    .map((item) => {
+      const productVariant = item.productVariant;
+      const lastUnderscoreIndex = productVariant.lastIndexOf('_');
+      const productId = productVariant.substring(0, lastUnderscoreIndex);
+      const variantId = productVariant.substring(lastUnderscoreIndex + 1);
+      const size = item.size;
+      console.log(products);
+
+      if (products[productId]?.variants?.[variantId]?.sizes?.[size]) {
+        return {
+          price: products[productId].variants[variantId].sizes[size],
+          quantity: item.quantity,
+        };
+      } else {
+        console.warn(
+          `Product or variant not found for ${productId}, ${variantId}, ${size}`
+        );
+        return null;
+      }
+    })
+    .filter(Boolean);
 
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
@@ -26,7 +55,7 @@ function CheckoutForm() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          shoppingBagItems: state.shoppingBagItems,
+          lineItems: lineItems,
           currency: currency,
         }),
       }
@@ -36,10 +65,6 @@ function CheckoutForm() {
   }, [currency, state.shoppingBagItems]);
 
   const options = { fetchClientSecret };
-
-  if (currencyLoading) {
-    return <div>Loading...</div>; // Optional: Show a loading state
-  }
 
   return (
     <div id="checkout" className="page">

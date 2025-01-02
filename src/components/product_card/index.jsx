@@ -1,72 +1,41 @@
-import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 
-import ProductCardColorSelect from "@/components/color_select/product_card/index.jsx";
+import ProductCardColorSelect from '@/components/color_select/product_card/index.jsx';
 
-import { formatPrice } from "@/utils/utilities";
+import { formatPrice } from '@/utils/utilities';
 
-import { CurrencyContext } from "@/contexts/currencyContext";
+import { CurrencyContext } from '@/contexts/currencyContext';
 
-import "@/components/product_card/index.scss";
+import '@/components/product_card/index.scss';
 
 // TODO: fix price fetching when page refreshed
 
-function ProductCard({ product }) {
+function ProductCard({ productId, product }) {
   // TODO: 20250101 For each variant, filter out variants without property "sizes"
   // TODO: 20250101 Create list of colors available
   // TODO: 20250101 When checkout use bpId + variantId + sizeId to get priceId and checkout
 
-  const { id, name, variants } = product;
+  const { price, variants } = product;
 
-  const [selectedVariant, setSelectedVariant] = useState(variants[0]);
+  const [selectedVariantId, setSelectedVariantId] = useState(
+    Object.keys(variants)[0]
+  );
+  const selectedVariant = variants[selectedVariantId];
+  const name = selectedVariant?.name || '';
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
-  // Price state
-  const [price, setPrice] = useState(null);
-  const [priceLoading, setPriceLoading] = useState(true);
-  const [priceError, setPriceError] = useState("");
-
-  const fetchPrice = async (currentCurrency) => {
-    try {
-      setPriceLoading(true);
-      setPriceError("");
-
-      const response = await axios.get(
-        "http://127.0.0.1:5001/banana-pose/us-central1/api/get-price",
-        {
-          params: {
-            productId: selectedVariant.id,
-            size: "Template",
-            currency: currentCurrency,
-          },
-        }
-      );
-
-      if (response.data.price) {
-        setPrice(response.data.price);
-      } else {
-        setPriceError("Price not available.");
-      }
-    } catch (error) {
-      console.error("Error fetching price:", error);
-      setPriceError("Unable to fetch price.");
-    } finally {
-      setPriceLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (selectedVariant.id && currency) {
-      fetchPrice(currency);
-    }
-  }, [currency, selectedVariant.id]);
+  if (!variants || !selectedVariantId || currencyLoading) {
+    return <></>;
+  }
 
   // Color Select
-  const handleColorSelect = (color) => {
-    const variant = variants.find((variant) => variant.color === color);
-    if (variant) {
-      setSelectedVariant(variant);
+  const handleColorSelect = (selectedColor) => {
+    const variantId = Object.keys(variants).find(
+      (id) => variants[id].color === selectedColor
+    );
+    if (variantId) {
+      setSelectedVariantId(variantId);
     }
   };
 
@@ -74,7 +43,7 @@ function ProductCard({ product }) {
     <div className="card">
       <div className="product">
         <div className="product-img-wrapper normal-link">
-          <Link to={`/products/${selectedVariant.id}`}>
+          <Link to={`/products/${productId}_${selectedVariantId}`}>
             <img
               src={selectedVariant.thumbnail}
               alt={name}
@@ -83,23 +52,22 @@ function ProductCard({ product }) {
           </Link>
         </div>
         <div className="product-info">
-          <Link to={`/products/${selectedVariant.id}`} className="normal-link">
+          <Link
+            to={`/products/${productId}_${selectedVariantId}`}
+            className="normal-link"
+          >
             <div className="product-name normal-link">{name}</div>
           </Link>
           <div className="product-price">
-            {priceLoading && <span>Loading price...</span>}
-            {priceError && <span>{priceError}</span>}
-            {price && !priceLoading && !priceError && (
-              <span>
-                {formatPrice(price.unit_amount, price.currency.toUpperCase())}
-              </span>
-            )}
+            <span>{formatPrice(price, currency.toUpperCase())}</span>
           </div>
         </div>
         <div className="color-cards">
           <ProductCardColorSelect
-            selectedColor={selectedVariant.color}
-            colors={variants.map((variant) => variant.color)}
+            selectedColor={variants[selectedVariantId].color}
+            colors={Object.keys(variants).map(
+              (variantId) => variants[variantId].color
+            )}
             onColorSelect={handleColorSelect}
           />
         </div>

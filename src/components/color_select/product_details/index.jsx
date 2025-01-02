@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import colorsData from "@/data/colors.json";
+import colorsData from '@/data/colors.json';
 
-import "@/components/color_select/product_details/index.scss";
+import '@/components/color_select/product_details/index.scss';
 
 function ProductDetailsColorSelect({ product, variant }) {
   const variants = product.variants;
@@ -12,14 +12,14 @@ function ProductDetailsColorSelect({ product, variant }) {
 
   return (
     <div className="color-select">
-      {variants.map((vari) => (
-        <Link to={`/products/${vari.id}`} key={vari.color}>
+      {Object.keys(variants).map((variantId) => (
+        <Link to={`/products/${variantId}`} key={variantId}>
           <div
-            className={`color-card-wrapper ${currentColor === vari.color ? "selected" : ""}`}
+            className={`color-card-wrapper ${currentColor === variants[variantId].color ? 'selected' : ''}`}
           >
             <div
               className="color-card"
-              style={{ backgroundColor: colorMap[vari.color] }}
+              style={{ backgroundColor: variants[variantId].color }}
             />
           </div>
         </Link>

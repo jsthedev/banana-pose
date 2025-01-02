@@ -19,7 +19,7 @@ function Router() {
         <Route index element={<Navigate to="home" replace />} />
         <Route path="home" element={<Home />} />
         <Route path="products" element={<Products />} />
-        <Route path="products/:idColor" element={<ProductDetails />} />
+        <Route path="products/:productVariant" element={<ProductDetails />} />
         <Route path="our-mission" element={<OurMission />} />
         <Route path="shopping-bag" element={<ShoppingBag />} />
         <Route path="contact-us" element={<ContactUs />} />

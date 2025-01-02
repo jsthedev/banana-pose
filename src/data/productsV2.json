@@ -1,6 +1,5 @@
 {
   "t-shirt-01": {
-    "name": "Seal T-shirt in Cotton",
     "description": "Oversized t-shirt in cotton interlock jersey with happy seal logo embroidery",
     "details": ["100% Organic Cotton", "Made in Canada"],
     "care": [
@@ -12,6 +11,7 @@
     ],
     "variants": {
       "black-01": {
+        "name": "Seal T-shirt in Cotton",
         "color": "black",
         "thumbnail": "/images/products/t-shirt-01-black/t-shirt-01_01.webp",
         "images": [
@@ -24,7 +24,6 @@
     }
   },
   "denim-01": {
-    "name": "Straight Jean in Selvedge Denim",
     "description": "Straight fit jeans made with Japanese selvedge denim",
     "details": ["100% Cotton", "Made in USA"],
     "care": [
@@ -36,6 +35,7 @@
     ],
     "variants": {
       "indigo-01": {
+        "name": "Straight Jean in Selvedge Denim",
         "color": "indigo",
         "thumbnail": "/images/products/denim-01-indigo/denim-01_01.webp",
         "images": [

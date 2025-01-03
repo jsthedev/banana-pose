@@ -23,9 +23,9 @@ function ProductCard({ productId, product }) {
   );
   const selectedVariant = variants[selectedVariantId];
   const name = selectedVariant?.name || '';
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyContext);
 
-  if (!variants || !selectedVariantId || currencyLoading) {
+  if (!variants || !selectedVariantId) {
     return <></>;
   }
 

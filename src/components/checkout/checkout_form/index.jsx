@@ -15,12 +15,8 @@ const stripePromise = loadStripe(
 
 function CheckoutForm() {
   const { state } = useContext(ShoppingBagContext);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
-  const { products, loading: productsLoading } = useContext(ProductsContext);
-
-  if (currencyLoading || productsLoading) {
-    return <div>Loading...</div>;
-  }
+  const { currency } = useContext(CurrencyContext);
+  const { products } = useContext(ProductsContext);
 
   const lineItems = state.shoppingBagItems
     .map((item) => {

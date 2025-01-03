@@ -13,8 +13,8 @@ import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 
 function ShoppingBagContents() {
   const { state, dispatch } = useContext(ShoppingBagContext);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
-  const { products, loading: productsLoading } = useContext(ProductsContext);
+  const { currency } = useContext(CurrencyContext);
+  const { products } = useContext(ProductsContext);
 
   const incrementItem = (id, size) => {
     dispatch({
@@ -36,10 +36,6 @@ function ShoppingBagContents() {
       payload: { id, size },
     });
   };
-
-  if (currencyLoading || productsLoading) {
-    return <></>;
-  }
 
   const total = state.shoppingBagItems.reduce((acc, item) => {
     const lastUnderscoreIndex = item.productVariant.lastIndexOf('_');

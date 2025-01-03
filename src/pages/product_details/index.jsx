@@ -17,11 +17,7 @@ function ProductDetails() {
 
   // Find product
 
-  const { products, loading: productsLoading } = useContext(ProductsContext);
-
-  if (productsLoading) {
-    return <div>Products are loading.</div>;
-  }
+  const { products } = useContext(ProductsContext);
 
   const product = products[productId];
 

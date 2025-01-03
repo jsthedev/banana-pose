@@ -4,8 +4,8 @@ import axios from 'axios';
 export const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
-  const [currency, setCurrency] = useState('USD'); // Default to USD
   const [loading, setLoading] = useState(true);
+  const [currency, setCurrency] = useState(null); // Default to USD
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -51,7 +51,7 @@ export const CurrencyProvider = ({ children }) => {
 
   return (
     <CurrencyContext.Provider value={{ currency, changeCurrency, loading }}>
-      {children}
+      {!loading && children}
     </CurrencyContext.Provider>
   );
 };

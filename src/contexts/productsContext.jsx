@@ -112,7 +112,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider value={{ products, loading }}>
-      {children}
+      {!loading && children}
     </ProductsContext.Provider>
   );
 };

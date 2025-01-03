@@ -15,7 +15,7 @@ function ShoppingBagItemCard({
   onRemove,
 }) {
   const colorCapital = item.color.charAt(0).toUpperCase() + item.color.slice(1);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyContext);
 
   return (
     <div className="shopping-bag-item">
@@ -50,9 +50,7 @@ function ShoppingBagItemCard({
             </div>
           </div>
           <div className="item-price">
-            {price && !currencyLoading
-              ? formatPrice(price, currency)
-              : 'Price not available'}
+            {price ? formatPrice(price, currency) : 'Price not available'}
           </div>
         </div>
         <div className="bottom-content">

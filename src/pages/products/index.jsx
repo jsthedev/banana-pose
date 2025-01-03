@@ -9,11 +9,7 @@ import '@/pages/products/index.scss';
 function Products() {
   // TODO 20250101: Get products from context and filter out products without prices
 
-  const { products, loading } = useContext(ProductsContext);
-
-  if (loading) {
-    return <></>;
-  }
+  const { products } = useContext(ProductsContext);
 
   return (
     <div className="products page">

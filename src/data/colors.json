@@ -1,5 +1,5 @@
 {
-  "black": "rgb(0,0,0)",
-  "white": "rgb(242,240,239)",
-  "indigo": "rgb(25,25,112)"
+  "black": "#000000",
+  "white": "#F2F0EF",
+  "indigo": "#191970"
 }

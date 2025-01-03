@@ -16,11 +16,13 @@ import '@/components/product_select/index.scss';
 
 function ProductSelect() {
   const { productVariant } = useParams();
+  const lastUnderscoreIndex = productVariant.lastIndexOf('_');
+  const productId = productVariant.substring(0, lastUnderscoreIndex);
   const product = useProduct();
   const variant = useVariant();
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyContext);
   const price = product.price;
 
   // Size Chart
@@ -82,7 +84,11 @@ function ProductSelect() {
       </div>
       <div className="product-order-form">
         <div className="product-color">Color: {colorCapital}</div>
-        <ProductDetailsColorSelect product={product} variant={variant} />
+        <ProductDetailsColorSelect
+          product={product}
+          productId={productId}
+          variant={variant}
+        />
         <div className="size-chart-click-wrapper">
           <div
             className="size-chart-click normal-link"

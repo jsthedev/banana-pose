@@ -4,7 +4,6 @@ import {
   faChevronRight,
   faChevronLeft,
   faTimes,
-  faT,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { CurrencyContext } from '@/contexts/currencyContext';

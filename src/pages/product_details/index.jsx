@@ -11,7 +11,6 @@ import '@/pages/product_details/index.scss';
 function ProductDetails() {
   // Navigation
   const { productVariant } = useParams();
-
   const lastUnderscoreIndex = productVariant.lastIndexOf('_');
   const productId = productVariant.substring(0, lastUnderscoreIndex);
   const variantId = productVariant.substring(lastUnderscoreIndex + 1);

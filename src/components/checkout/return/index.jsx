@@ -8,7 +8,7 @@ function Return() {
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
-  const { state, dispatch } = useContext(ShoppingBagContext);
+  const { dispatch } = useContext(ShoppingBagContext);
 
   useEffect(() => {
     const queryString = window.location.search;

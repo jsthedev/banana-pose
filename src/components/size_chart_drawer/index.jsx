@@ -5,8 +5,10 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import '@/components/size_chart_drawer/index.scss';
 
+// TODO: add size chart table for bottom
+
 const SizeChartDrawer = forwardRef(({ children }, ref) => {
-  // // States
+  // States
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   // Functions

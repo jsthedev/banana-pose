@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 );
 
 function CheckoutForm() {
-  const { state, dispatch } = useContext(ShoppingBagContext);
+  const { state } = useContext(ShoppingBagContext);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
   const { products, loading: productsLoading } = useContext(ProductsContext);
 

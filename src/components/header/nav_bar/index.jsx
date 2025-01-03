@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { useEffect, useState } from 'react';
 
 import DesktopNavBar from '@/components/header/nav_bar/desktop_nav_bar';

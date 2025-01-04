@@ -1,13 +1,17 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import ProductCard from '@/components/product_card/index.jsx';
+import ProductCard from "@/components/product_card/index.jsx";
 
-import { ProductsContext } from '@/contexts/productsContext';
+import { ProductsContext } from "@/contexts/productsContext";
 
-import '@/pages/products/index.scss';
+import "@/pages/products/index.scss";
 
 function Products() {
   const { products } = useContext(ProductsContext);
+
+  if (!products) {
+    return <div className="page" />;
+  }
 
   const filteredProducts = Object.fromEntries(
     Object.entries(products).filter(([_, product]) => product.price)

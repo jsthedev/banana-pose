@@ -1,16 +1,16 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from "react-router-dom";
 
-import Landing from '@/pages/index.jsx';
-import Home from '@/pages/home/index.jsx';
-import Products from '@/pages/products/index.jsx';
-import ProductDetails from '@/pages/product_details/index.jsx';
-import OurMission from '@/pages/our_mission';
-import ShoppingBag from '@/pages/shopping_bag';
-import ContactUs from '@/pages/contact_us';
-import CheckoutLanding from '@/pages/checkout';
-import CheckoutForm from '@/components/checkout/checkout_form/index.jsx';
-import Return from '@/components/checkout/return';
-import NotFound from '@/pages/not_found/index.jsx';
+import Landing from "@/pages/index.jsx";
+import Home from "@/pages/home/index.jsx";
+import Products from "@/pages/products/index.jsx";
+import ProductDetails from "@/pages/product_details/index.jsx";
+import OurMission from "@/pages/our_mission";
+import ShoppingBag from "@/pages/shopping_bag";
+import ContactUs from "@/pages/contact_us";
+import CheckoutLanding from "@/pages/checkout";
+import CheckoutForm from "@/components/checkout/checkout_form/index.jsx";
+import Return from "@/components/checkout/return";
+import NotFound from "@/pages/not_found/index.jsx";
 
 function Router() {
   return (

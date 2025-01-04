@@ -22,13 +22,23 @@ function ProductDetails() {
   const product = products[productId];
 
   if (!product) {
-    return <div>Product not found.</div>;
+    return (
+      <div className="error page">
+        <div className="message">Product not found.</div>
+      </div>
+    );
   }
 
   const variant = product.variants[variantId];
 
   if (!variant) {
-    return <div>Selected color is not available for this product.</div>;
+    return (
+      <div className="error page">
+        <div className="message">
+          Selected color is not available for this product.
+        </div>
+      </div>
+    );
   }
 
   return (

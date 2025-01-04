@@ -6,7 +6,7 @@ import { faBagShopping } from '@fortawesome/free-solid-svg-icons';
 
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
-import 'src/components/header/nav_bar/icons/shopping_bag/index.scss';
+import '@/components/landing/header/nav_bar/icons/shopping_bag/index.scss';
 
 function ShoppingBagIcon() {
   const { state } = useContext(ShoppingBagContext);

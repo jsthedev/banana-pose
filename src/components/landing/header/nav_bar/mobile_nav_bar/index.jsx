@@ -8,10 +8,10 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 
-import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
+import ShoppingBagIcon from '@/components/landing/header/nav_bar/icons/shopping_bag/index.jsx';
 import MobileCurrencySelector from '@/components/currency_selector/mobile_currency_selector/index.jsx';
 
-import '@/components/header/nav_bar/mobile_nav_bar/index.scss';
+import '@/components/landing/header/nav_bar/mobile_nav_bar/index.scss';
 
 function MobileNavBar() {
   // States

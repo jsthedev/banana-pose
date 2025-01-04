@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-import DesktopNavBar from '@/components/header/nav_bar/desktop_nav_bar';
-import MobileNavBar from '@/components/header/nav_bar/mobile_nav_bar';
+import DesktopNavBar from '@/components/landing/header/nav_bar/desktop_nav_bar';
+import MobileNavBar from '@/components/landing/header/nav_bar/mobile_nav_bar';
 
-import '@/components/header/nav_bar/index.scss';
+import '@/components/landing/header/nav_bar/index.scss';
 
 function NavBar() {
   const DESKTOP_DIMENSION = 1280;

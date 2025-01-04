@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
-import ShoppingBagIcon from '@/components/header/nav_bar/icons/shopping_bag/index.jsx';
+import ShoppingBagIcon from '@/components/landing/header/nav_bar/icons/shopping_bag/index.jsx';
 import DesktopCurrencySelector from '@/components/currency_selector/desktop_currency_selector/index.jsx';
 
-import 'src/components/header/nav_bar/desktop_nav_bar/index.scss';
+import '@/components/landing/header/nav_bar/desktop_nav_bar/index.scss';
 
 function DesktopNavBar() {
   return (

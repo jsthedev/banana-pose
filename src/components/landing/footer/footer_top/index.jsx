@@ -1,4 +1,4 @@
-import '@/components/footer/footer_top/index.scss';
+import '@/components/landing/footer/footer_top/index.scss';
 
 function FooterTop() {
   return (

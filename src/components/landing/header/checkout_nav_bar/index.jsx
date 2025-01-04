@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import '@/components/header/checkout_nav_bar/index.scss';
+import '@/components/landing/header/checkout_nav_bar/index.scss';
 
 function CheckoutNavBar() {
   return (

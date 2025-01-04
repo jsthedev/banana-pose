@@ -1,16 +1,16 @@
-import { useContext } from "react";
+import { useContext } from 'react';
 
-import ProductCard from "@/components/product_card/index.jsx";
+import ProductCard from '@/components/product_card/index.jsx';
 
-import { ProductsContext } from "@/contexts/productsContext";
+import { ProductsContext } from '@/contexts/productsContext';
 
-import "@/pages/products/index.scss";
+import '@/pages/products/index.scss';
 
 function Products() {
   const { products } = useContext(ProductsContext);
 
   if (!products) {
-    return <div className="page" />;
+    return null;
   }
 
   const filteredProducts = Object.fromEntries(
@@ -18,7 +18,7 @@ function Products() {
   );
 
   return (
-    <div className="products page">
+    <div className="products">
       <div className="products-page-main">
         <div className="product-list-wrapper">
           <div className="product-list">

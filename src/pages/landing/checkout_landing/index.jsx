@@ -1,8 +1,7 @@
-import { Outlet } from 'react-router-dom';
-
-import CheckoutNavBar from '@/components/header/checkout_nav_bar';
+import CheckoutNavBar from '@/components/landing/header/checkout_nav_bar/index.jsx';
 import ScrollTop from '@/components/scroll_top';
-import Footer from '@/components/footer';
+import PageOutlet from '@/components/landing/page_outlet';
+import Footer from '@/components/landing/footer/index.jsx';
 
 function CheckoutLanding() {
   return (
@@ -12,7 +11,7 @@ function CheckoutLanding() {
       </header>
       <main>
         <ScrollTop />
-        <Outlet />
+        <PageOutlet />
       </main>
       <footer>
         <Footer />

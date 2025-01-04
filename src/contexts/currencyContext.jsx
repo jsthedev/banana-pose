@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+import { SUPPORTED_CURRENCIES } from '@/constants/currencies';
+
 export const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
@@ -55,15 +57,3 @@ export const CurrencyProvider = ({ children }) => {
     </CurrencyContext.Provider>
   );
 };
-
-const SUPPORTED_CURRENCIES = [
-  'CAD',
-  'USD',
-  'CNY',
-  'JPY',
-  'EUR',
-  'GBP',
-  'KRW',
-  'AUD',
-  'NZD',
-];

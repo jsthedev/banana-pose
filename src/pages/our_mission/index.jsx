@@ -8,7 +8,7 @@ import SustainabilityImage from '@/assets/images/our_mission/Cotton_field_kv17.j
 // TODO: Replace placeholder images
 function OurMission() {
   return (
-    <div className="our-mission page">
+    <div className="our-mission">
       <div className="our-mission-main-text">
         <div className="logo-image-wrapper">
           <img src={LogoImage} />

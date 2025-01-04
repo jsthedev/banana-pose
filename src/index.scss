@@ -33,14 +33,3 @@
   margin: 0;
   box-sizing: border-box;
 }
-
-.page {
-  padding-top: 56px; // space for nav bar
-  min-height: calc(100vh - 63px);
-}
-
-@media (max-width: 767px) {
-  .page {
-    min-height: calc(100vh - 102.5px);
-  }
-}

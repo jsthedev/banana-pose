@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 
 import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
 
-import '@/components/checkout/return/index.scss';
+import '@/pages/checkout/return/index.scss';
 
 function Return() {
   const [status, setStatus] = useState(null);
@@ -37,7 +37,7 @@ function Return() {
 
   if (status === 'complete') {
     return (
-      <section id="success" className="page return-complete">
+      <section id="success" className="return-complete">
         <p>
           We appreciate your business! <br />A confirmation email will be sent
           to {customerEmail}. <br />

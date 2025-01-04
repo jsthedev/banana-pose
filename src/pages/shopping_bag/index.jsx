@@ -13,7 +13,7 @@ function ShoppingBag() {
   const isBagEmpty = state.shoppingBagItems.length === 0;
 
   return (
-    <div className="shopping-bag page">
+    <div className="shopping-bag">
       <div className="shopping-bag-container">
         {isBagEmpty ? <EmptyPrompt /> : <ShoppingBagContents />}
       </div>

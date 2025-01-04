@@ -31,3 +31,15 @@ export const CURRENCY_SYMBOLS = {
   AUD: '$',
   NZD: '$',
 };
+
+export const SUPPORTED_CURRENCIES = [
+  'CAD',
+  'USD',
+  'CNY',
+  'JPY',
+  'EUR',
+  'GBP',
+  'KRW',
+  'AUD',
+  'NZD',
+];

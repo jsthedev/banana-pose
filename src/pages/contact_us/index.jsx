@@ -2,7 +2,7 @@ import '@/pages/contact_us/index.scss';
 
 function ContactUs() {
   return (
-    <div className="contact-us page">
+    <div className="contact-us">
       <div className="page-contents">
         <div className="page-name">Contact Us</div>
         <div className="contact-list">

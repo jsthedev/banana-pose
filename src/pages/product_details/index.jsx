@@ -19,11 +19,15 @@ function ProductDetails() {
 
   const { products } = useContext(ProductsContext);
 
+  if (!products) {
+    return null;
+  }
+
   const product = products[productId];
 
   if (!product) {
     return (
-      <div className="error page">
+      <div className="error">
         <div className="message">Product not found.</div>
       </div>
     );
@@ -33,7 +37,7 @@ function ProductDetails() {
 
   if (!variant) {
     return (
-      <div className="error page">
+      <div className="error">
         <div className="message">
           Selected color is not available for this product.
         </div>
@@ -43,7 +47,7 @@ function ProductDetails() {
 
   return (
     <ProductVariantProvider product={product} variant={variant}>
-      <div className="product-details page">
+      <div className="product-details">
         <div className="product-gallery-wrapper">
           <ProductGallery />
         </div>

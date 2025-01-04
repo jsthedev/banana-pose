@@ -63,12 +63,10 @@ function CheckoutForm() {
   const options = { fetchClientSecret };
 
   return (
-    <div id="checkout" className="page">
-      <div className="embedded-wrapper">
-        <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
-          <EmbeddedCheckout />
-        </EmbeddedCheckoutProvider>
-      </div>
+    <div className="checkout">
+      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+        <EmbeddedCheckout />
+      </EmbeddedCheckoutProvider>
     </div>
   );
 }

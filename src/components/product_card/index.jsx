@@ -9,30 +9,28 @@ import { CurrencyContext } from '@/contexts/currencyContext';
 
 import '@/components/product_card/index.scss';
 
-// TODO: fix price fetching when page refreshed
-
 function ProductCard({ productId, product }) {
-  // TODO: 20250101 For each variant, filter out variants without property "sizes"
-  // TODO: 20250101 Create list of colors available
-  // TODO: 20250101 When checkout use bpId + variantId + sizeId to get priceId and checkout
-
   const { price, variants } = product;
 
-  const [selectedVariantId, setSelectedVariantId] = useState(
-    Object.keys(variants)[0]
+  const filteredVariants = Object.fromEntries(
+    Object.entries(variants).filter(([_, variant]) => variant.sizes)
   );
-  const selectedVariant = variants[selectedVariantId];
+
+  const [selectedVariantId, setSelectedVariantId] = useState(
+    Object.keys(filteredVariants)[0]
+  );
+  const selectedVariant = filteredVariants[selectedVariantId];
   const name = selectedVariant?.name || '';
   const { currency } = useContext(CurrencyContext);
 
-  if (!variants || !selectedVariantId) {
+  if (!filteredVariants || !selectedVariantId) {
     return <></>;
   }
 
   // Color Select
   const handleColorSelect = (selectedColor) => {
-    const variantId = Object.keys(variants).find(
-      (id) => variants[id].color === selectedColor
+    const variantId = Object.keys(filteredVariants).find(
+      (id) => filteredVariants[id].color === selectedColor
     );
     if (variantId) {
       setSelectedVariantId(variantId);
@@ -64,9 +62,9 @@ function ProductCard({ productId, product }) {
         </div>
         <div className="color-cards">
           <ProductCardColorSelect
-            selectedColor={variants[selectedVariantId].color}
-            colors={Object.keys(variants).map(
-              (variantId) => variants[variantId].color
+            selectedColor={filteredVariants[selectedVariantId].color}
+            colors={Object.keys(filteredVariants).map(
+              (variantId) => filteredVariants[variantId].color
             )}
             onColorSelect={handleColorSelect}
           />

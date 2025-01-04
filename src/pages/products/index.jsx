@@ -7,16 +7,18 @@ import { ProductsContext } from '@/contexts/productsContext';
 import '@/pages/products/index.scss';
 
 function Products() {
-  // TODO 20250101: Get products from context and filter out products without prices
-
   const { products } = useContext(ProductsContext);
+
+  const filteredProducts = Object.fromEntries(
+    Object.entries(products).filter(([_, product]) => product.price)
+  );
 
   return (
     <div className="products page">
       <div className="products-page-main">
         <div className="product-list-wrapper">
           <div className="product-list">
-            {Object.entries(products).map(([productId, product]) => (
+            {Object.entries(filteredProducts).map(([productId, product]) => (
               <ProductCard
                 key={`${productId}`}
                 productId={productId}

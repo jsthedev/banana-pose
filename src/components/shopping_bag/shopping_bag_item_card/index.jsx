@@ -15,7 +15,11 @@ function ShoppingBagItemCard({
   onRemove,
 }) {
   const colorCapital = item.color.charAt(0).toUpperCase() + item.color.slice(1);
-  const { currency } = useContext(CurrencyContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+
+  if (currencyLoading) {
+    return null;
+  }
 
   return (
     <div className="shopping-bag-item">

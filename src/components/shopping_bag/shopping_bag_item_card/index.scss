@@ -6,6 +6,9 @@
   border-bottom: 1px solid rgb(170, 170, 170);
 
   .item-thumbnail {
+    height: 300px;
+    width: 200px;
+
     img {
       height: 300px;
       width: auto;
@@ -65,6 +68,8 @@
 @media (max-width: 1023px) {
   .shopping-bag-item {
     .item-thumbnail {
+      height: 210px;
+      width: 140px;
       img {
         height: 210px;
       }
@@ -79,6 +84,8 @@
 @media (max-width: 767px) {
   .shopping-bag-item {
     .item-thumbnail {
+      height: 150px;
+      width: 100px;
       img {
         height: 150px;
       }

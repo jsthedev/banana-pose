@@ -13,7 +13,15 @@ import { CURRENCY_FLAGS, CURRENCY_SYMBOLS } from '@/constants/currencies';
 import '@/components/currency_selector/mobile_currency_selector/index.scss';
 
 function MobileCurrencySelector() {
-  const { currency, changeCurrency } = useContext(CurrencyContext);
+  const {
+    currency,
+    changeCurrency,
+    loading: currencyLoading,
+  } = useContext(CurrencyContext);
+
+  if (currencyLoading) {
+    return null;
+  }
 
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const toggleSelector = () => {

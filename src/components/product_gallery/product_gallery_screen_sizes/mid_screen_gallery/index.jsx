@@ -1,11 +1,11 @@
 import ProductInfo from '@/components/product_info/index.jsx';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
-import { useVariant } from '@/contexts/productVariantContext';
+import { useProductVariantContext } from '@/contexts/productVariantContext';
 
 // at 1139px, carousel-nav should disappear
 function MidScreenGallery() {
-  const variant = useVariant();
+  const { variant } = useProductVariantContext();
   const images = variant.images;
 
   return (

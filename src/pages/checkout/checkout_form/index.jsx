@@ -14,9 +14,26 @@ const stripePromise = loadStripe(
 );
 
 function CheckoutForm() {
-  const { state } = useContext(ShoppingBagContext);
   const { currency } = useContext(CurrencyContext);
   const { products } = useContext(ProductsContext);
+  const { state } = useContext(ShoppingBagContext);
+
+  // Handle currency or products rendering issues
+  if (!currency || !products) {
+    return null;
+  }
+
+  // Handle shopping bag rendering issues
+  if (
+    state.shoppingBagItems === undefined ||
+    state.shoppingBagItems.length == 0
+  ) {
+    return (
+      <div className="empty-prompt">
+        <div>Your shopping bag is empty.</div>
+      </div>
+    );
+  }
 
   const lineItems = state.shoppingBagItems
     .map((item) => {
@@ -25,7 +42,6 @@ function CheckoutForm() {
       const productId = productVariant.substring(0, lastUnderscoreIndex);
       const variantId = productVariant.substring(lastUnderscoreIndex + 1);
       const size = item.size;
-      console.log(products);
 
       if (products[productId]?.variants?.[variantId]?.sizes?.[size]) {
         return {
@@ -44,7 +60,7 @@ function CheckoutForm() {
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch(
-      'http://127.0.0.1:5001/banana-pose/us-central1/api/create-checkout-session',
+      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/create-checkout-session`,
       {
         method: 'POST',
         headers: {

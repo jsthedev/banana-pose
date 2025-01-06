@@ -6,12 +6,12 @@ import 'swiper/css/pagination';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
-import { useVariant } from '@/contexts/productVariantContext';
+import { useProductVariantContext } from '@/contexts/productVariantContext';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
 
 function SmallScreenGallery() {
-  const variant = useVariant();
+  const { variant } = useProductVariantContext();
   const images = variant.images;
 
   const pagination = {

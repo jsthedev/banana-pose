@@ -19,7 +19,7 @@ export const CurrencyProvider = ({ children }) => {
         } else {
           // Fetch from backend based on IP
           const response = await axios.get(
-            'http://127.0.0.1:5001/banana-pose/us-central1/api/get-currency'
+            `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/get-currency`
           );
           if (
             response.data.currency &&
@@ -53,7 +53,7 @@ export const CurrencyProvider = ({ children }) => {
 
   return (
     <CurrencyContext.Provider value={{ currency, changeCurrency, loading }}>
-      {!loading && children}
+      {children}
     </CurrencyContext.Provider>
   );
 };

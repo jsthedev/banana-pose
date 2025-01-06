@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 
 import ProductInfo from '@/components/product_info/index.jsx';
 
-import { useVariant } from '@/contexts/productVariantContext';
+import { useProductVariantContext } from '@/contexts/productVariantContext';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
 
 function WideScreenGallery() {
-  const variant = useVariant();
+  const { variant } = useProductVariantContext();
   const images = variant.images;
 
   // Nav Bar Height in px

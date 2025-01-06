@@ -9,7 +9,15 @@ import { CURRENCY_FLAGS, CURRENCY_SYMBOLS } from '@/constants/currencies';
 import '@/components/currency_selector/desktop_currency_selector/index.scss';
 
 function DesktopCurrencySelector() {
-  const { currency, changeCurrency } = useContext(CurrencyContext);
+  const {
+    currency,
+    changeCurrency,
+    loading: currencyLoading,
+  } = useContext(CurrencyContext);
+
+  const currentFlag = currencyLoading
+    ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
+    : CURRENCY_FLAGS[currency];
 
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const toggleSelector = () => {
@@ -23,7 +31,7 @@ function DesktopCurrencySelector() {
         onClick={toggleSelector}
       >
         <div className="flag-img-wrapper">
-          <img src={CURRENCY_FLAGS[currency]} className="flag-img" />
+          <img src={currentFlag} className="flag-img" />
         </div>
         <div className="chevron-down">
           <FontAwesomeIcon icon={faChevronDown} />

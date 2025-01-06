@@ -21,10 +21,14 @@ function ProductCard({ productId, product }) {
   );
   const selectedVariant = filteredVariants[selectedVariantId];
   const name = selectedVariant?.name || '';
-  const { currency } = useContext(CurrencyContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
   if (!filteredVariants || !selectedVariantId) {
     return <></>;
+  }
+
+  if (currencyLoading) {
+    return null;
   }
 
   // Color Select

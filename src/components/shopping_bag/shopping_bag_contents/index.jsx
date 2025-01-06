@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
@@ -13,8 +13,12 @@ import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 
 function ShoppingBagContents() {
   const { state, dispatch } = useContext(ShoppingBagContext);
-  const { currency } = useContext(CurrencyContext);
-  const { products } = useContext(ProductsContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
+
+  if (currencyLoading || productsLoading) {
+    return null;
+  }
 
   const incrementItem = (id, size) => {
     dispatch({

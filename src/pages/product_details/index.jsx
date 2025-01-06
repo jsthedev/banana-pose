@@ -17,9 +17,9 @@ function ProductDetails() {
 
   // Find product
 
-  const { products } = useContext(ProductsContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
 
-  if (!products) {
+  if (productsLoading) {
     return null;
   }
 

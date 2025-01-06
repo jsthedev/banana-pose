@@ -7,7 +7,7 @@ import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
-import { useProduct, useVariant } from '@/contexts/productVariantContext';
+import { useProductVariantContext } from '@/contexts/productVariantContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
 
 import { formatPrice } from '@/utils/utilities';
@@ -18,12 +18,15 @@ function ProductSelect() {
   const { productVariant } = useParams();
   const lastUnderscoreIndex = productVariant.lastIndexOf('_');
   const productId = productVariant.substring(0, lastUnderscoreIndex);
-  const product = useProduct();
-  const variant = useVariant();
+  const { product, variant } = useProductVariantContext();
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
-  const { currency } = useContext(CurrencyContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
   const price = product.price;
+
+  if (currencyLoading) {
+    return null;
+  }
 
   // Size Chart
   const sizeChartRef = useRef();

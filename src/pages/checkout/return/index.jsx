@@ -16,7 +16,7 @@ function Return() {
     const sessionId = urlParams.get('session_id');
 
     fetch(
-      `http://127.0.0.1:5001/banana-pose/us-central1/api/session-status?session_id=${sessionId}`
+      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/session-status?session_id=${sessionId}`
     )
       .then((res) => res.json())
       .then((data) => {

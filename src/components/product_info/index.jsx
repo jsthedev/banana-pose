@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 import ProductSelect from '@/components/product_select/index.jsx';
 
-import { useProductVariantContext } from '@/contexts/productVariantContext';
+import { ProductsContext } from '@/contexts/productsContext';
+import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
 import '@/components/product_info/index.scss';
 
 function ProductInfo() {
-  const { product } = useProductVariantContext();
+  const { products } = useContext(ProductsContext);
+  const { productId } = useContext(ProductVariantIdsContext);
+
+  const product = products[productId];
 
   // Product Details
   const [showDetails, setShowDetails] = useState(false);

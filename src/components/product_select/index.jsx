@@ -7,7 +7,8 @@ import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
 import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
-import { useProductVariantContext } from '@/contexts/productVariantContext';
+import { ProductsContext } from '@/contexts/productsContext';
+import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
 
 import { formatPrice } from '@/utils/utilities';
@@ -15,18 +16,19 @@ import { formatPrice } from '@/utils/utilities';
 import '@/components/product_select/index.scss';
 
 function ProductSelect() {
-  const { productVariant } = useParams();
-  const lastUnderscoreIndex = productVariant.lastIndexOf('_');
-  const productId = productVariant.substring(0, lastUnderscoreIndex);
-  const { product, variant } = useProductVariantContext();
-  const color = variant.color;
-  const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
+  const { productId, variantId } = useContext(ProductVariantIdsContext);
+
+  const product = products[productId];
   const price = product.price;
 
-  if (currencyLoading) {
-    return null;
-  }
+  const variant = product.variants[variantId];
+  const color = variant.color;
+  const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
+
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+
+  const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   // Size Chart
   const sizeChartRef = useRef();
@@ -68,7 +70,7 @@ function ProductSelect() {
           color: color,
           size: selectedSize,
           name: variant.name,
-          productVariant: productVariant,
+          productVariant: `${productId}_${variantId}`,
         },
       });
       setAddedToBag(true);
@@ -82,7 +84,7 @@ function ProductSelect() {
       <div className="product-metadata">
         <div className="product-name">{variant.name}</div>
         <div className="product-price">
-          <span>{formatPrice(price, currency.toUpperCase())}</span>
+          <span>{formattedPrice}</span>
         </div>
       </div>
       <div className="product-order-form">

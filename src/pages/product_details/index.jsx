@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import ProductGallery from '@/components/product_gallery/index.jsx';
 
-import { ProductVariantProvider } from '@/contexts/productVariantContext.jsx';
+import { ProductVariantIdsProvider } from '@/contexts/productVariantIdsContext.jsx';
 import { ProductsContext } from '@/contexts/productsContext';
 
 import '@/pages/product_details/index.scss';
@@ -46,13 +46,13 @@ function ProductDetails() {
   }
 
   return (
-    <ProductVariantProvider product={product} variant={variant}>
+    <ProductVariantIdsProvider productId={productId} variantId={variantId}>
       <div className="product-details">
         <div className="product-gallery-wrapper">
           <ProductGallery />
         </div>
       </div>
-    </ProductVariantProvider>
+    </ProductVariantIdsProvider>
   );
 }
 

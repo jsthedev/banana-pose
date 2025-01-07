@@ -20,6 +20,7 @@ export const ProductsProvider = ({ children }) => {
         return;
       }
 
+      setLoading(true);
       try {
         // Fetch products
         const productsResponse = await axios.get(

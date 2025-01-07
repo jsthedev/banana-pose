@@ -1,11 +1,17 @@
+import { useContext } from 'react';
+
 import ProductInfo from '@/components/product_info/index.jsx';
 
 import '@/components/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
-import { useProductVariantContext } from '@/contexts/productVariantContext';
+import { ProductsContext } from '@/contexts/productsContext';
+import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
 // at 1139px, carousel-nav should disappear
 function MidScreenGallery() {
-  const { variant } = useProductVariantContext();
+  const { products } = useContext(ProductsContext);
+  const { productId, variantId } = useContext(ProductVariantIdsContext);
+
+  const variant = products[productId].variants[variantId];
   const images = variant.images;
 
   return (

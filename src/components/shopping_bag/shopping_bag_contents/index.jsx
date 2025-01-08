@@ -42,8 +42,7 @@ function ShoppingBagContents() {
   };
 
   const total = state.shoppingBagItems.reduce((acc, item) => {
-    const lastUnderscoreIndex = item.productVariant.lastIndexOf('_');
-    const productId = item.productVariant.substring(0, lastUnderscoreIndex);
+    const productId = item.productId;
     const itemPrice = products[productId].price || 0;
     return acc + itemPrice * item.quantity;
   }, 0);
@@ -55,12 +54,8 @@ function ShoppingBagContents() {
         <div className="shopping-bag-page-name">Shopping bag</div>
         <div className="shopping-bag-item-list">
           {state.shoppingBagItems.map((item) => {
-            const lastUnderscoreIndex = item.productVariant.lastIndexOf('_');
-            const productId = item.productVariant.substring(
-              0,
-              lastUnderscoreIndex
-            );
-            const price = products[productId].price || 'N/A'; // Display 'N/A' if price is not available
+            const productId = item.productId;
+            const price = products[productId].price || 'N/A';
 
             return (
               <ShoppingBagItemCard

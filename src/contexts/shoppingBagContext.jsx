@@ -1,4 +1,8 @@
-import { createContext, useReducer, useEffect } from 'react';
+import { createContext, useReducer, useEffect, useContext } from 'react';
+
+import { ProductsContext } from '@/contexts/productsContext';
+
+import { validateShoppingBagItems } from '@/utils/utilities';
 
 const initialState = {
   shoppingBagItems: [],
@@ -67,6 +71,18 @@ const shoppingBagReducer = (state, action) => {
         shoppingBagItems: [],
       };
     }
+    case 'VALIDATE': {
+      const { products } = action.payload;
+      const validItems = validateShoppingBagItems(
+        state.shoppingBagItems,
+        products
+      );
+      return {
+        ...state,
+        shoppingBagItems: validItems,
+      };
+    }
+
     default:
       return state;
   }
@@ -75,6 +91,8 @@ const shoppingBagReducer = (state, action) => {
 export const ShoppingBagContext = createContext();
 
 export const ShoppingBagProvider = ({ children }) => {
+  const { products } = useContext(ProductsContext);
+
   const [state, dispatch] = useReducer(shoppingBagReducer, initialState, () => {
     const localShoppingBag = localStorage.getItem('banana-pose-shopping-bag');
     return localShoppingBag ? JSON.parse(localShoppingBag) : initialState;
@@ -83,6 +101,19 @@ export const ShoppingBagProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem('banana-pose-shopping-bag', JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    if (!products) {
+      return;
+    }
+
+    if (products) {
+      dispatch({
+        type: 'VALIDATE',
+        payload: { products },
+      });
+    }
+  }, [products]);
 
   return (
     <ShoppingBagContext.Provider value={{ state, dispatch }}>

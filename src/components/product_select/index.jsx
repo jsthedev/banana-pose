@@ -70,7 +70,8 @@ function ProductSelect() {
           color: color,
           size: selectedSize,
           name: variant.name,
-          productVariant: `${productId}_${variantId}`,
+          productId: productId,
+          variantId: variantId,
         },
       });
       setAddedToBag(true);

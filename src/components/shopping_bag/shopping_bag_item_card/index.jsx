@@ -23,7 +23,7 @@ function ShoppingBagItemCard({
 
   return (
     <div className="shopping-bag-item">
-      <Link to={`/products/${item.productVariant}`}>
+      <Link to={`/products/${item.productId}_${item.variantId}`}>
         <div className="item-thumbnail">
           <img src={item.thumbnail} alt={`${item.thumbnail}`} />
         </div>
@@ -31,7 +31,10 @@ function ShoppingBagItemCard({
       <div className="shopping-bag-item-contents-wrapper">
         <div className="top-content">
           <div className="item-details">
-            <Link to={`/products/${item.productVariant}`} className="item-link">
+            <Link
+              to={`/products/${item.productId}_${item.variantId}`}
+              className="item-link"
+            >
               <div className="item-name item-detail">{item.name}</div>
             </Link>
             <div className="item-size item-detail">Size: {item.size}</div>

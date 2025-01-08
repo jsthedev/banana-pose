@@ -7,7 +7,7 @@ export const CurrencyContext = createContext();
 
 export const CurrencyProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [currency, setCurrency] = useState(null); // Default to USD
+  const [currency, setCurrency] = useState(null);
 
   useEffect(() => {
     const fetchCurrency = async () => {
@@ -28,7 +28,7 @@ export const CurrencyProvider = ({ children }) => {
             setCurrency(response.data.currency);
             localStorage.setItem('bp-currency', response.data.currency);
           } else {
-            setCurrency('USD');
+            setCurrency('USD'); // Default to USD
             localStorage.setItem('bp-currency', 'USD');
           }
         }

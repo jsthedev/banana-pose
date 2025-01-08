@@ -7,9 +7,9 @@ import { ProductsContext } from '@/contexts/productsContext';
 import '@/pages/products/index.scss';
 
 function Products() {
-  const { products } = useContext(ProductsContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
 
-  if (!products) {
+  if (productsLoading) {
     return null;
   }
 

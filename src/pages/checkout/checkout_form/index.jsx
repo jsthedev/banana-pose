@@ -37,10 +37,8 @@ function CheckoutForm() {
 
   const lineItems = state.shoppingBagItems
     .map((item) => {
-      const productVariant = item.productVariant;
-      const lastUnderscoreIndex = productVariant.lastIndexOf('_');
-      const productId = productVariant.substring(0, lastUnderscoreIndex);
-      const variantId = productVariant.substring(lastUnderscoreIndex + 1);
+      const productId = item.productId;
+      const variantId = item.variantId;
       const size = item.size;
 
       if (products[productId]?.variants?.[variantId]?.sizes?.[size]) {

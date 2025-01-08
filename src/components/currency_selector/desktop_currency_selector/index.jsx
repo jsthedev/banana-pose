@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,12 +20,31 @@ function DesktopCurrencySelector() {
     : CURRENCY_FLAGS[currency];
 
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
+  const selectorRef = useRef(null);
+
   const toggleSelector = () => {
     setIsSelectorOpen(!isSelectorOpen);
   };
 
+  const closeSelector = () => {
+    setIsSelectorOpen(false);
+  };
+
+  const handleClickOutside = (event) => {
+    if (selectorRef.current && !selectorRef.current.contains(event.target)) {
+      closeSelector();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="currency-selector">
+    <div className="currency-selector" ref={selectorRef}>
       <div
         className={`selector-button ${isSelectorOpen ? 'opened' : ''}`}
         onClick={toggleSelector}
@@ -45,7 +64,7 @@ function DesktopCurrencySelector() {
               key={curr}
               onClick={() => {
                 changeCurrency(curr);
-                setIsSelectorOpen(false); // Close selector on selection
+                closeSelector();
               }}
             >
               <div className="flag-img-wrapper">

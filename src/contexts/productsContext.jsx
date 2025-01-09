@@ -100,6 +100,22 @@ export const ProductsProvider = ({ children }) => {
           }
         });
 
+        Object.keys(productsCollection).forEach((productId) => {
+          const product = productsCollection[productId];
+          if (product.variants) {
+            // Filter variants without sizes
+            Object.keys(product.variants).forEach((variantId) => {
+              if (!('sizes' in product.variants[variantId])) {
+                delete product.variants[variantId];
+              }
+            });
+            // Filter products without variants
+            if (Object.keys(product.variants).length === 0) {
+              delete productsCollection[productId];
+            }
+          }
+        });
+
         setProducts(productsCollection);
       } catch (error) {
         console.error('Error fetching products:', error);

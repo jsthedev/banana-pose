@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import Landing from '@/pages/landing/default/index.jsx';
-import PageOutlet from '@/components/landing/page_outlet';
 import Home from '@/pages/home/index.jsx';
 import Products from '@/pages/products/index.jsx';
 import ProductDetails from '@/pages/product_details/index.jsx';

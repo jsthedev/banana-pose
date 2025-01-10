@@ -52,12 +52,14 @@ function ProductCard({ productId }) {
           </Link>
         </div>
         <div className="product-info">
-          <Link
-            to={`/products/${productId}_${variantId}`}
-            className="normal-link"
-          >
-            <div className="product-name normal-link">{name}</div>
-          </Link>
+          <div className="product-name">
+            <Link
+              to={`/products/${productId}_${variantId}`}
+              className="normal-link"
+            >
+              <div className="normal-link">{name}</div>
+            </Link>
+          </div>
           <div className="product-price">
             <span>{formatPrice(price, currency.toUpperCase())}</span>
           </div>

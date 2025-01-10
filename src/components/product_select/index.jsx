@@ -1,10 +1,9 @@
-import { useRef, useState, useContext, useEffect } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import ProductDetailsColorSelect from '@/components/color_select/product_details';
 import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
-import SizeChartTable from '@/components/size_chart_drawer/size_chart_table/index.jsx';
 import SizeSelector from '@/components/size_selector/index.jsx';
 
 import { ProductsContext } from '@/contexts/productsContext';
@@ -16,7 +15,7 @@ import { formatPrice } from '@/utils/utilities';
 import '@/components/product_select/index.scss';
 
 function ProductSelect() {
-  const { products, loading: productsLoading } = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
 
   const product = products[productId];
@@ -26,16 +25,14 @@ function ProductSelect() {
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
 
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { currency } = useContext(CurrencyContext);
 
   const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   // Size Chart
-  const sizeChartRef = useRef();
-  const handleSizeGuideClick = () => {
-    if (sizeChartRef.current) {
-      sizeChartRef.current.open();
-    }
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const openSizeChartDrawer = () => {
+    setIsDrawerOpen(true);
   };
 
   // Size Select
@@ -98,13 +95,14 @@ function ProductSelect() {
         <div className="size-chart-click-wrapper">
           <div
             className="size-chart-click normal-link"
-            onClick={handleSizeGuideClick}
+            onClick={openSizeChartDrawer}
           >
             Size Guide
           </div>
-          <SizeChartDrawer ref={sizeChartRef}>
-            <SizeChartTable />
-          </SizeChartDrawer>
+          <SizeChartDrawer
+            isDrawerOpen={isDrawerOpen}
+            setIsDrawerOpen={setIsDrawerOpen}
+          />
         </div>
         {sizeSelectError && (
           <div className="size-error-message error-style">

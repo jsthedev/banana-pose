@@ -1,25 +1,25 @@
-import '@/components/size_chart_drawer/size_chart_table/index.scss';
+import '@/components/size_chart_drawer/size_chart_tables/index.scss';
 
-function SizeChartTable() {
+function JeansSizeChartTable() {
   return (
     <div className="size-chart-table">
       <table>
         <tbody>
           <tr>
             <th>Banana Pose</th>
-            <td>XS</td>
-            <td>S</td>
-            <td>M</td>
-            <td>L</td>
-            <td>XL</td>
+            <td>28</td>
+            <td>30</td>
+            <td>32</td>
+            <td>34</td>
+            <td>36</td>
           </tr>
           <tr>
             <th>International</th>
-            <td>XS</td>
-            <td>S</td>
-            <td>M</td>
-            <td>L</td>
-            <td>XL</td>
+            <td>28</td>
+            <td>30</td>
+            <td>32</td>
+            <td>34</td>
+            <td>36</td>
           </tr>
           <tr>
             <th>US</th>
@@ -37,18 +37,10 @@ function SizeChartTable() {
             <td>50</td>
             <td>52</td>
           </tr>
-          <tr>
-            <th>Korea</th>
-            <td>85</td>
-            <td>90</td>
-            <td>95</td>
-            <td>100</td>
-            <td>105</td>
-          </tr>
         </tbody>
       </table>
     </div>
   );
 }
 
-export default SizeChartTable;
+export default JeansSizeChartTable;

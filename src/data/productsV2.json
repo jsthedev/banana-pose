@@ -9,6 +9,7 @@
       "Air drying recommended",
       "Low iron"
     ],
+    "type": "t-shirt",
     "variants": {
       "black-01": {
         "name": "Seal T-shirt in Cotton",
@@ -33,6 +34,7 @@
       "Low iron",
       "Do not dry clean"
     ],
+    "type": "jeans",
     "variants": {
       "indigo-01": {
         "name": "Straight Jean in Selvedge Denim",

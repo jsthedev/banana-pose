@@ -34,6 +34,7 @@
 
     .product-name {
       margin-top: 7px;
+      margin-right: 20%;
       margin-bottom: 7px;
       font-size: 13px;
     }
@@ -64,6 +65,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      .product-name {
+        margin-right: 0;
+        text-align: center;
+      }
 
       .product-price {
         margin-top: 0px;

@@ -111,13 +111,17 @@ function ProductSelect() {
         )}
         <div className="size-select-button-wrapper">
           <SizeSelector
-            sizes={Object.keys(variant.sizes)}
+            variantSizes={variant.sizes}
             selectedSize={selectedSize}
             onSizeSelect={handleSizeSelect}
           />
         </div>
       </div>
-      {addedToBag ? (
+      {variant?.sizes[selectedSize] === 'sold_out' ? (
+        <div className="sold-out-button-wrapper">
+          <button className="sold-out-button">Sold Out</button>
+        </div>
+      ) : addedToBag ? (
         <div className="checkout-link-wrapper">
           <Link to={'/shopping-bag'} className="checkout-link">
             <button className="checkout-button">Proceed to Checkout</button>

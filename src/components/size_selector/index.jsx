@@ -1,6 +1,7 @@
 import '@/components/size_selector/index.scss';
 
-function SizeSelector({ sizes, selectedSize, onSizeSelect }) {
+function SizeSelector({ variantSizes, selectedSize, onSizeSelect }) {
+  const sizes = Object.keys(variantSizes);
   // Define size order for letter sizes
   const sizeOrder = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
@@ -32,7 +33,7 @@ function SizeSelector({ sizes, selectedSize, onSizeSelect }) {
         {sortedSizes.map((size) => (
           <button
             key={size}
-            className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+            className={`size-option ${selectedSize === size ? 'selected' : ''} ${variantSizes[size] === 'sold_out' ? 'sold-out' : ''}`}
             onClick={() => handledSizeClick(size)}
           >
             {size}

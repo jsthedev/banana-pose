@@ -42,6 +42,12 @@ export function validateShoppingBagItems(items, products) {
     if (!(item.size in products[productId].variants[variantId].sizes)) {
       return;
     }
+    // If the item is sold out, skip it
+    if (
+      products[productId].variants[variantId].sizes[item.size] === 'sold_out'
+    ) {
+      return;
+    }
     // Update validItems to include the passed item
     validItems.push(item);
   });

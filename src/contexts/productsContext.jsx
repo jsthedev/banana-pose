@@ -84,18 +84,19 @@ export const ProductsProvider = ({ children }) => {
           if (!productSize) {
             return;
           }
+          const soldOut = product?.metadata.sold_out;
           // Add the size of the product to the final collection
           if (
             'sizes' in
             productsCollection[productBpId].variants[productVariantId]
           ) {
-            // Should not happen
             productsCollection[productBpId].variants[productVariantId].sizes[
               productSize
-            ] = productStripePriceId;
+            ] = soldOut === 'true' ? 'sold_out' : productStripePriceId;
           } else {
             productsCollection[productBpId].variants[productVariantId].sizes = {
-              [productSize]: productStripePriceId,
+              [productSize]:
+                soldOut === 'true' ? 'sold_out' : productStripePriceId,
             };
           }
         });
@@ -115,6 +116,8 @@ export const ProductsProvider = ({ children }) => {
             }
           }
         });
+
+        console.log(productsCollection);
 
         setProducts(productsCollection);
       } catch (error) {

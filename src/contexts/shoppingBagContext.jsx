@@ -71,6 +71,13 @@ const shoppingBagReducer = (state, action) => {
         shoppingBagItems: [],
       };
     }
+    /* TODO: one potential issue:
+    if the user add the item to the bag
+    and the product turns to sold out from stripe,
+    the user can still purchase the item.
+    The only way to prevent is if the user
+    refreshes the page or change currency.
+    Otherwise, manually handle the situation. */
     case 'VALIDATE': {
       const { products } = action.payload;
       const validItems = validateShoppingBagItems(

@@ -8,7 +8,7 @@
       font-size: 12px;
       height: 40px;
       width: 40px;
-      border: 1px solid rgb(120, 120, 120, 0.3);
+      border: 1px solid #7878784d;
       background-color: white;
       margin-right: 12px;
 
@@ -17,7 +17,11 @@
       }
 
       &.selected {
-        border: 1px solid rgb(120, 120, 120, 1);
+        border: 1px solid #787878;
+      }
+
+      &.sold-out {
+        color: #a4a4a4;
       }
     }
   }

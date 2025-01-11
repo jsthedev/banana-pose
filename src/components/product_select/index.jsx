@@ -15,19 +15,19 @@ import { formatPrice } from '@/utils/utilities';
 import '@/components/product_select/index.scss';
 
 function ProductSelect() {
+  // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
+  const { currency } = useContext(CurrencyContext);
 
+  // Variables
   const product = products[productId];
   const price = product.price;
+  const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   const variant = product.variants[variantId];
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
-
-  const { currency } = useContext(CurrencyContext);
-
-  const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   // Size Chart
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -63,10 +63,7 @@ function ProductSelect() {
       dispatch({
         type: 'ADD',
         payload: {
-          thumbnail: variant.thumbnail,
-          color: color,
           size: selectedSize,
-          name: variant.name,
           productId: productId,
           variantId: variantId,
         },

@@ -2,7 +2,7 @@ import { createContext, useReducer, useEffect, useContext } from 'react';
 
 import { ProductsContext } from '@/contexts/productsContext';
 
-import { validateShoppingBagItems } from '@/utils/utilities';
+import { validateShoppingBagItems } from '@/utils/shopping_bag_context.js';
 
 const initialState = {
   shoppingBagItems: [],
@@ -11,15 +11,20 @@ const initialState = {
 const shoppingBagReducer = (state, action) => {
   switch (action.type) {
     case 'ADD': {
-      const { id, size } = action.payload;
+      const { productId, variantId, size } = action.payload;
       const existItem = state.shoppingBagItems.find(
-        (item) => item.id === id && item.size === size
+        (item) =>
+          item.productId === productId &&
+          item.variantId === variantId &&
+          item.size === size
       );
       if (existItem) {
         return {
           ...state,
           shoppingBagItems: state.shoppingBagItems.map((item) =>
-            item.id === id && item.size === size
+            item.productId === productId &&
+            item.variantId === variantId &&
+            item.size === size
               ? { ...item, quantity: item.quantity + 1 }
               : item
           ),
@@ -35,33 +40,42 @@ const shoppingBagReducer = (state, action) => {
       }
     }
     case 'INCREMENT': {
-      const { id, size } = action.payload;
+      const { productId, variantId, size } = action.payload;
       return {
         ...state,
         shoppingBagItems: state.shoppingBagItems.map((item) =>
-          item.id === id && item.size === size
+          item.productId === productId &&
+          item.variantId === variantId &&
+          item.size === size
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
       };
     }
     case 'DECREMENT': {
-      const { id, size } = action.payload;
+      const { productId, variantId, size } = action.payload;
       return {
         ...state,
         shoppingBagItems: state.shoppingBagItems.map((item) =>
-          item.id === id && item.size === size
+          item.productId === productId &&
+          item.variantId === variantId &&
+          item.size === size
             ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
             : item
         ),
       };
     }
     case 'REMOVE': {
-      const { id, size } = action.payload;
+      const { productId, variantId, size } = action.payload;
       return {
         ...state,
         shoppingBagItems: state.shoppingBagItems.filter(
-          (item) => !(item.id === id && item.size === size)
+          (item) =>
+            !(
+              item.productId === productId &&
+              item.variantId === variantId &&
+              item.size === size
+            )
         ),
       };
     }
@@ -71,13 +85,15 @@ const shoppingBagReducer = (state, action) => {
         shoppingBagItems: [],
       };
     }
-    /* TODO: one potential issue:
-    if the user add the item to the bag
-    and the product turns to sold out from stripe,
-    the user can still purchase the item.
-    The only way to prevent is if the user
-    refreshes the page or change currency.
-    Otherwise, manually handle the situation. */
+    /*
+      TODO: one potential issue:
+      if the user add the item to the bag
+      and the product turns to sold out from stripe,
+      the user can still purchase the item.
+      The only way to prevent is if the user
+      refreshes the page or change currency.
+      Otherwise, manually handle the situation. 
+    */
     case 'VALIDATE': {
       const { products } = action.payload;
       const validItems = validateShoppingBagItems(

@@ -5,6 +5,7 @@ function SizeSelector({ variantSizes, selectedSize, onSizeSelect }) {
   // Define size order for letter sizes
   const sizeOrder = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
+  // Sorting
   const sortedSizes = [...sizes].sort((a, b) => {
     const isANumeric = !isNaN(a);
     const isBNumeric = !isNaN(b);
@@ -17,10 +18,11 @@ function SizeSelector({ variantSizes, selectedSize, onSizeSelect }) {
       return parseInt(a) - parseInt(b);
     }
 
-    // Mixed types: Letters come before numbers
+    // If mixed types: letters come before numbers
     return isANumeric ? 1 : -1;
   });
 
+  // Functions
   const handledSizeClick = (size) => {
     if (onSizeSelect) {
       onSizeSelect(size);

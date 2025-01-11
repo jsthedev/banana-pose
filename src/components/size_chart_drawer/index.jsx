@@ -11,8 +11,6 @@ import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
 import '@/components/size_chart_drawer/index.scss';
 
-// TODO: add size chart table for bottom
-
 function SizeChartDrawer({ isDrawerOpen, setIsDrawerOpen }) {
   // Contexts
   const { products } = useContext(ProductsContext);

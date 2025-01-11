@@ -7,8 +7,10 @@ import { ProductsContext } from '@/contexts/productsContext';
 import '@/pages/products/index.scss';
 
 function Products() {
+  // Contexts
   const { products, loading: productsLoading } = useContext(ProductsContext);
 
+  // Loading
   if (productsLoading) {
     return null;
   }

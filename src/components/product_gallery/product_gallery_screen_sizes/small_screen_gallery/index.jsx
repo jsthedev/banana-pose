@@ -13,20 +13,20 @@ import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 import '@/components/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
 
 function SmallScreenGallery() {
+  // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
 
+  // Variables
   const variant = products[productId].variants[variantId];
   const images = variant.images;
-
-  const pagination = {
-    clickable: true,
-  };
 
   return (
     <div className="small-screen-gallery">
       <Swiper
-        pagination={pagination}
+        pagination={{
+          clickable: true,
+        }}
         modules={[Pagination]}
         className="carousel-main"
         height={0}

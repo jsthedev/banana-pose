@@ -8,9 +8,11 @@ import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
 // at 1139px, carousel-nav should disappear
 function MidScreenGallery() {
+  // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
 
+  // Variables
   const variant = products[productId].variants[variantId];
   const images = variant.images;
 

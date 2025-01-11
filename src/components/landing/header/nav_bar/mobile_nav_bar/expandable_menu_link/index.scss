@@ -1,0 +1,24 @@
+.expandable-menu-link-wrapper {
+  .expandable-menu-link {
+    padding: 10px 0;
+
+    text-decoration: none;
+    font-family: 'HK Grotesk', sans-serif;
+    font-size: 14px;
+    color: black;
+
+    &:hover {
+      color: #71797f;
+    }
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .chevron-right {
+      font-size: 12px;
+      padding-right: 3px;
+    }
+  }
+}

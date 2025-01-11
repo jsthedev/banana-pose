@@ -8,8 +8,10 @@ import ShoppingBagContents from '@/components/shopping_bag/shopping_bag_contents
 import '@/pages/shopping_bag/index.scss';
 
 function ShoppingBag() {
+  // Contexts
   const { state } = useContext(ShoppingBagContext);
 
+  // Variables
   const isBagEmpty = state.shoppingBagItems.length === 0;
 
   return (

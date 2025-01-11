@@ -14,12 +14,12 @@ const stripePromise = loadStripe(
 );
 
 function CheckoutForm() {
-  const { currency } = useContext(CurrencyContext);
-  const { products } = useContext(ProductsContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
   const { state } = useContext(ShoppingBagContext);
 
-  // Handle currency or products rendering issues
-  if (!currency || !products) {
+  // Loading
+  if (currencyLoading || productsLoading) {
     return null;
   }
 
@@ -35,13 +35,14 @@ function CheckoutForm() {
     );
   }
 
+  // Format items for Stripe API
   const lineItems = state.shoppingBagItems
     .map((item) => {
       const productId = item.productId;
       const variantId = item.variantId;
       const size = item.size;
 
-      if (products[productId]?.variants?.[variantId]?.sizes?.[size]) {
+      if (products[productId]?.variants[variantId]?.sizes?.[size]) {
         return {
           price: products[productId].variants[variantId].sizes[size],
           quantity: item.quantity,
@@ -55,8 +56,8 @@ function CheckoutForm() {
     })
     .filter(Boolean);
 
+  // Create a Checkout Session
   const fetchClientSecret = useCallback(() => {
-    // Create a Checkout Session
     return fetch(
       `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/create-checkout-session`,
       {

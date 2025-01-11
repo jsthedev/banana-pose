@@ -10,6 +10,7 @@ import {
 
 import ShoppingBagIcon from '@/components/landing/header/nav_bar/icons/shopping_bag/index.jsx';
 import MobileCurrencySelector from '@/components/currency_selector/mobile_currency_selector/index.jsx';
+import ExpandableMenuLink from '@/components/landing/header/nav_bar/mobile_nav_bar/expandable_menu_link/index.jsx';
 
 import '@/components/landing/header/nav_bar/mobile_nav_bar/index.scss';
 
@@ -56,42 +57,21 @@ function MobileNavBar() {
         <div className="expandable-menu">
           <div className="expandable-menu-contents">
             <div className="expandable-menu-links">
-              <div className="nav-link-wrapper">
-                <Link
-                  to={'/products'}
-                  className="nav-link"
-                  onClick={closeMobileMenu}
-                >
-                  <div className="nav-link-text">READY TO WEAR</div>
-                  <div className="chevron-right">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </div>
-                </Link>
-              </div>
-              <div className="nav-link-wrapper">
-                <Link
-                  to={'/our-mission'}
-                  className="nav-link"
-                  onClick={closeMobileMenu}
-                >
-                  <div className="nav-link-text">OUR MISSION</div>
-                  <div className="chevron-right">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </div>
-                </Link>
-              </div>
-              <div className="nav-link-wrapper">
-                <Link
-                  to={'/contact-us'}
-                  className="nav-link"
-                  onClick={closeMobileMenu}
-                >
-                  <div className="nav-link-text">CONTACT US</div>
-                  <div className="chevron-right">
-                    <FontAwesomeIcon icon={faChevronRight} />
-                  </div>
-                </Link>
-              </div>
+              <ExpandableMenuLink
+                link="/products"
+                closeMobileMenu={closeMobileMenu}
+                text="READY TO WEAR"
+              />
+              <ExpandableMenuLink
+                link="/our-mission"
+                closeMobileMenu={closeMobileMenu}
+                text="OUR MISSION"
+              />
+              <ExpandableMenuLink
+                link="/contact-us"
+                closeMobileMenu={closeMobileMenu}
+                text="CONTACT US"
+              />
             </div>
             <div className="currency-selector-wrapper">
               <MobileCurrencySelector />

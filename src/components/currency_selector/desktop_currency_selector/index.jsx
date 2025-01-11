@@ -4,6 +4,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { CurrencyContext } from '@/contexts/CurrencyContext';
 
+import { blankImage } from '@/assets/images/common/blank_image';
 import { CURRENCY_FLAGS, CURRENCY_SYMBOLS } from '@/constants/currencies';
 
 import '@/components/currency_selector/desktop_currency_selector/index.scss';
@@ -15,9 +16,7 @@ function DesktopCurrencySelector() {
     loading: currencyLoading,
   } = useContext(CurrencyContext);
 
-  const currentFlag = currencyLoading
-    ? 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='
-    : CURRENCY_FLAGS[currency];
+  const currentFlag = currencyLoading ? blankImage : CURRENCY_FLAGS[currency];
 
   const [isSelectorOpen, setIsSelectorOpen] = useState(false);
   const selectorRef = useRef(null);

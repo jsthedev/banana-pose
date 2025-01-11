@@ -5,11 +5,14 @@ import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
 import '@/pages/checkout/return/index.scss';
 
 function Return() {
+  // Contexts
+  const { dispatch } = useContext(ShoppingBagContext);
+
+  // States
   const [status, setStatus] = useState(null);
   const [customerEmail, setCustomerEmail] = useState('');
 
-  const { dispatch } = useContext(ShoppingBagContext);
-
+  // Confirm the checkout status
   useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -25,16 +28,19 @@ function Return() {
       });
   }, []);
 
+  // Clear shopping bag after checkout
   useEffect(() => {
     if (status === 'complete') {
       dispatch({ type: 'CLEAR' });
     }
   }, [status, dispatch]);
 
+  // If checkout not compledted, go back to checkout session
   if (status === 'open') {
     return <Navigate to="/checkout" />;
   }
 
+  // If checkout completed, prompt message
   if (status === 'complete') {
     return (
       <section id="success" className="return-complete">

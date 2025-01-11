@@ -1,8 +1,10 @@
+require('dotenv').config();
 const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')(functions.config().stripe.secret);
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const axios = require('axios');
+const { SUPPORTED_CURRENCIES } = require('./utils/supportedCurrencies');
 const { mapCountryToCurrency } = require('./utils/currencyMapper');
 const { mapCurrencyToCountries } = require('./utils/addressMapper');
 const {
@@ -20,29 +22,17 @@ app.use(express.json());
 
 const YOUR_DOMAIN = 'http://localhost:5173'; // Adjust as needed
 
-const SUPPORTED_CURRENCIES = [
-  'CAD',
-  'USD',
-  'CNY',
-  'JPY',
-  'EUR',
-  'GBP',
-  'KRW',
-  'AUD',
-  'NZD',
-];
-
 app.get('/get-currency', async (req, res) => {
   // log('Received request for /get-currency');
   try {
     const xForwardedFor = req.headers['x-forwarded-for'];
     const ip = xForwardedFor
       ? xForwardedFor.split(',')[0].trim()
-      : req.connection.remoteAddress;
+      : req.message.socket.remoteAddress;
 
     // log(`Extracted ip is ${ip}`);
 
-    const ipinfoToken = functions.config().ipinfo.token;
+    const ipinfoToken = process.env.IPINFO_TOKEN;
 
     if (!ipinfoToken) {
       error('ipinfoToken is not defined');

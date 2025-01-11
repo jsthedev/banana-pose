@@ -73,30 +73,6 @@
       padding: 25px 20px 0 20px;
       .expandable-menu-links {
         padding-bottom: 10px;
-        .nav-link-wrapper {
-          .nav-link {
-            padding: 10px 0;
-
-            text-decoration: none;
-            font-family: 'HK Grotesk', sans-serif;
-            font-size: 14px;
-            color: black;
-
-            &:hover {
-              color: #71797f;
-            }
-
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-
-            .chevron-right {
-              font-size: 12px;
-              padding-right: 3px;
-            }
-          }
-        }
       }
 
       .currency-selector-wrapper {

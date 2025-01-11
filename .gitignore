@@ -27,3 +27,4 @@ dist-ssr
 .env
 functions/.runtimeconfig.json
 functions/priceMapping.js
+functions/.env

@@ -12,35 +12,17 @@ import { formatPrice } from '@/utils/utilities';
 import '@/components/shopping_bag/shopping_bag_contents/index.scss';
 
 function ShoppingBagContents() {
-  const { state, dispatch } = useContext(ShoppingBagContext);
+  // Contexts
+  const { state } = useContext(ShoppingBagContext);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
   const { products, loading: productsLoading } = useContext(ProductsContext);
 
+  // Loading
   if (currencyLoading || productsLoading) {
     return null;
   }
 
-  const incrementItem = (id, size) => {
-    dispatch({
-      type: 'INCREMENT',
-      payload: { id, size },
-    });
-  };
-
-  const decrementItem = (id, size) => {
-    dispatch({
-      type: 'DECREMENT',
-      payload: { id, size },
-    });
-  };
-
-  const removeItem = (id, size) => {
-    dispatch({
-      type: 'REMOVE',
-      payload: { id, size },
-    });
-  };
-
+  // Variables
   const total = state.shoppingBagItems.reduce((acc, item) => {
     const productId = item.productId;
     const itemPrice = products[productId].price || 0;
@@ -54,17 +36,10 @@ function ShoppingBagContents() {
         <div className="shopping-bag-page-name">Shopping bag</div>
         <div className="shopping-bag-item-list">
           {state.shoppingBagItems.map((item) => {
-            const productId = item.productId;
-            const price = products[productId].price || 'N/A';
-
             return (
               <ShoppingBagItemCard
-                key={`${item.id}-${item.size}`}
+                key={`${item.productId}-${item.variantId}-${item.size}`}
                 item={item}
-                price={price}
-                onDecrement={decrementItem}
-                onIncrement={incrementItem}
-                onRemove={removeItem}
               />
             );
           })}

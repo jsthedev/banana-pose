@@ -8,9 +8,11 @@ import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 import '@/components/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
 
 function WideScreenGallery() {
+  // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
 
+  // Variables
   const variant = products[productId].variants[variantId];
   const images = variant.images;
 

@@ -9,20 +9,21 @@ import { ProductsContext } from '@/contexts/productsContext';
 import '@/pages/product_details/index.scss';
 
 function ProductDetails() {
+  // Contexts
+  const { products, loading: productsLoading } = useContext(ProductsContext);
+
+  // Loading
+  if (productsLoading) {
+    return null;
+  }
+
   // Navigation
   const { productVariant } = useParams();
   const lastUnderscoreIndex = productVariant.lastIndexOf('_');
   const productId = productVariant.substring(0, lastUnderscoreIndex);
   const variantId = productVariant.substring(lastUnderscoreIndex + 1);
 
-  // Find product
-
-  const { products, loading: productsLoading } = useContext(ProductsContext);
-
-  if (productsLoading) {
-    return null;
-  }
-
+  // Handle productId
   const product = products[productId];
 
   if (!product) {
@@ -33,6 +34,7 @@ function ProductDetails() {
     );
   }
 
+  // Handle variantId
   const variant = product.variants[variantId];
 
   if (!variant) {

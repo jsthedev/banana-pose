@@ -12,15 +12,18 @@ export const ProductsContext = createContext();
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState(undefined); // Default to USD
   const [loading, setLoading] = useState(true);
-  const { currency } = useContext(CurrencyContext);
+  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 
   useEffect(() => {
     const fetchProducts = async () => {
-      if (!currency) {
+      // If currency is not available, skip
+      if (!currency || currencyLoading) {
         return;
       }
 
+      // Start products loading
       setLoading(true);
+
       try {
         // Fetch products
         const productsResponse = await axios.get(
@@ -85,7 +88,10 @@ export const ProductsProvider = ({ children }) => {
             return;
           }
           const soldOut = product?.metadata.sold_out;
-          // Add the size of the product to the final collection
+          /* 
+            Add the size of the product to the final collection
+            and check for its sold out status
+          */
           if (
             'sizes' in
             productsCollection[productBpId].variants[productVariantId]
@@ -101,6 +107,7 @@ export const ProductsProvider = ({ children }) => {
           }
         });
 
+        // Filter productsCollection
         Object.keys(productsCollection).forEach((productId) => {
           const product = productsCollection[productId];
           if (product.variants) {
@@ -123,6 +130,7 @@ export const ProductsProvider = ({ children }) => {
       } catch (error) {
         console.error('Error fetching products:', error);
       } finally {
+        // Finish products loading
         setLoading(false);
       }
     };

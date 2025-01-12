@@ -1,11 +1,11 @@
-import { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect, useContext } from "react";
+import axios from "axios";
 
-import productsMapping from '@/data/productsV2.json';
+import productsMapping from "@/data/productsV2.json";
 
-import { IS_DEV } from '@/constants/platform';
+import { IS_DEV } from "@/constants/platform";
 
-import { CurrencyContext } from '@/contexts/currencyContext';
+import { CurrencyContext } from "@/contexts/currencyContext";
 
 export const ProductsContext = createContext();
 
@@ -93,16 +93,16 @@ export const ProductsProvider = ({ children }) => {
             and check for its sold out status
           */
           if (
-            'sizes' in
+            "sizes" in
             productsCollection[productBpId].variants[productVariantId]
           ) {
             productsCollection[productBpId].variants[productVariantId].sizes[
               productSize
-            ] = soldOut === 'true' ? 'sold_out' : productStripePriceId;
+            ] = soldOut === "true" ? "sold_out" : productStripePriceId;
           } else {
             productsCollection[productBpId].variants[productVariantId].sizes = {
               [productSize]:
-                soldOut === 'true' ? 'sold_out' : productStripePriceId,
+                soldOut === "true" ? "sold_out" : productStripePriceId,
             };
           }
         });
@@ -113,7 +113,7 @@ export const ProductsProvider = ({ children }) => {
           if (product.variants) {
             // Filter variants without sizes
             Object.keys(product.variants).forEach((variantId) => {
-              if (!('sizes' in product.variants[variantId])) {
+              if (!("sizes" in product.variants[variantId])) {
                 delete product.variants[variantId];
               }
             });
@@ -124,11 +124,12 @@ export const ProductsProvider = ({ children }) => {
           }
         });
 
+        // TODO: Remove
         console.log(productsCollection);
 
         setProducts(productsCollection);
       } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error fetching products:", error);
       } finally {
         // Finish products loading
         setLoading(false);

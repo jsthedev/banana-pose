@@ -36,7 +36,7 @@ function SizeChartDrawer({ isDrawerOpen, setIsDrawerOpen }) {
       <div className={`size-chart-drawer ${isDrawerOpen ? 'open' : ''}`}>
         {/* Position fixed in case of adding contents to be scrolled later on */}
         <div className={`close-button-wrapper ${isDrawerOpen ? 'open' : ''}`}>
-          <button className="close-button" onClick={() => closeDrawer}>
+          <button className="close-button" onClick={() => closeDrawer()}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>

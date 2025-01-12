@@ -12,19 +12,21 @@ function Footer() {
       <div className="footer-contents-wrapper">
         <div className="footer-contents">
           <div className="footer-text-left">© Banana Pose 2024</div>
-          <div className="footer-icons-right">
-            <SNSIcon
-              link={'https://www.instagram.com/banana.pose'}
-              icon={InstagramIcon}
-            />
-            <SNSIcon
-              link={'https://www.tiktok.com/@bananapose'}
-              icon={TiktokIcon}
-            />{' '}
-            <SNSIcon
-              link={'https://www.youtube.com/@bananapose'}
-              icon={YoutubeIcon}
-            />
+          <div className="footer-contents-right">
+            <div className="footer-icons">
+              <SNSIcon
+                link={'https://www.instagram.com/banana.pose'}
+                icon={InstagramIcon}
+              />
+              <SNSIcon
+                link={'https://www.tiktok.com/@bananapose'}
+                icon={TiktokIcon}
+              />{' '}
+              <SNSIcon
+                link={'https://www.youtube.com/@bananapose'}
+                icon={YoutubeIcon}
+              />
+            </div>
           </div>
         </div>
       </div>

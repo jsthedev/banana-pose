@@ -1,5 +1,5 @@
 .SNS-icon {
-  margin-right: 14px;
+  padding-left: 15px;
   line-height: 0;
   font-size: 0;
 
@@ -13,5 +13,12 @@
       height: 22px;
       display: block;
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .SNS-icon {
+    padding-left: 0;
+    padding-right: 15px;
   }
 }

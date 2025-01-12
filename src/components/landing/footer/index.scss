@@ -18,10 +18,29 @@
         align-items: center;
       }
 
-      .footer-icons-right {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
+      .footer-contents-right {
+        .footer-icons {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    .footer-contents-wrapper {
+      .footer-contents {
+        flex-direction: column-reverse;
+
+        .footer-contents-right {
+          .footer-icons {
+            width: 100%;
+            margin-bottom: 24px;
+          }
+        }
       }
     }
   }

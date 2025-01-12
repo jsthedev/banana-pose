@@ -19,6 +19,28 @@
       }
 
       .footer-contents-right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .footer-links {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-end;
+
+          .footer-link-wrapper {
+            padding-left: 15px;
+
+            .footer-link {
+              text-decoration: none;
+              font-family: 'HK Grotesk', sans-serif;
+              font-size: 14px;
+              color: black;
+            }
+          }
+        }
+
         .footer-icons {
           display: flex;
           flex-direction: row;
@@ -36,6 +58,22 @@
         flex-direction: column-reverse;
 
         .footer-contents-right {
+          flex-direction: column;
+
+          .footer-links {
+            width: 100%;
+            margin-bottom: 20px;
+            justify-content: flex-start;
+
+            .footer-link-wrapper {
+              padding-left: 0;
+              padding-right: 15px;
+              .footer-link {
+                font-size: 12px;
+              }
+            }
+          }
+
           .footer-icons {
             width: 100%;
             margin-bottom: 24px;

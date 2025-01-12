@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import SNSIcon from '@/components/landing/footer/SNS_icon/index.jsx';
 
 import InstagramIcon from '@/assets/images/icons/icons8-instagram-120.png';
@@ -13,6 +15,28 @@ function Footer() {
         <div className="footer-contents">
           <div className="footer-text-left">© Banana Pose 2024</div>
           <div className="footer-contents-right">
+            <div className="footer-links">
+              <div className="footer-link-wrapper">
+                <Link className="footer-link" to="/legal/privacy-policy">
+                  PRIVACY
+                </Link>
+              </div>
+              <div className="footer-link-wrapper">
+                <Link className="footer-link" to="/legal/shipping-policy">
+                  SHIPPING
+                </Link>
+              </div>
+              <div className="footer-link-wrapper">
+                <Link className="footer-link" to="/legal/return-policy">
+                  RETURN
+                </Link>
+              </div>
+              <div className="footer-link-wrapper">
+                <Link className="footer-link" to="/legal/terms-and-conditions">
+                  TERMS & CONDITIONS
+                </Link>
+              </div>
+            </div>
             <div className="footer-icons">
               <SNSIcon
                 link={'https://www.instagram.com/banana.pose'}

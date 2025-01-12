@@ -1,6 +1,4 @@
 .footer {
-  border-top: 1px solid #e9e9e9;
-
   .footer-contents-wrapper {
     margin: 0 max(20px, 2.5vw);
     padding: 20px 0;
@@ -22,6 +20,21 @@
         display: flex;
         flex-direction: row;
         align-items: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    .footer-contents-wrapper {
+      .footer-contents {
+        flex-direction: column-reverse;
+
+        .footer-icons-right {
+          width: 100%;
+          margin: 24px;
+        }
       }
     }
   }

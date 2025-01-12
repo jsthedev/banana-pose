@@ -1,0 +1,17 @@
+.SNS-icon {
+  margin-right: 14px;
+  line-height: 0;
+  font-size: 0;
+
+  .icon-link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+    font-size: 0;
+
+    .icon-img {
+      height: 22px;
+      display: block;
+    }
+  }
+}

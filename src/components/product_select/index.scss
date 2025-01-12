@@ -41,6 +41,8 @@
       background-color: #a4a4a4;
       color: white;
       border: none;
+
+      cursor: not-allowed;
     }
 
     margin-bottom: 25px;
@@ -65,7 +67,7 @@
     }
 
     .checkout-notice {
-      text-decoration: underline;
+      font-family: 'HK Grotesk Italic';
     }
   }
 

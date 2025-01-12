@@ -1,10 +1,10 @@
 .page {
   padding-top: 56px; // space for nav bar
-  min-height: calc(100vh - 63px);
+  min-height: calc(100vh - 122.5px);
 }
 
 @media (max-width: 767px) {
   .page {
-    min-height: calc(100vh - 102.5px);
+    min-height: 100vh;
   }
 }

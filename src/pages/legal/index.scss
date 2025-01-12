@@ -1,0 +1,42 @@
+.legal {
+  padding: 32px;
+
+  .title {
+    font-family: 'HK Grotesk Bold';
+    margin-bottom: 15px;
+  }
+
+  .text {
+    font-family: 'HK Grotesk Light';
+
+    h5 {
+      margin-bottom: 40px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    h4 {
+      font-family: 'HK Grotesk';
+      margin-bottom: 20px;
+    }
+
+    ul {
+      list-style: none;
+      margin-bottom: 40px;
+
+      li {
+        padding-left: 8px;
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      li:before {
+        content: '\b7';
+        margin-right: 8px;
+      }
+    }
+  }
+}

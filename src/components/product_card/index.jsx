@@ -46,10 +46,12 @@ function ProductCard({ productId }) {
   return (
     <div className="card">
       <div className="product">
-        <div className="product-img-wrapper normal-link">
-          <Link to={`/products/${productId}_${variantId}`}>
-            <img src={variant.thumbnail} alt={name} className="product-img" />
-          </Link>
+        <div className="product-image-content">
+          <div className="product-img-wrapper normal-link">
+            <Link to={`/products/${productId}_${variantId}`}>
+              <img src={variant.thumbnail} alt={name} className="product-img" />
+            </Link>
+          </div>
         </div>
         <div className="product-info">
           <div className="product-name">

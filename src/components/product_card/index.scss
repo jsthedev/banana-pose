@@ -8,18 +8,22 @@
   padding-right: 30px;
   margin-bottom: 60px;
 
-  .product-img-wrapper {
-    width: 100%;
-    aspect-ratio: 2 / 3;
-    overflow: hidden;
-
+  .product-image-content {
     padding-bottom: 2px;
     border-bottom: 1px solid transparent;
 
-    .product-img {
+    .product-img-wrapper {
       width: 100%;
-      object-fit: cover;
-      display: block;
+      aspect-ratio: 2 / 3;
+      overflow: hidden;
+
+      background-color: #eeeeee;
+
+      .product-img {
+        width: 100%;
+        object-fit: cover;
+        display: block;
+      }
     }
   }
 

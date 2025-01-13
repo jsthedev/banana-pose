@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 
+import FooterLink from '@/components/landing/footer/footer_link/index.jsx';
 import SNSIcon from '@/components/landing/footer/SNS_icon/index.jsx';
 
 import InstagramIcon from '@/assets/images/icons/icons8-instagram-120.png';
@@ -16,26 +17,13 @@ function Footer() {
           <div className="footer-text-left">© Banana Pose 2024</div>
           <div className="footer-contents-right">
             <div className="footer-links">
-              <div className="footer-link-wrapper">
-                <Link className="footer-link" to="/legal/privacy-policy">
-                  PRIVACY
-                </Link>
-              </div>
-              <div className="footer-link-wrapper">
-                <Link className="footer-link" to="/legal/shipping-policy">
-                  SHIPPING
-                </Link>
-              </div>
-              <div className="footer-link-wrapper">
-                <Link className="footer-link" to="/legal/return-policy">
-                  RETURN
-                </Link>
-              </div>
-              <div className="footer-link-wrapper">
-                <Link className="footer-link" to="/legal/terms-and-conditions">
-                  TERMS & CONDITIONS
-                </Link>
-              </div>
+              <FooterLink link="/legal/privacy-policy" text="PRIVACY" />
+              <FooterLink link="/legal/shipping-policy" text="SHIPPING" />
+              <FooterLink link="/legal/return-policy" text="RETURN" />
+              <FooterLink
+                link="/legal/terms-and-conditions"
+                text="TERMS & CONDITIONS"
+              />
             </div>
             <div className="footer-icons">
               <SNSIcon

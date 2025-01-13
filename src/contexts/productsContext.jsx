@@ -1,11 +1,11 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import axios from "axios";
+import { createContext, useState, useEffect, useContext } from 'react';
+import axios from 'axios';
 
-import productsMapping from "@/data/productsV2.json";
+import productsMapping from '@/data/products.json';
 
-import { IS_DEV } from "@/constants/platform";
+import { IS_DEV } from '@/constants/platform';
 
-import { CurrencyContext } from "@/contexts/currencyContext";
+import { CurrencyContext } from '@/contexts/currencyContext';
 
 export const ProductsContext = createContext();
 
@@ -43,7 +43,7 @@ export const ProductsProvider = ({ children }) => {
         const fetchedPrices = pricesResponse.data.prices.data;
 
         // Create a collection of products
-        const productsCollection = { ...productsMapping };
+        const productsCollection = {};
 
         // Iterate over the fetched products and fill in missing information
         fetchedProducts.forEach((product) => {
@@ -74,8 +74,6 @@ export const ProductsProvider = ({ children }) => {
           if (!productPrice) {
             return;
           }
-          // Add the price of the product to the final collection
-          productsCollection[productBpId].price = productPrice.unit_amount;
 
           // If the stripe price ID does not exist, something is wrong, skip it
           const productStripePriceId = productPrice.id;
@@ -87,49 +85,59 @@ export const ProductsProvider = ({ children }) => {
           if (!productSize) {
             return;
           }
+
+          /* 
+            After confirming the productId, variantId, and size are available,
+            add the entry to the productsCollection
+          */
+          if (!(productBpId in productsCollection)) {
+            productsCollection[productBpId] = {
+              price: productPrice.unit_amount,
+              description: productsMapping[productBpId].description,
+              details: productsMapping[productBpId].details,
+              care: productsMapping[productBpId].care,
+              type: productsMapping[productBpId].type,
+              variants: {},
+            };
+          }
+
+          if (!(productVariantId in productsCollection[productBpId].variants)) {
+            productsCollection[productBpId].variants[productVariantId] = {
+              name: productsMapping[productBpId].variants[productVariantId]
+                .name,
+              color:
+                productsMapping[productBpId].variants[productVariantId].color,
+              thumbnail:
+                productsMapping[productBpId].variants[productVariantId]
+                  .thumbnail,
+              images:
+                productsMapping[productBpId].variants[productVariantId].images,
+            };
+          }
+
           const soldOut = product?.metadata.sold_out;
           /* 
             Add the size of the product to the final collection
             and check for its sold out status
           */
           if (
-            "sizes" in
+            'sizes' in
             productsCollection[productBpId].variants[productVariantId]
           ) {
             productsCollection[productBpId].variants[productVariantId].sizes[
               productSize
-            ] = soldOut === "true" ? "sold_out" : productStripePriceId;
+            ] = soldOut === 'true' ? 'sold_out' : productStripePriceId;
           } else {
             productsCollection[productBpId].variants[productVariantId].sizes = {
               [productSize]:
-                soldOut === "true" ? "sold_out" : productStripePriceId,
+                soldOut === 'true' ? 'sold_out' : productStripePriceId,
             };
           }
         });
 
-        // Filter productsCollection
-        Object.keys(productsCollection).forEach((productId) => {
-          const product = productsCollection[productId];
-          if (product.variants) {
-            // Filter variants without sizes
-            Object.keys(product.variants).forEach((variantId) => {
-              if (!("sizes" in product.variants[variantId])) {
-                delete product.variants[variantId];
-              }
-            });
-            // Filter products without variants
-            if (Object.keys(product.variants).length === 0) {
-              delete productsCollection[productId];
-            }
-          }
-        });
-
-        // TODO: Remove
-        console.log(productsCollection);
-
         setProducts(productsCollection);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       } finally {
         // Finish products loading
         setLoading(false);

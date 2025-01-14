@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
-import ProductGallery from '@/components/product_gallery/index.jsx';
+import ProductGallery from '@/components/product_details/product_gallery/index.jsx';
 
 import { ProductVariantIdsProvider } from '@/contexts/productVariantIdsContext.jsx';
 import { ProductsContext } from '@/contexts/productsContext';

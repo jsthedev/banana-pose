@@ -10,7 +10,7 @@ import { CurrencyContext } from '@/contexts/currencyContext';
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState(undefined); // Default to USD
+  const [products, setProducts] = useState(productsMapping); // Default to USD
   const [loading, setLoading] = useState(true);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
 

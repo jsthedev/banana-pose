@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
 
-import ProductSelect from '@/components/product_select/index.jsx';
+import ProductSelect from '@/components/product_details/product_select/index.jsx';
 
 import { ProductsContext } from '@/contexts/productsContext';
 import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
-import '@/components/product_info/index.scss';
+import '@/components/product_details/product_info/index.scss';
 
 function ProductInfo() {
   // Contexts

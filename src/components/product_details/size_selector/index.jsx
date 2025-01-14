@@ -1,4 +1,4 @@
-import '@/components/size_selector/index.scss';
+import '@/components/product_details/size_selector/index.scss';
 
 function SizeSelector({ variantSizes, selectedSize, onSizeSelect }) {
   const sizes = Object.keys(variantSizes);

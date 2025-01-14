@@ -1,25 +1,25 @@
-import '@/components/size_chart_drawer/size_chart_tables/index.scss';
+import '@/components/product_details/size_chart_drawer/size_chart_tables/index.scss';
 
-function TshirtsSizeChartTable() {
+function JeansSizeChartTable() {
   return (
     <div className="size-chart-table">
       <table>
         <tbody>
           <tr>
             <th>Banana Pose</th>
-            <td>XS</td>
-            <td>S</td>
-            <td>M</td>
-            <td>L</td>
-            <td>XL</td>
+            <td>28</td>
+            <td>30</td>
+            <td>32</td>
+            <td>34</td>
+            <td>36</td>
           </tr>
           <tr>
             <th>International</th>
-            <td>XS</td>
-            <td>S</td>
-            <td>M</td>
-            <td>L</td>
-            <td>XL</td>
+            <td>28</td>
+            <td>30</td>
+            <td>32</td>
+            <td>34</td>
+            <td>36</td>
           </tr>
           <tr>
             <th>US</th>
@@ -43,4 +43,4 @@ function TshirtsSizeChartTable() {
   );
 }
 
-export default TshirtsSizeChartTable;
+export default JeansSizeChartTable;

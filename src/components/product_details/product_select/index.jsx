@@ -3,8 +3,8 @@ import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { Link } from 'react-router-dom';
 
 import ProductDetailsColorSelect from '@/components/color_select/product_details';
-import SizeChartDrawer from '@/components/size_chart_drawer/index.jsx';
-import SizeSelector from '@/components/size_selector/index.jsx';
+import SizeChartDrawer from '@/components/product_details/size_chart_drawer/index.jsx';
+import SizeSelector from '@/components/product_details/size_selector/index.jsx';
 
 import { ProductsContext } from '@/contexts/productsContext';
 import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
@@ -12,7 +12,7 @@ import { CurrencyContext } from '@/contexts/currencyContext';
 
 import { formatPrice } from '@/utils/utilities';
 
-import '@/components/product_select/index.scss';
+import '@/components/product_details/product_select/index.scss';
 
 function ProductSelect() {
   // Contexts

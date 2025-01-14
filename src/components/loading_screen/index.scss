@@ -1,0 +1,18 @@
+.loading-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: white;
+
+  .logo-image {
+    width: 107.7px;
+    height: auto;
+  }
+
+  .logo-text {
+    font-family: 'Tough Cookies';
+    font-size: 20px;
+  }
+}

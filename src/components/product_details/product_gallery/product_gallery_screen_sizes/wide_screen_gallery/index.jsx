@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 
-import ProductInfo from '@/components/product_info/index.jsx';
+import ProductInfo from '@/components/product_details/product_info/index.jsx';
 
 import { ProductsContext } from '@/contexts/productsContext';
 import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
-import '@/components/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
+import '@/components/product_details/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
 
 function WideScreenGallery() {
   // Contexts

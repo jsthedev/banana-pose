@@ -8,7 +8,7 @@ import { formatPrice } from '@/utils/utilities';
 import { ProductsContext } from '@/contexts/productsContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
 
-import '@/components/product_card/index.scss';
+import '@/components/products/product_card/index.scss';
 
 function ProductCard({ productId }) {
   // Contexts

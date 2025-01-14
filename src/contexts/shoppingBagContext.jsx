@@ -114,7 +114,7 @@ const shoppingBagReducer = (state, action) => {
 export const ShoppingBagContext = createContext();
 
 export const ShoppingBagProvider = ({ children }) => {
-  const { products } = useContext(ProductsContext);
+  const { products, loading: productsLoading } = useContext(ProductsContext);
 
   const [state, dispatch] = useReducer(shoppingBagReducer, initialState, () => {
     const localShoppingBag = localStorage.getItem('banana-pose-shopping-bag');
@@ -126,7 +126,7 @@ export const ShoppingBagProvider = ({ children }) => {
   }, [state]);
 
   useEffect(() => {
-    if (!products) {
+    if (productsLoading) {
       return;
     }
 

@@ -3,13 +3,13 @@ import { useContext, useState, useImperativeHandle, forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-import TshirtsSizeChartTable from '@/components/size_chart_drawer/size_chart_tables/t-shirts/index.jsx';
-import JeansSizeChartTable from '@/components/size_chart_drawer/size_chart_tables/jeans/index.jsx';
+import TshirtsSizeChartTable from '@/components/product_details/size_chart_drawer/size_chart_tables/t-shirts/index.jsx';
+import JeansSizeChartTable from '@/components/product_details/size_chart_drawer/size_chart_tables/jeans/index.jsx';
 
 import { ProductsContext } from '@/contexts/productsContext';
 import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
-import '@/components/size_chart_drawer/index.scss';
+import '@/components/product_details/size_chart_drawer/index.scss';
 
 function SizeChartDrawer({ isDrawerOpen, setIsDrawerOpen }) {
   // Contexts

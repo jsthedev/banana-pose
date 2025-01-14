@@ -12,13 +12,8 @@ import '@/components/products/product_card/index.scss';
 
 function ProductCard({ productId }) {
   // Contexts
-  const { products, loading: productsLoading } = useContext(ProductsContext);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
-
-  // Return null when contexts loading
-  if (productsLoading || currencyLoading) {
-    return null;
-  }
+  const { products } = useContext(ProductsContext);
+  const { currency } = useContext(CurrencyContext);
 
   // Product
   const product = products[productId];

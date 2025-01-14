@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import ProductCard from '@/components/products/product_card/index.jsx';
+import LoadingProductCard from '@/components/products/product_card/loading_product_card';
 
 import { ProductsContext } from '@/contexts/productsContext';
 
@@ -10,19 +11,18 @@ function Products() {
   // Contexts
   const { products, loading: productsLoading } = useContext(ProductsContext);
 
-  // Loading
-  if (productsLoading) {
-    return null;
-  }
-
   return (
     <div className="products">
       <div className="products-page-main">
         <div className="product-list-wrapper">
           <div className="product-list">
-            {Object.keys(products).map((productId) => (
-              <ProductCard key={`${productId}`} productId={productId} />
-            ))}
+            {Object.keys(products).map((productId) =>
+              productsLoading ? (
+                <LoadingProductCard key={`${productId}`} />
+              ) : (
+                <ProductCard key={`${productId}`} productId={productId} />
+              )
+            )}
           </div>
         </div>
       </div>

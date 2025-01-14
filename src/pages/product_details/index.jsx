@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ProductGallery from '@/components/product_details/product_gallery/index.jsx';
+import ProductGalleryLoading from '@/components/product_details/product_gallery/product_gallery_loading';
 
 import { ProductVariantIdsProvider } from '@/contexts/productVariantIdsContext.jsx';
 import { ProductsContext } from '@/contexts/productsContext';
@@ -17,11 +18,6 @@ function ProductDetails() {
 
   // Contexts
   const { products, loading: productsLoading } = useContext(ProductsContext);
-
-  // Loading
-  if (productsLoading) {
-    return null;
-  }
 
   // Handle productId
   const product = products[productId];
@@ -51,7 +47,7 @@ function ProductDetails() {
     <ProductVariantIdsProvider productId={productId} variantId={variantId}>
       <div className="product-details">
         <div className="product-gallery-wrapper">
-          <ProductGallery />
+          {productsLoading ? <ProductGalleryLoading /> : <ProductGallery />}
         </div>
       </div>
     </ProductVariantIdsProvider>

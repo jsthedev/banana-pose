@@ -1,0 +1,32 @@
+.mid-screen-gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .carousel-main {
+    width: 100%;
+
+    .carousel-cell {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+
+      margin-bottom: 15px;
+      display: block;
+
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block; // Removes extra space below images
+      }
+    }
+  }
+
+  .product-info-container {
+    position: sticky;
+    top: 56px; // same height as nav-bar
+    align-self: flex-start;
+  }
+}

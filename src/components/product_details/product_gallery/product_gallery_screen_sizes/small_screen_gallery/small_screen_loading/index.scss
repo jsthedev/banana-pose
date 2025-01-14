@@ -1,0 +1,50 @@
+.small-screen-gallery {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .carousel-main {
+    width: 100%;
+
+    .carousel-cell {
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      display: block;
+      overflow: hidden;
+      margin-bottom: 15px;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block; // Removes extra space below images
+      }
+    }
+
+    .swiper-pagination-bullets {
+      position: absolute;
+      bottom: 35px; // Adjust as needed
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .swiper-pagination-bullet {
+        width: 9px;
+        height: 9px;
+        margin: 0 9px;
+        background: transparent;
+        border: 2px solid #b0b0b0;
+      }
+
+      .swiper-pagination-bullet-active {
+        width: 9px;
+        height: 9px;
+        margin: 0 9px;
+        background: rgba(0, 0, 0);
+      }
+    }
+  }
+
+  .product-info-container {
+    width: 100%;
+  }
+}

@@ -56,7 +56,7 @@ function ShoppingBagContents() {
         <div className="shipping-cost-warning">
           Shipping cost calculated at the checkout
         </div>
-        <Link to={'/checkout'}>
+        <Link to={'/checkout'} className="checkout-button-wrapper">
           <div className="checkout-button link-button">Proceed to Checkout</div>
         </Link>
       </div>

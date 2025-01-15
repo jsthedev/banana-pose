@@ -42,10 +42,13 @@
     .shipping-cost-warning {
       padding-bottom: 16px;
     }
+    .checkout-button-wrapper {
+      text-decoration: none;
 
-    .checkout-button {
-      text-align: center;
-      width: 100%;
+      .checkout-button {
+        text-align: center;
+        width: 100%;
+      }
     }
   }
 }

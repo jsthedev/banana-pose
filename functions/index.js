@@ -87,6 +87,35 @@ app.get('/list-prices', async (req, res) => {
   }
 });
 
+async function validateShoppingBagItems(lineItems) {
+  const invalidItems = [];
+
+  for (const item of lineItems) {
+    const { price: priceId, quantity } = item;
+
+    const price = await stripe.prices.retrieve(priceId);
+    // Retrieve product from Stripe
+    const productId = price.product;
+    const product = await stripe.products.retrieve(productId);
+
+    // Check metadata for "soldout"
+    if (product.metadata.sold_out === 'true') {
+      invalidItems.push({
+        ...item,
+        reason: 'This product is marked as sold out',
+      });
+      continue;
+    }
+
+    // Check if the product is active in Stripe
+    if (!product.active) {
+      invalidItems.push({ ...item, reason: 'Product is inactive' });
+    }
+  }
+
+  return invalidItems;
+}
+
 app.post('/create-checkout-session', async (req, res) => {
   try {
     const { lineItems, currency } = req.body;
@@ -97,6 +126,15 @@ app.post('/create-checkout-session', async (req, res) => {
 
     if (!SUPPORTED_CURRENCIES.includes(currency.toUpperCase())) {
       return res.status(400).send({ error: 'Unsupported currency.' });
+    }
+
+    const invalidItems = await validateShoppingBagItems(lineItems);
+
+    if (invalidItems.length > 0) {
+      return res.status(400).send({
+        error: 'Some items are invalid or sold out.',
+        invalidItems,
+      });
     }
 
     const line_items = lineItems;

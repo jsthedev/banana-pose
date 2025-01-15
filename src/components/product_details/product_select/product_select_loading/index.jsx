@@ -14,9 +14,9 @@ function ProductSelectLoading() {
   const { productId } = useContext(ProductVariantIdsContext);
 
   // Variables
-  const product = products[productId];
+  const product = products?.[productId];
 
-  const sizes = ['', '', '', '', ''];
+  const sizes = ['1', '2', '3', '4', '5'];
 
   const handleSizeSelect = () => {
     return;

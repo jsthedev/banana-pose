@@ -12,16 +12,15 @@ function ProductInfoLoading() {
   const { products } = useContext(ProductsContext);
   const { productId } = useContext(ProductVariantIdsContext);
 
-  // Variables
-  const product = products[productId];
-
   return (
     <div className="loading-product-info-wrapper">
       <div className="loading-product-info">
         <ProductSelectLoading />
         <div className="loading-product-description-wrapper">
           <div className="loading-product-description">
-            {product.description}
+            {products?.[productId]
+              ? products[productId].description
+              : 'description'}
           </div>
         </div>
         <div className="loading-product-details-list-wrapper">

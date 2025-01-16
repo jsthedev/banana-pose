@@ -6,7 +6,7 @@ import {
 } from '@stripe/react-stripe-js';
 import { Link } from 'react-router-dom';
 
-import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
+import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
 import { ProductsContext } from '@/contexts/productsContext';
 

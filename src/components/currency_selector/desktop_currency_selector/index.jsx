@@ -2,7 +2,7 @@ import { useContext, useState, useRef, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
-import { CurrencyContext } from '@/contexts/CurrencyContext';
+import { CurrencyContext } from '@/contexts/currencyContext';
 
 import { blankImage } from '@/assets/images/common/blank_image';
 import { CURRENCY_FLAGS, CURRENCY_SYMBOLS } from '@/constants/currencies';

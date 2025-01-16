@@ -126,9 +126,6 @@ export const ProductsProvider = ({ children }) => {
         }
       });
 
-      // TODO remove
-      console.log(productsCollection);
-
       setProducts(productsCollection);
     } catch (error) {
       console.error('Error fetching products:', error);

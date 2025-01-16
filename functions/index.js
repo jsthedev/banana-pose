@@ -18,7 +18,7 @@ const {
   write,
 } = require('firebase-functions/logger');
 
-const YOUR_DOMAIN = 'http://localhost:5173'; // Adjust as needed
+const YOUR_DOMAIN = 'https://bananapose.netlify.app'; // Adjust as needed
 
 exports.getCurrency = onRequest({ secrets: [ipinfoToken] }, (req, res) => {
   const corsHandler = cors({ origin: true });

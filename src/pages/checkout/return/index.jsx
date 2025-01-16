@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
-import { ShoppingBagContext } from '@/contexts/ShoppingBagContext';
+import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
 import '@/pages/checkout/return/index.scss';
 

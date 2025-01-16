@@ -1,8 +1,10 @@
-require('dotenv').config();
-const functions = require('firebase-functions');
-const express = require('express');
 const cors = require('cors');
-const stripe = require('stripe')(process.env.STRIPE_SECRET);
+const { onRequest } = require('firebase-functions/v2/https');
+const { defineSecret } = require('firebase-functions/params');
+
+const stripeSecret = defineSecret('STRIPE_SECRET');
+const ipinfoToken = defineSecret('IPINFO_TOKEN');
+
 const axios = require('axios');
 const { SUPPORTED_CURRENCIES } = require('./utils/supportedCurrencies');
 const { mapCountryToCurrency } = require('./utils/currencyMapper');
@@ -16,78 +18,79 @@ const {
   write,
 } = require('firebase-functions/logger');
 
-const app = express();
-app.use(cors({ origin: true }));
-app.use(express.json());
-
 const YOUR_DOMAIN = 'http://localhost:5173'; // Adjust as needed
 
-app.get('/get-currency', async (req, res) => {
-  // log('Received request for /get-currency');
-  try {
-    const xForwardedFor = req.headers['x-forwarded-for'];
-    const ip = xForwardedFor
-      ? xForwardedFor.split(',')[0].trim()
-      : req.message.socket.remoteAddress;
+exports.getCurrency = onRequest({ secrets: [ipinfoToken] }, (req, res) => {
+  const corsHandler = cors({ origin: true });
 
-    // log(`Extracted ip is ${ip}`);
+  corsHandler(req, res, async () => {
+    try {
+      const xForwardedFor = req.headers['x-forwarded-for'];
+      const ip = xForwardedFor
+        ? xForwardedFor.split(',')[0].trim()
+        : req.socket.remoteAddress;
 
-    const ipinfoToken = process.env.IPINFO_TOKEN;
+      if (!ipinfoToken) {
+        error('ipinfoToken is not defined');
+      }
 
-    if (!ipinfoToken) {
-      error('ipinfoToken is not defined');
+      const response = await axios.get(
+        `https://ipinfo.io/${ip}/json?token=${ipinfoToken.value()}`
+      );
+      const countryCode = response.data.country;
+      const currency = mapCountryToCurrency(countryCode);
+
+      res.json({ currency });
+    } catch (error) {
+      console.error('Error fetching geolocation:', error.message);
+      res.status(500).json({ error: 'Unable to determine currency' });
     }
-    // log(`IPinfo Token: ${ipinfoToken}`);
-
-    const response = await axios.get(
-      `https://ipinfo.io/${ip}/json?token=${ipinfoToken}`
-    );
-    const countryCode = response.data.country;
-    const currency = mapCountryToCurrency(countryCode);
-
-    // log(`Mapped country code ${countryCode} to currency ${currency}`);
-
-    res.json({ currency });
-  } catch (error) {
-    console.error('Error fetching geolocation:', error.message);
-    res.status(500).json({ error: 'Unable to determine currency' });
-  }
+  });
 });
 
-app.get('/list-products', async (req, res) => {
-  try {
-    const products = await stripe.products.list({ limit: 100 });
-    res.json({ products });
-  } catch (error) {
-    console.error(
-      'Error retrieving list of products from Stripe:',
-      error.message
-    );
-    res.status(500).json({ error: 'Unable to list products' });
-  }
-});
+exports.listProducts = onRequest({ secrets: [stripeSecret] }, (req, res) => {
+  const corsHandler = cors({ origin: true });
 
-app.get('/list-prices', async (req, res) => {
-  try {
-    if (!req.query.currency) {
-      return res.status(400).json({ error: 'Currency is required' });
+  corsHandler(req, res, async () => {
+    try {
+      const stripe = require('stripe')(stripeSecret.value());
+      const products = await stripe.products.list({ limit: 100 });
+      res.json({ products });
+    } catch (error) {
+      console.error(
+        'Error retrieving list of products from Stripe:',
+        error.message
+      );
+      res.status(500).json({ error: 'Unable to list products' });
     }
-
-    const prices = await stripe.prices.list({
-      currency: req.query.currency,
-      limit: 100,
-    });
-    res.json({ prices });
-  } catch (error) {
-    console.error(
-      'Error retrieving list of prices from Stripe:',
-      error.message
-    );
-    res.status(500).json({ error: 'Unable to list prices' });
-  }
+  });
 });
 
-async function validateShoppingBagItems(lineItems) {
+exports.listPrices = onRequest({ secrets: [stripeSecret] }, (req, res) => {
+  const corsHandler = cors({ origin: true });
+
+  corsHandler(req, res, async () => {
+    try {
+      if (!req.query.currency) {
+        return res.status(400).json({ error: 'Currency is required' });
+      }
+      const stripe = require('stripe')(stripeSecret.value());
+      const prices = await stripe.prices.list({
+        currency: req.query.currency,
+        limit: 100,
+      });
+      res.json({ prices });
+    } catch (error) {
+      console.error(
+        'Error retrieving list of prices from Stripe:',
+        error.message
+      );
+      res.status(500).json({ error: 'Unable to list prices' });
+    }
+  });
+});
+
+async function validateShoppingBagItems(lineItems, stripe) {
   const invalidItems = [];
 
   for (const item of lineItems) {
@@ -116,64 +119,77 @@ async function validateShoppingBagItems(lineItems) {
   return invalidItems;
 }
 
-app.post('/create-checkout-session', async (req, res) => {
-  try {
-    const { lineItems, currency } = req.body;
+exports.createCheckoutSession = onRequest(
+  { secrets: [stripeSecret] },
+  (req, res) => {
+    const corsHandler = cors({ origin: true });
 
-    if (!lineItems || !Array.isArray(lineItems) || lineItems.length === 0) {
-      return res.status(400).send({ error: 'No items in the shopping bag.' });
-    }
+    corsHandler(req, res, async () => {
+      try {
+        const { lineItems, currency } = req.body;
 
-    if (!SUPPORTED_CURRENCIES.includes(currency.toUpperCase())) {
-      return res.status(400).send({ error: 'Unsupported currency.' });
-    }
+        if (!lineItems || !Array.isArray(lineItems) || lineItems.length === 0) {
+          return res
+            .status(400)
+            .send({ error: 'No items in the shopping bag.' });
+        }
 
-    const invalidItems = await validateShoppingBagItems(lineItems);
+        if (!SUPPORTED_CURRENCIES.includes(currency.toUpperCase())) {
+          return res.status(400).send({ error: 'Unsupported currency.' });
+        }
 
-    if (invalidItems.length > 0) {
-      return res.status(400).send({
-        error: 'Some items are invalid or sold out.',
-        invalidItems,
+        const stripe = require('stripe')(stripeSecret.value());
+        const invalidItems = await validateShoppingBagItems(lineItems, stripe);
+
+        if (invalidItems.length > 0) {
+          return res.status(400).send({
+            error: 'Some items are invalid or sold out.',
+            invalidItems,
+          });
+        }
+
+        const line_items = lineItems;
+
+        const countries = mapCurrencyToCountries(currency);
+
+        const session = await stripe.checkout.sessions.create({
+          ui_mode: 'embedded',
+          line_items: line_items,
+          shipping_address_collection: {
+            allowed_countries: countries,
+          },
+          phone_number_collection: {
+            enabled: true,
+          },
+          automatic_tax: {
+            enabled: true,
+          },
+          mode: 'payment',
+          return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
+        });
+        res.send({ clientSecret: session.client_secret });
+      } catch (error) {
+        res.status(500).send(error.message);
+      }
+    });
+  }
+);
+
+exports.sessionStatus = onRequest({ secrets: [stripeSecret] }, (req, res) => {
+  const corsHandler = cors({ origin: true });
+
+  corsHandler(req, res, async () => {
+    try {
+      const stripe = require('stripe')(stripeSecret.value());
+      const session = await stripe.checkout.sessions.retrieve(
+        req.query.session_id
+      );
+      res.send({
+        status: session.status,
+        customer_email: session.customer_details.email,
       });
+    } catch (error) {
+      res.status(500).send(error.message);
     }
-
-    const line_items = lineItems;
-
-    const countries = mapCurrencyToCountries(currency);
-
-    const session = await stripe.checkout.sessions.create({
-      ui_mode: 'embedded',
-      line_items: line_items,
-      shipping_address_collection: {
-        allowed_countries: countries,
-      },
-      phone_number_collection: {
-        enabled: true,
-      },
-      automatic_tax: {
-        enabled: true,
-      },
-      mode: 'payment',
-      return_url: `${YOUR_DOMAIN}/return?session_id={CHECKOUT_SESSION_ID}`,
-    });
-    res.send({ clientSecret: session.client_secret });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+  });
 });
-
-app.get('/session-status', async (req, res) => {
-  try {
-    const session = await stripe.checkout.sessions.retrieve(
-      req.query.session_id
-    );
-    res.send({
-      status: session.status,
-      customer_email: session.customer_details.email,
-    });
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
-});
-
-exports.api = functions.https.onRequest(app);

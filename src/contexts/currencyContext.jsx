@@ -19,8 +19,10 @@ export const CurrencyProvider = ({ children }) => {
         } else {
           // Fetch from backend based on IP
           const response = await axios.get(
-            `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/get-currency`
+            `${import.meta.env.VITE_FIREBASE_FUNCTIONS_GETCURRENCY}`
           );
+
+          console.log(response);
           if (
             response.data.currency &&
             SUPPORTED_CURRENCIES.includes(response.data.currency)

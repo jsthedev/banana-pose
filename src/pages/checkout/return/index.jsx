@@ -19,7 +19,7 @@ function Return() {
     const sessionId = urlParams.get('session_id');
 
     fetch(
-      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/session-status?session_id=${sessionId}`
+      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_SESSIONSTATUS}?session_id=${sessionId}`
     )
       .then((res) => res.json())
       .then((data) => {

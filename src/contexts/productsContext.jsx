@@ -21,13 +21,13 @@ export const ProductsProvider = ({ children }) => {
     try {
       // Fetch products
       const productsResponse = await axios.get(
-        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/list-products`
+        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_LISTPRODUCTS}`
       );
       const fetchedProducts = productsResponse.data.products.data;
 
       // Fetch prices
       const pricesResponse = await axios.get(
-        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/list-prices`,
+        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_LISTPRICES}`,
         {
           params: {
             currency: currency,

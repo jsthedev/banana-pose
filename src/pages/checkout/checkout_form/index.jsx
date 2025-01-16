@@ -69,7 +69,7 @@ function CheckoutForm() {
     setError(null); // reset error
 
     const response = await fetch(
-      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_ENDPOINT}/create-checkout-session`,
+      `${import.meta.env.VITE_FIREBASE_FUNCTIONS_CREATECHECKOUTSESSION}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

@@ -85,7 +85,6 @@ const shoppingBagReducer = (state, action) => {
         shoppingBagItems: [],
       };
     }
-
     case 'VALIDATE': {
       const { products } = action.payload;
       const validItems = validateShoppingBagItems(

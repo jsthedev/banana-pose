@@ -5,6 +5,7 @@ import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 import { CurrencyContext } from '@/contexts/currencyContext';
 import { ProductsContext } from '@/contexts/productsContext';
 
+import ShoppingBagItemCardLoading from '@/components/shopping_bag/shopping_bag_item_card/loading/index.jsx';
 import ShoppingBagItemCard from '@/components/shopping_bag/shopping_bag_item_card/index.jsx';
 
 import { formatPrice } from '@/utils/utilities';
@@ -16,11 +17,6 @@ function ShoppingBagContents() {
   const { state } = useContext(ShoppingBagContext);
   const { currency, loading: currencyLoading } = useContext(CurrencyContext);
   const { products, loading: productsLoading } = useContext(ProductsContext);
-
-  // Loading
-  if (currencyLoading || productsLoading) {
-    return null;
-  }
 
   // Variables
   const total = state.shoppingBagItems.reduce((acc, item) => {
@@ -35,12 +31,11 @@ function ShoppingBagContents() {
       <div className="shopping-bag-item-list-wrapper">
         <div className="shopping-bag-page-name">Shopping bag</div>
         <div className="shopping-bag-item-list">
-          {state.shoppingBagItems.map((item) => {
-            return (
-              <ShoppingBagItemCard
-                key={`${item.productId}-${item.variantId}-${item.size}`}
-                item={item}
-              />
+          {state.shoppingBagItems.map((item, index) => {
+            return currencyLoading || productsLoading ? (
+              <ShoppingBagItemCardLoading key={index} />
+            ) : (
+              <ShoppingBagItemCard key={index} item={item} />
             );
           })}
         </div>
@@ -50,7 +45,9 @@ function ShoppingBagContents() {
         <div className="order-total">
           <div className="order-total-text">Total:</div>
           <div className="order-total-dollar">
-            {formatPrice(total, currency.toUpperCase())}
+            {currencyLoading || productsLoading
+              ? ''
+              : formatPrice(total, currency.toUpperCase())}
           </div>
         </div>
         <div className="shipping-cost-warning">

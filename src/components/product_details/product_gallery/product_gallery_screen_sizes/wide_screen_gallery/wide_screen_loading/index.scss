@@ -19,16 +19,6 @@
       display: block;
       margin-bottom: 18px;
       border: 1px solid transparent;
-
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
 
     .carousel-cell.is-selected {
@@ -47,12 +37,6 @@
       overflow: hidden;
       display: block;
       margin-bottom: 15px;
-
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
     }
   }
 

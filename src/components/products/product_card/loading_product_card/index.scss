@@ -16,19 +16,7 @@
       width: 100%;
       aspect-ratio: 2 / 3;
       overflow: hidden;
-
-      .loading-product-img {
-        width: 100%;
-        object-fit: cover;
-        display: block;
-      }
     }
-  }
-
-  .loading-product-img-wrapper:hover
-    + .loading-product-info
-    .loading-product-name {
-    text-decoration: underline;
   }
 
   .loading-product-info {

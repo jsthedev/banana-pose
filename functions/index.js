@@ -7,6 +7,7 @@ const Stripe = require('stripe');
 
 const stripeSecret = defineSecret('STRIPE_SECRET');
 const ipinfoToken = defineSecret('IPINFO_TOKEN');
+const stripeWebhookSecret = defineSecret('STRIPE_WEBHOOK_SECRET');
 
 const axios = require('axios');
 const { SUPPORTED_CURRENCIES } = require('./utils/supportedCurrencies');
@@ -160,7 +161,7 @@ exports.sessionStatus = onRequest({ secrets: [stripeSecret] }, (req, res) => {
 });
 
 exports.handleStripeWebhook = onRequest(
-  { secrets: [stripeSecret] },
+  { secrets: [stripeSecret, stripeWebhookSecret] },
   (req, res) => {
     const corsHandler = cors({ origin: true });
 
@@ -176,7 +177,7 @@ exports.handleStripeWebhook = onRequest(
         event = stripe.webhooks.constructEvent(
           req.rawBody,
           stripeSignature,
-          endpointSecret
+          stripeWebhookSecret
         );
       } catch (error) {
         console.error(

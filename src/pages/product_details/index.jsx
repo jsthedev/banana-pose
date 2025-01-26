@@ -19,35 +19,29 @@ function ProductDetails() {
   // Contexts
   const { products, loading: productsLoading } = useContext(ProductsContext);
 
-  // Handle productId
-  const product = products[productId];
-
-  if (!product) {
-    return (
-      <div className="error">
-        <div className="message">Product not found.</div>
-      </div>
-    );
-  }
-
-  // Handle variantId
-  const variant = product.variants[variantId];
-
-  if (!variant) {
-    return (
-      <div className="error">
-        <div className="message">
-          Selected color is not available for this product.
-        </div>
-      </div>
-    );
-  }
+  // Variables
+  const product = products?.[productId] || null;
+  const variant = product?.variants?.[variantId] || null;
 
   return (
     <ProductVariantIdsProvider productId={productId} variantId={variantId}>
       <div className="product-details">
         <div className="product-gallery-wrapper">
-          {productsLoading ? <ProductGalleryLoading /> : <ProductGallery />}
+          {productsLoading ? (
+            <ProductGalleryLoading />
+          ) : !product ? (
+            <div className="error">
+              <div className="message">Selected product is not valid.</div>
+            </div>
+          ) : !variant ? (
+            <div className="error">
+              <div className="message">
+                Selected color is not available for this product.
+              </div>
+            </div>
+          ) : (
+            <ProductGallery />
+          )}
         </div>
       </div>
     </ProductVariantIdsProvider>

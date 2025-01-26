@@ -35,7 +35,7 @@ function SizeSelector({ variantSizes, selectedSize, onSizeSelect }) {
         {sortedSizes.map((size) => (
           <button
             key={size}
-            className={`size-option ${selectedSize === size ? 'selected' : ''} ${variantSizes[size] === 'sold_out' ? 'sold-out' : ''}`}
+            className={`size-option ${selectedSize === size ? 'selected' : ''} ${variantSizes[size] === 0 ? 'sold-out' : ''}`}
             onClick={() => handledSizeClick(size)}
           >
             {size}

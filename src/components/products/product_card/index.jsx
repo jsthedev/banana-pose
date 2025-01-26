@@ -26,7 +26,7 @@ function ProductCard({ productId }) {
 
   // Variables to be shown
   const name = variant?.name || '';
-  const price = product?.price;
+  const price = product?.price[currency];
 
   // Color Select
   const handleColorSelect = (selectedColor) => {

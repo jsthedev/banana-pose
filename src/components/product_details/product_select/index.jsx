@@ -16,18 +16,20 @@ import '@/components/product_details/product_select/index.scss';
 
 function ProductSelect() {
   // Contexts
-  const { products } = useContext(ProductsContext);
+  const { products, updateProductInventory } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
   const { currency } = useContext(CurrencyContext);
 
   // Variables
   const product = products[productId];
-  const price = product.price;
+  const price = product.price[currency];
   const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   const variant = product.variants[variantId];
+  const name = variant.name;
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
+  const sizes = variant.sizes;
 
   // Size Chart
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -36,48 +38,84 @@ function ProductSelect() {
   };
 
   // Size Select
+  const [loadingSizes, setLoadingSizes] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
+  const [displaySelectedSize, setDisplaySelectedSize] = useState(null);
   const [sizeSelectError, setSizeSelectError] = useState('');
 
-  const [addedToBag, setAddedToBag] = useState(false);
-  const { dispatch } = useContext(ShoppingBagContext);
+  const [readyForCheckout, setReadyForCheckout] = useState(false);
+  const { state, dispatch } = useContext(ShoppingBagContext);
 
-  const handleSizeSelect = (size) => {
-    if (size !== selectedSize) {
-      setAddedToBag(false);
+  // Add to Shopping Bag
+  const [isLastItem, setIsLastItem] = useState(false);
+
+  const addToShoppingBag = () => {
+    // If a size is selected
+    if (selectedSize) {
+      // Calculate the quantity in shopping bag
+      const shoppingBagData = state.shoppingBagItems.find(
+        (item) =>
+          item.productId === productId &&
+          item.variantId === variantId &&
+          item.size === selectedSize
+      );
+
+      // Variables
+      const shoppingBagQuantity = shoppingBagData?.quantity || 0;
+      const inventory = variant.sizes[selectedSize];
+
+      // If less item in shopping bag than inventory, add the item to the shopping bag
+      if (shoppingBagQuantity < inventory) {
+        dispatch({
+          type: 'ADD',
+          payload: {
+            size: selectedSize,
+            productId: productId,
+            variantId: variantId,
+          },
+        });
+      }
+
+      // If the inventory was the last item, notify the user
+      if (
+        shoppingBagQuantity === inventory ||
+        shoppingBagQuantity === inventory - 1
+      ) {
+        setIsLastItem(true);
+      }
+      setReadyForCheckout(true);
+      setSelectedSize(null);
     }
+    // If a size is not selected
+    else {
+      setSizeSelectError('Please select a size');
+    }
+  };
+
+  // Handle Size Select
+  const handleSizeSelect = async (size) => {
+    setReadyForCheckout(false);
+    setIsLastItem(false);
+    setLoadingSizes(true);
+    await updateProductInventory(productId, variantId);
     setSelectedSize(size);
+    setDisplaySelectedSize(size);
     setSizeSelectError('');
+    setLoadingSizes(false);
   };
 
   // Reset selected size when color changes
   useEffect(() => {
     setSelectedSize(null);
-    setAddedToBag(false);
+    setReadyForCheckout(false);
     setSizeSelectError('');
+    setIsLastItem(false);
   }, [color]);
-
-  // Add to Shopping Bag
-  const addToShoppingBag = () => {
-    if (selectedSize) {
-      dispatch({
-        type: 'ADD',
-        payload: {
-          size: selectedSize,
-          productId: productId,
-          variantId: variantId,
-        },
-      });
-      setAddedToBag(true);
-    } else {
-      setSizeSelectError('Please select a size');
-    }
-  };
 
   return (
     <div className="product-select">
       <div className="product-metadata">
-        <div className="product-name">{variant.name}</div>
+        <div className="product-name">{name}</div>
         <div className="product-price">
           <span>{formattedPrice}</span>
         </div>
@@ -108,29 +146,40 @@ function ProductSelect() {
         )}
         <div className="size-select-button-wrapper">
           <SizeSelector
-            variantSizes={variant.sizes}
+            variantSizes={sizes}
             selectedSize={selectedSize}
             onSizeSelect={handleSizeSelect}
           />
         </div>
       </div>
-      {variant?.sizes[selectedSize] === 'sold_out' ? (
+      {variant?.sizes[selectedSize] === 0 ? (
         <div className="sold-out-button-wrapper">
           <button className="sold-out-button">Sold Out</button>
         </div>
-      ) : addedToBag ? (
+      ) : readyForCheckout ? (
         <div className="checkout-link-wrapper">
           <Link to={'/shopping-bag'} className="checkout-link">
             <button className="checkout-button">Proceed to Checkout</button>
           </Link>
-          <div className="checkout-notice">
-            Size {selectedSize} added to shopping bag.
-          </div>
+          {isLastItem ? (
+            <div className="last-item-notice">
+              Last item is added to your shopping bag.
+            </div>
+          ) : (
+            <div className="checkout-notice">
+              Size {displaySelectedSize} added to shopping bag.
+            </div>
+          )}
         </div>
       ) : (
-        <button className="buy-button" onClick={addToShoppingBag}>
-          Add to Shopping Bag
-        </button>
+        <div className="buy-button-wrapper">
+          <button
+            className={`buy-button ${loadingSizes ? 'loading' : ''}`}
+            onClick={addToShoppingBag}
+          >
+            Add to Shopping Bag
+          </button>
+        </div>
       )}
     </div>
   );

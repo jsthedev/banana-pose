@@ -1,13 +1,12 @@
 import { Link } from 'react-router-dom';
 
-import colorsData from '@/data/colors.json';
+import { colorMap } from '@/constants/colorMap';
 
 import '@/components/color_select/product_details/index.scss';
 
 function ProductDetailsColorSelect({ product, productId, variant }) {
   const variants = product.variants;
   const currentColor = variant.color;
-  const colorMap = colorsData;
 
   return (
     <div className="color-select">

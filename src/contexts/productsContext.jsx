@@ -1,18 +1,30 @@
-import { createContext, useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { createContext, useState, useEffect } from 'react';
 
-import productsMapping from '@/data/products.json';
-
-import { IS_DEV } from '@/constants/platform';
-
-import { CurrencyContext } from '@/contexts/currencyContext';
+import {
+  listProducts,
+  listVariants,
+  listSizes,
+  getSize,
+} from '@/firebase/productsDB';
 
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState(productsMapping); // Default to USD
+  const [products, setProducts] = useState({});
   const [loading, setLoading] = useState(true);
-  const { currency, loading: currencyLoading } = useContext(CurrencyContext);
+
+  const fetchSizes = async (productId, variantId) => {
+    // Fetch sizes for this variant
+    const sizesArray = await listSizes(productId, variantId);
+
+    const sizesMap = sizesArray.reduce((accumulator, sizeObj) => {
+      // Use sizeObj.id as key, and sizeObj.inventory as value
+      accumulator[sizeObj.id] = sizeObj.inventory;
+      return accumulator;
+    }, {});
+
+    return sizesMap;
+  };
 
   const fetchProducts = async () => {
     // Start products loading
@@ -20,113 +32,64 @@ export const ProductsProvider = ({ children }) => {
 
     try {
       // Fetch products
-      const productsResponse = await axios.get(
-        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_LISTPRODUCTS}`
-      );
-      const fetchedProducts = productsResponse.data.products.data;
+      const productsList = await listProducts();
 
-      // Fetch prices
-      const pricesResponse = await axios.get(
-        `${import.meta.env.VITE_FIREBASE_FUNCTIONS_LISTPRICES}`,
-        {
-          params: {
-            currency: currency,
-          },
-        }
-      );
-      const fetchedPrices = pricesResponse.data.prices.data;
+      const productPromises = productsList.map(async (product) => {
+        // Destructure to remove id from product data
+        const { id: productId, ...productDataWithoutId } = product;
 
-      // Create a collection of products
-      const productsCollection = {};
+        // List all variants for the product
+        const variantsArray = await listVariants(productId);
 
-      // Iterate over the fetched products and fill in missing information
-      fetchedProducts.forEach((product) => {
-        // If product is not active, skip it
-        if (!product?.active) {
-          return;
-        }
-        // If we are on prod, and the product is not for prod, skip it
-        if (!IS_DEV && !product?.livemode) {
-          return;
-        }
-        // If the product does not exist on our platform's mappings, skip it
-        const productBpId = product?.metadata?.bp_product_id;
-        if (!(productBpId in productsMapping)) {
-          return;
-        }
-        // If the product variant does not exist on our platform's mappings, skip it
-        const productVariantId = product?.metadata?.variant_id;
-        if (!(productVariantId in productsMapping[productBpId].variants)) {
-          return;
-        }
-
-        // Find the price of the product
-        const productPrice = fetchedPrices.find(
-          (price) => price.product === product.id
+        // Filter for variant.active = true
+        const filteredVariantsArray = variantsArray.filter(
+          (variant) => variant?.active === true
         );
-        // If the price does not exist, something is wrong, skip it
-        if (!productPrice) {
-          return;
+
+        // If variants is empty, skip product
+        if (filteredVariantsArray.length === 0) {
+          return null;
         }
 
-        // If the stripe price ID does not exist, something is wrong, skip it
-        const productStripePriceId = productPrice.id;
-        if (!productStripePriceId) {
-          return;
-        }
-        // Find the size of the product
-        const productSize = product?.metadata?.size;
-        if (!productSize) {
-          return;
+        // Convert the variants array into an object keyed by variant ID
+        // Initialize an object to hold variants with sizes
+        const variantsObject = {};
+
+        // For each active variant, fetch sizes and attach them
+        for (const variant of filteredVariantsArray) {
+          const { id: variantId, ...variantDataWithoutId } = variant;
+
+          const sizesMap = await fetchSizes(productId, variantId);
+
+          variantDataWithoutId.sizes = sizesMap;
+
+          variantsObject[variantId] = variantDataWithoutId;
         }
 
-        /* 
-            After confirming the productId, variantId, and size are available,
-            add the entry to the productsCollection
-          */
-        if (!(productBpId in productsCollection)) {
-          productsCollection[productBpId] = {
-            price: productPrice.unit_amount,
-            description: productsMapping[productBpId].description,
-            details: productsMapping[productBpId].details,
-            care: productsMapping[productBpId].care,
-            type: productsMapping[productBpId].type,
-            variants: {},
-          };
-        }
-
-        if (!(productVariantId in productsCollection[productBpId].variants)) {
-          productsCollection[productBpId].variants[productVariantId] = {
-            name: productsMapping[productBpId].variants[productVariantId].name,
-            color:
-              productsMapping[productBpId].variants[productVariantId].color,
-            thumbnail:
-              productsMapping[productBpId].variants[productVariantId].thumbnail,
-            images:
-              productsMapping[productBpId].variants[productVariantId].images,
-          };
-        }
-
-        const soldOut = product?.metadata.sold_out;
-        /* 
-            Add the size of the product to the final collection
-            and check for its sold out status
-          */
-        if (
-          'sizes' in productsCollection[productBpId].variants[productVariantId]
-        ) {
-          productsCollection[productBpId].variants[productVariantId].sizes[
-            productSize
-          ] = soldOut === 'true' ? 'sold_out' : productStripePriceId;
-        } else {
-          productsCollection[productBpId].variants[productVariantId].sizes = {
-            [productSize]:
-              soldOut === 'true' ? 'sold_out' : productStripePriceId,
-          };
-        }
+        // Attach the variants object to the product data
+        return {
+          productId: productId,
+          data: {
+            ...productDataWithoutId,
+            variants: variantsObject,
+          },
+        };
       });
 
-      setProducts(productsCollection);
+      // Resolve all promises in parallel
+      const productsWithVariantsArray = (
+        await Promise.all(productPromises)
+      ).filter(Boolean);
+
+      const productsData = productsWithVariantsArray.reduce(
+        (acc, { productId, data }) => {
+          acc[productId] = data;
+          return acc;
+        },
+        {}
+      );
+
+      setProducts(productsData);
     } catch (error) {
       console.error('Error fetching products:', error);
     } finally {
@@ -135,16 +98,63 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    // If currency is not available, skip
-    if (!currency || currencyLoading) {
-      return;
+  const updateProductInventory = async (productId, variantId) => {
+    try {
+      const sizesMap = await fetchSizes(productId, variantId);
+      setProducts((oldProducts) => ({
+        ...oldProducts,
+        [productId]: {
+          ...oldProducts[productId],
+          variants: {
+            ...oldProducts[productId].variants,
+            [variantId]: {
+              ...oldProducts[productId].variants[variantId],
+              sizes: sizesMap,
+            },
+          },
+        },
+      }));
+    } catch (error) {
+      console.error('Error updating inventory:', error);
     }
+  };
+
+  const updateSizeInventory = async (productId, variantId, sizeId) => {
+    try {
+      const sizeData = await getSize(productId, variantId, sizeId);
+      const sizeInventory = sizeData?.inventory || 0;
+      setProducts((oldProducts) => ({
+        ...oldProducts,
+        [productId]: {
+          ...oldProducts[productId],
+          variants: {
+            ...oldProducts[productId].variants,
+            [variantId]: {
+              ...oldProducts[productId].variants[variantId],
+              sizes: {
+                ...(oldProducts[productId].variants[variantId].sizes || {}),
+                [sizeId]: sizeInventory,
+              },
+            },
+          },
+        },
+      }));
+
+      return sizeInventory;
+    } catch (error) {
+      console.error('Error updating inventory:', error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
     fetchProducts();
-  }, [currency, currencyLoading]);
+  }, []);
 
   return (
-    <ProductsContext.Provider value={{ products, loading, fetchProducts }}>
+    <ProductsContext.Provider
+      value={{ products, loading, updateProductInventory, updateSizeInventory }}
+    >
       {children}
     </ProductsContext.Provider>
   );

@@ -5,20 +5,20 @@ import '@/components/shopping_bag/shopping_bag_item_card/loading/index.scss';
 function ShoppingBagItemCardLoading() {
   return (
     <div className="shopping-bag-item">
-      <div className="item-thumbnail">
+      <div className="loading-item-thumbnail">
         <SkeletonImageLoader />
       </div>
-      <div className="shopping-bag-item-contents-wrapper">
+      <div className="shopping-bag-loading-item-contents-wrapper">
         <div className="top-content">
-          <div className="item-details">
-            <div className="item-name item-detail">Name</div>
-            <div className="item-size item-detail">Size:</div>
-            <div className="item-color item-detail">Color:</div>
-            <div className="item-quantity item-detail">
+          <div className="loading-item-details">
+            <div className="loading-item-name loading-item-detail">Name</div>
+            <div className="loading-item-size loading-item-detail">Size:</div>
+            <div className="loading-item-color loading-item-detail">Color:</div>
+            <div className="loading-item-quantity loading-item-detail">
               <div className="quantity-text">Quantity:</div>
             </div>
           </div>
-          <div className="item-price">$100</div>
+          <div className="loading-item-price">$100</div>
         </div>
         <div className="bottom-content">
           <div className="remove-button normal-link">Remove</div>

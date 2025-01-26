@@ -53,6 +53,11 @@
             border: none;
             cursor: pointer;
           }
+
+          .hide {
+            color: transparent;
+            pointer-events: none;
+          }
         }
       }
     }

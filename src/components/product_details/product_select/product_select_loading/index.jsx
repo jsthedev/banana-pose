@@ -32,7 +32,7 @@ function ProductSelectLoading() {
       </div>
       <div className="loading-product-order-form">
         <div className="loading-product-color">Color: </div>
-        <ProductDetailsColorSelectLoading product={product} />
+        <ProductDetailsColorSelectLoading />
         <div className="size-chart-click-wrapper">
           <div className="size-chart-click normal-link">Size Guide</div>
         </div>

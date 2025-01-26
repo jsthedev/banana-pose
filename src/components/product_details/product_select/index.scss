@@ -69,22 +69,32 @@
     .checkout-notice {
       font-style: italic;
     }
+
+    .last-item-notice {
+      font-style: italic;
+    }
   }
 
-  .buy-button {
-    font-family: 'HK Grotesk';
-
-    width: 100%;
-    height: 35px;
-    text-align: center;
-    background-color: #212121;
-    color: white;
-
+  .buy-button-wrapper {
     margin-bottom: 25px;
 
-    &:hover {
-      cursor: pointer;
-      background-color: #464646;
+    .buy-button {
+      font-family: 'HK Grotesk';
+
+      width: 100%;
+      height: 35px;
+      text-align: center;
+      background-color: #212121;
+      color: white;
+
+      &.loading {
+        background-color: #a4a4a4;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: #464646;
+      }
     }
   }
 }

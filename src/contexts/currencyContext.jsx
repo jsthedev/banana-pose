@@ -21,8 +21,6 @@ export const CurrencyProvider = ({ children }) => {
           const response = await axios.get(
             `${import.meta.env.VITE_FIREBASE_FUNCTIONS_GETCURRENCY}`
           );
-
-          console.log(response);
           if (
             response.data.currency &&
             SUPPORTED_CURRENCIES.includes(response.data.currency)

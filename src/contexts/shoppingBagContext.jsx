@@ -79,6 +79,19 @@ const shoppingBagReducer = (state, action) => {
         ),
       };
     }
+    case 'SET_QUANTITY': {
+      const { productId, variantId, size, setNumber } = action.payload;
+      return {
+        ...state,
+        shoppingBagItems: state.shoppingBagItems.map((item) =>
+          item.productId === productId &&
+          item.variantId === variantId &&
+          item.size === size
+            ? { ...item, quantity: setNumber }
+            : item
+        ),
+      };
+    }
     case 'CLEAR': {
       return {
         ...state,
@@ -91,6 +104,19 @@ const shoppingBagReducer = (state, action) => {
         state.shoppingBagItems,
         products
       );
+      // Only update state if validItems differ from current shoppingBagItems
+      const areEqual =
+        validItems.length === state.shoppingBagItems.length &&
+        validItems.every(
+          (item, index) =>
+            item.productId === state.shoppingBagItems[index].productId &&
+            item.variantId === state.shoppingBagItems[index].variantId &&
+            item.size === state.shoppingBagItems[index].size &&
+            item.quantity === state.shoppingBagItems[index].quantity
+        );
+      if (areEqual) {
+        return state;
+      }
       return {
         ...state,
         shoppingBagItems: validItems,
@@ -113,6 +139,7 @@ export const ShoppingBagProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    // Update the local storage with the shopping bag items
     localStorage.setItem('banana-pose-shopping-bag', JSON.stringify(state));
   }, [state]);
 
@@ -121,13 +148,13 @@ export const ShoppingBagProvider = ({ children }) => {
       return;
     }
 
-    if (products) {
+    if (!productsLoading && state.shoppingBagItems.length > 0) {
       dispatch({
         type: 'VALIDATE',
-        payload: { products },
+        payload: { products: products },
       });
     }
-  }, [products]);
+  }, [products, productsLoading, state]);
 
   return (
     <ShoppingBagContext.Provider value={{ state, dispatch }}>

@@ -18,7 +18,7 @@ const {
   write,
 } = require('firebase-functions/logger');
 
-const YOUR_DOMAIN = 'https://bananapose.netlify.app'; // Adjust as needed
+const YOUR_DOMAIN = 'https://bananapose.com'; // Adjust as needed
 
 exports.getCurrency = onRequest({ secrets: [ipinfoToken] }, (req, res) => {
   const corsHandler = cors({ origin: true });
@@ -48,77 +48,6 @@ exports.getCurrency = onRequest({ secrets: [ipinfoToken] }, (req, res) => {
   });
 });
 
-exports.listProducts = onRequest({ secrets: [stripeSecret] }, (req, res) => {
-  const corsHandler = cors({ origin: true });
-
-  corsHandler(req, res, async () => {
-    try {
-      const stripe = require('stripe')(stripeSecret.value());
-      const products = await stripe.products.list({ limit: 100 });
-      res.json({ products });
-    } catch (error) {
-      console.error(
-        'Error retrieving list of products from Stripe:',
-        error.message
-      );
-      res.status(500).json({ error: 'Unable to list products' });
-    }
-  });
-});
-
-exports.listPrices = onRequest({ secrets: [stripeSecret] }, (req, res) => {
-  const corsHandler = cors({ origin: true });
-
-  corsHandler(req, res, async () => {
-    try {
-      if (!req.query.currency) {
-        return res.status(400).json({ error: 'Currency is required' });
-      }
-      const stripe = require('stripe')(stripeSecret.value());
-      const prices = await stripe.prices.list({
-        currency: req.query.currency,
-        limit: 100,
-      });
-      res.json({ prices });
-    } catch (error) {
-      console.error(
-        'Error retrieving list of prices from Stripe:',
-        error.message
-      );
-      res.status(500).json({ error: 'Unable to list prices' });
-    }
-  });
-});
-
-async function validateShoppingBagItems(lineItems, stripe) {
-  const invalidItems = [];
-
-  for (const item of lineItems) {
-    const { price: priceId, quantity } = item;
-
-    const price = await stripe.prices.retrieve(priceId);
-    // Retrieve product from Stripe
-    const productId = price.product;
-    const product = await stripe.products.retrieve(productId);
-
-    // Check metadata for "soldout"
-    if (product.metadata.sold_out === 'true') {
-      invalidItems.push({
-        ...item,
-        reason: 'This product is marked as sold out',
-      });
-      continue;
-    }
-
-    // Check if the product is active in Stripe
-    if (!product.active) {
-      invalidItems.push({ ...item, reason: 'Product is inactive' });
-    }
-  }
-
-  return invalidItems;
-}
-
 exports.createCheckoutSession = onRequest(
   { secrets: [stripeSecret] },
   (req, res) => {
@@ -126,35 +55,67 @@ exports.createCheckoutSession = onRequest(
 
     corsHandler(req, res, async () => {
       try {
-        const { lineItems, currency } = req.body;
+        const { shoppingBagItems, currency } = req.body;
 
-        if (!lineItems || !Array.isArray(lineItems) || lineItems.length === 0) {
+        // Validate shoppingBagItems
+        if (
+          !shoppingBagItems ||
+          !Array.isArray(shoppingBagItems) ||
+          shoppingBagItems.length === 0
+        ) {
           return res
             .status(400)
             .send({ error: 'No items in the shopping bag.' });
         }
 
+        // Validate currency
         if (!SUPPORTED_CURRENCIES.includes(currency.toUpperCase())) {
           return res.status(400).send({ error: 'Unsupported currency.' });
         }
 
         const stripe = require('stripe')(stripeSecret.value());
-        const invalidItems = await validateShoppingBagItems(lineItems, stripe);
 
-        if (invalidItems.length > 0) {
-          return res.status(400).send({
-            error: 'Some items are invalid or sold out.',
-            invalidItems,
+        // Create a promise to find price IDs from Stripe
+        const lineItemPromises = shoppingBagItems.map(async (item) => {
+          const { size, productId, variantId, quantity } = item;
+
+          // If quantity is 0, skip
+          if (quantity === 0) {
+            return;
+          }
+
+          // Search for a product based on metadata
+          const searchedProduct = await stripe.products.search({
+            query: `active:'true' AND metadata['bp_product_id']:'${productId}' AND metadata['variant_id']:'${variantId}' AND metadata['size']:'${size}'`,
           });
-        }
 
-        const line_items = lineItems;
+          // Always expecting one product ID from Stripe
+          const stripeProductId = searchedProduct?.data?.[0]?.id;
 
+          if (!stripeProductId) {
+            return;
+          }
+
+          // search for a price based on product ID and currency
+          const searchedPrice = await stripe.prices.search({
+            query: `active:'true' AND product:'${stripeProductId}' AND currency:'${currency}'`,
+          });
+
+          const stripePriceId = searchedPrice?.data?.[0]?.id;
+
+          return { price: stripePriceId, quantity: quantity };
+        });
+
+        // Generate lineItems based on the lineItemPromises
+        const lineItems = (await Promise.all(lineItemPromises)).filter(Boolean);
+
+        // List available countries to order from
         const countries = mapCurrencyToCountries(currency);
 
+        // create a checkout session
         const session = await stripe.checkout.sessions.create({
           ui_mode: 'embedded',
-          line_items: line_items,
+          line_items: lineItems,
           shipping_address_collection: {
             allowed_countries: countries,
           },

@@ -19,11 +19,14 @@ function ShoppingBagContents() {
   const { products, loading: productsLoading } = useContext(ProductsContext);
 
   // Variables
-  const total = state.shoppingBagItems.reduce((acc, item) => {
-    const productId = item.productId;
-    const itemPrice = products[productId].price || 0;
-    return acc + itemPrice * item.quantity;
-  }, 0);
+  const loading = currencyLoading || productsLoading;
+  const total = loading
+    ? 0
+    : state.shoppingBagItems.reduce((acc, item) => {
+        const productId = item.productId;
+        const itemPrice = products[productId].price[currency] || 0;
+        return acc + itemPrice * item.quantity;
+      }, 0);
 
   return (
     <div className="shopping-bag-contents">
@@ -32,7 +35,7 @@ function ShoppingBagContents() {
         <div className="shopping-bag-page-name">Shopping bag</div>
         <div className="shopping-bag-item-list">
           {state.shoppingBagItems.map((item, index) => {
-            return currencyLoading || productsLoading ? (
+            return loading ? (
               <ShoppingBagItemCardLoading key={index} />
             ) : (
               <ShoppingBagItemCard key={index} item={item} />
@@ -45,9 +48,7 @@ function ShoppingBagContents() {
         <div className="order-total">
           <div className="order-total-text">Total:</div>
           <div className="order-total-dollar">
-            {currencyLoading || productsLoading
-              ? ''
-              : formatPrice(total, currency.toUpperCase())}
+            {loading ? '' : formatPrice(total, currency.toUpperCase())}
           </div>
         </div>
         <div className="shipping-cost-warning">

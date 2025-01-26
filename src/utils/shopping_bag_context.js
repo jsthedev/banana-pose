@@ -30,13 +30,18 @@ export function validateShoppingBagItems(items, products) {
       return;
     }
     // If the item is sold out, skip it
-    if (
-      products[productId].variants[variantId].sizes[item.size] === 'sold_out'
-    ) {
+    const inventory = products[productId].variants[variantId].sizes[item.size];
+    if (inventory === 0) {
       return;
     }
+    // If there is more item than the inventory, reduce down to the number of inventory
+    const availableInventory =
+      products?.[productId]?.variants?.[variantId]?.sizes?.[item.size] || 0;
+    const adjustedQuantity =
+      item.quantity > inventory ? availableInventory : item.quantity;
+
     // Update validItems to include the passed item
-    validItems.push(item);
+    validItems.push({ ...item, quantity: adjustedQuantity });
   });
 
   return validItems;

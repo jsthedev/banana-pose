@@ -1,10 +1,8 @@
-import colorsData from "@/data/colors.json";
+import { colorMap } from '@/constants/colorMap';
 
-import "@/components/color_select/product_card/index.scss";
+import '@/components/color_select/product_card/index.scss';
 
 function ProductCardColorSelect({ selectedColor, colors, onColorSelect }) {
-  const colorMap = colorsData;
-
   // Function
   const handledColorClick = (color) => {
     if (onColorSelect) {
@@ -16,7 +14,7 @@ function ProductCardColorSelect({ selectedColor, colors, onColorSelect }) {
     <div className="color-select">
       {colors.map((color) => (
         <div
-          className={`color-card-wrapper ${selectedColor === color ? "selected" : ""}`}
+          className={`color-card-wrapper ${selectedColor === color ? 'selected' : ''}`}
           key={color}
         >
           <div

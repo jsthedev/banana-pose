@@ -39,7 +39,8 @@ function ProductInfo() {
             className="product-details-toggle"
             onClick={() => toggleDetails()}
           >
-            Product details {showDetails ? '-' : '+'}
+            <div className="text">Product details</div>
+            {showDetails ? '-' : '+'}
           </div>
           {showDetails && (
             <ul
@@ -53,7 +54,8 @@ function ProductInfo() {
         </div>
         <div className="product-care-wrapper">
           <div className="product-care-toggle" onClick={() => toggleCare()}>
-            Care instructions {showCare ? '-' : '+'}
+            <div className="text">Care instructions</div>
+            {showCare ? '-' : '+'}
           </div>
           {showCare && (
             <ul

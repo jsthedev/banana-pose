@@ -74,8 +74,6 @@ function CheckoutForm() {
         (item) => item !== null
       );
 
-      console.log(updatedBagItems);
-
       // Create checkout session
       const response = await fetch(
         `${import.meta.env.VITE_FIREBASE_FUNCTIONS_CREATECHECKOUTSESSION}`,

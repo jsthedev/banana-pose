@@ -177,7 +177,7 @@ exports.handleStripeWebhook = onRequest(
         event = stripe.webhooks.constructEvent(
           req.rawBody,
           stripeSignature,
-          stripeWebhookSecret
+          stripeWebhookSecret.value()
         );
       } catch (error) {
         console.error(
@@ -215,6 +215,11 @@ async function fulfillOrder(session) {
     limit: 100,
   });
 
+  if (!lineItems.data.length) {
+    throw new Error('No line items found for this session.');
+  }
+
+  // Initialize Firestore
   const db = admin.firestore();
 
   // Create promises to update inventory based on each line item
@@ -222,13 +227,12 @@ async function fulfillOrder(session) {
     const stripeProductId = item.price.product;
     const quantity = item.quantity;
 
-    const searchedProduct = await stripe.products.search({
-      query: `active:'true' AND id:'${stripeProductId}'`,
-    });
+    const searchedProduct = await stripe.products.retrieve(stripeProductId);
 
-    const productId = searchedProduct.metadata.bp_product_id;
-    const variantId = searchedProduct.metadata.variant_id;
-    const sizeId = searchedProduct.metadata.size;
+    log(searchedProduct);
+    const productId = searchedProduct?.metadata?.bp_product_id;
+    const variantId = searchedProduct?.metadata?.variant_id;
+    const sizeId = searchedProduct?.metadata?.size;
 
     if (!productId || !variantId || !sizeId) {
       throw new Error(

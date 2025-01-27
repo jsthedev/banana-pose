@@ -18,6 +18,11 @@ function Return() {
     const urlParams = new URLSearchParams(queryString);
     const sessionId = urlParams.get('session_id');
 
+    if (!sessionId) {
+      setStatus('invalid');
+      return;
+    }
+
     fetch(
       `${import.meta.env.VITE_FIREBASE_FUNCTIONS_SESSIONSTATUS}?session_id=${sessionId}`
     )
@@ -25,6 +30,10 @@ function Return() {
       .then((data) => {
         setStatus(data.status);
         setCustomerEmail(data.customer_email);
+      })
+      .catch((error) => {
+        console.error('Error fetching session status:', error);
+        setStatus('error');
       });
   }, []);
 
@@ -38,6 +47,42 @@ function Return() {
   // If checkout not compledted, go back to checkout session
   if (status === 'open') {
     return <Navigate to="/checkout" />;
+  }
+
+  if (status === 'invalid') {
+    return (
+      <div className="checkout-error-wrapper">
+        <div className="checkout-error">
+          <h2>Invalid Session</h2>
+          <p>
+            The checkout session is invalid or has expired. Please try again.
+          </p>
+          <Link to={'/shopping-bag'} className="checkout-error-button-wrapper">
+            <div className="checkout-error-button link-button">
+              Go to Shopping Bag
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="checkout-error-wrapper">
+        <div className="checkout-error">
+          <h2>Checkout Error</h2>
+          <p>
+            An error occurred while processing your checkout. Please try again.
+          </p>
+          <Link to={'/shopping-bag'} className="checkout-error-button-wrapper">
+            <div className="checkout-error-button link-button">
+              Go to Shopping Bag
+            </div>
+          </Link>
+        </div>
+      </div>
+    );
   }
 
   // If checkout completed, prompt message
@@ -55,7 +100,12 @@ function Return() {
     );
   }
 
-  return null;
+  // Loading state
+  return (
+    <div className="loading-spinner">
+      <p>Verifying your transaction...</p>
+    </div>
+  );
 }
 
 export default Return;

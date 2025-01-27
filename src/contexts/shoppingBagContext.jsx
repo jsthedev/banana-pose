@@ -81,15 +81,22 @@ const shoppingBagReducer = (state, action) => {
     }
     case 'SET_QUANTITY': {
       const { productId, variantId, size, setNumber } = action.payload;
+      const updatedItems = state.shoppingBagItems
+        .map((item) => {
+          if (
+            item.productId === productId &&
+            item.variantId === variantId &&
+            item.size === size
+          ) {
+            return { ...item, quantity: setNumber };
+          }
+          return item;
+        })
+        .filter((item) => item.quantity > 0); // Remove items with quantity 0
+
       return {
         ...state,
-        shoppingBagItems: state.shoppingBagItems.map((item) =>
-          item.productId === productId &&
-          item.variantId === variantId &&
-          item.size === size
-            ? { ...item, quantity: setNumber }
-            : item
-        ),
+        shoppingBagItems: updatedItems,
       };
     }
     case 'CLEAR': {

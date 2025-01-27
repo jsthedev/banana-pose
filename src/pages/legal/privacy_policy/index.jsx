@@ -1,6 +1,6 @@
 import '@/pages/legal/index.scss';
 
-const lastUpdate = 'Jan 11, 2025';
+const lastUpdate = 'Jan 26, 2025';
 
 function PrivacyPolicy() {
   return (
@@ -27,6 +27,11 @@ function PrivacyPolicy() {
             facilitate delivery. We do not access or store these details beyond
             what is necessary to fulfill orders and meet legal obligations.
           </li>
+          <li>
+            We may use third-party services such as Google Analytics to collect
+            non-personal information about your usage of our website. This data
+            helps us improve our services and user experience.
+          </li>
         </ul>
         <h4>Data Sharing and Security</h4>
         <ul>
@@ -37,6 +42,13 @@ function PrivacyPolicy() {
           <li>
             We retain customer information only as long as necessary to complete
             transactions and comply with legal requirements.
+          </li>
+        </ul>
+        <h4>Cookies and Tracking Technologies</h4>
+        <ul>
+          <li>
+            Our website uses cookies to enhance your browsing experience. You
+            can manage your cookie preferences through your browser settings.
           </li>
         </ul>
         <h4>Customer Rights</h4>

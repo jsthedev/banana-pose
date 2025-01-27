@@ -6,7 +6,7 @@ function Home() {
     <div className="home">
       <div className="home-landing-container">
         <div className="wide-image-wrapper">
-          <img className="home-imgage" src={HomePageImage} />
+          <img className="home-image" src={HomePageImage} />
         </div>
       </div>
     </div>

@@ -1,12 +1,11 @@
 .loader {
   font-family: 'HK Grotesk', sans-serif; /* Ensure this font is loaded in your project */
-  font-size: 1.5rem;
+  font-size: 16px;
   color: #333; /* Dark gray color for the loader text */
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh; /* Center the loader vertically and horizontally */
-  background-color: #f9f9f9; /* Light background color */
 }
 
 .loader span {

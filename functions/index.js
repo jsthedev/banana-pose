@@ -229,7 +229,6 @@ async function fulfillOrder(session) {
 
     const searchedProduct = await stripe.products.retrieve(stripeProductId);
 
-    log(searchedProduct);
     const productId = searchedProduct?.metadata?.bp_product_id;
     const variantId = searchedProduct?.metadata?.variant_id;
     const sizeId = searchedProduct?.metadata?.size;

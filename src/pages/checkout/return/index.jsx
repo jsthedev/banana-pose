@@ -2,6 +2,8 @@ import { useState, useEffect, useContext } from 'react';
 
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
+import TextLoader from '@/components/text_loader';
+
 import '@/pages/checkout/return/index.scss';
 
 function Return() {
@@ -102,8 +104,8 @@ function Return() {
 
   // Loading state
   return (
-    <div className="loading-spinner">
-      <p>Verifying your transaction...</p>
+    <div className="loader-wrapper">
+      <TextLoader />
     </div>
   );
 }

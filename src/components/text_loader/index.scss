@@ -9,17 +9,4 @@
 
 .loader span {
   display: inline-block;
-  animation: fadeDots 1.5s infinite;
-}
-
-/* Optional: Add a fade-in and fade-out effect to the dots */
-@keyframes fadeDots {
-  0%,
-  20% {
-    opacity: 0.2;
-  }
-  40%,
-  100% {
-    opacity: 1;
-  }
 }

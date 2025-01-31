@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState, useEffect } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   EmbeddedCheckoutProvider,
@@ -23,11 +23,13 @@ function CheckoutForm() {
     products,
     loading: productsLoading,
     updateSizeInventory,
+    fetchProducts,
   } = useContext(ProductsContext);
   const { state, dispatch } = useContext(ShoppingBagContext);
 
   // Error
   const [error, setError] = useState(null);
+  const [lackInventoryItems, setLackInventoryItems] = useState([]);
 
   // Create a Checkout Session
   const fetchClientSecret = useCallback(async () => {
@@ -45,34 +47,25 @@ function CheckoutForm() {
           size
         );
 
-        // If more quantity than inventory, adjust the quantity
+        // If inventory is not enough, return error
         if (latestInventory < item.quantity) {
-          dispatch({
-            type: 'SET_QUANTITY',
-            payload: {
+          setError('insufficient inventory');
+          setLackInventoryItems([
+            ...lackInventoryItems,
+            {
               size: size,
               productId: productId,
               variantId: variantId,
-              setNumber: latestInventory,
+              inventory: latestInventory,
             },
-          });
+          ]);
+          return;
         }
 
-        if (latestInventory === 0) {
-          return null;
-        } else if (latestInventory < item.quantity) {
-          return {
-            ...item,
-            quantity: latestInventory,
-          };
-        } else {
-          return item;
-        }
+        return;
       });
 
-      const updatedBagItems = (await Promise.all(inventoryPromises)).filter(
-        (item) => item !== null
-      );
+      await Promise.all(inventoryPromises);
 
       // Create checkout session
       const response = await fetch(
@@ -81,7 +74,7 @@ function CheckoutForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            shoppingBagItems: updatedBagItems,
+            shoppingBagItems: state.shoppingBagItems,
             currency: currency,
           }),
         }
@@ -120,8 +113,16 @@ function CheckoutForm() {
   // If shopping bag is empty, return error
   if (!state?.shoppingBagItems || !state.shoppingBagItems?.length) {
     return (
-      <div className="empty-prompt">
-        <div>Your shopping bag is empty.</div>
+      <div className="empty-prompt-wrapper">
+        <div className="empty-prompt">
+          <div className="shopping-bag-page-name">Checkout</div>
+          <div className="empty-prompt-contents">
+            <p>Your shopping bag is empty</p>
+            <Link to={'/products'} className="link-button">
+              CONTINUE SHOPPING
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -131,17 +132,29 @@ function CheckoutForm() {
     return (
       <div className="checkout-error-wrapper">
         <div className="checkout-error">
-          <h2>Checkout Error</h2>
-          <p>
-            {error} <br />
-            Please try again.
-          </p>
-          <Link to={'/shopping-bag'} className="checkout-error-button-wrapper">
-            <div className="checkout-error-button link-button">
-              Go to Shopping Bag
+          <h3>Checkout Error</h3>
+          {lackInventoryItems.length > 0 ? (
+            <div className="checkout-error-inventories">
+              {lackInventoryItems.map((item, index) => (
+                <p key={index}>
+                  {products[item.productId].variants[item.variantId].name} color{' '}
+                  {products[item.productId].variants[item.variantId].color} size{' '}
+                  {item.size} has {item.inventory} items left.
+                </p>
+              ))}
             </div>
-          </Link>
+          ) : (
+            <p className="checkout-error-message">{error}</p>
+          )}
+          <p>Please try again.</p>
         </div>
+        <Link
+          to={'/shopping-bag'}
+          className="checkout-error-button link-button"
+          onClick={fetchProducts}
+        >
+          Go to Shopping Bag
+        </Link>
       </div>
     );
   }

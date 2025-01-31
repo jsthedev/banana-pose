@@ -10,7 +10,7 @@ function DesktopNavBar() {
     <div className="desktop-nav-bar">
       <div className="logo-wrapper">
         <Link to={'/home'} className="nav-bar-home-link">
-          <div className="banana-pose">Banana Pose</div>
+          Banana Pose
         </Link>
       </div>
       <div className="desktop-nav-bar-contents">

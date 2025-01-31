@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 
+import { ProductsContext } from '@/contexts/productsContext';
 import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
 
 import TextLoader from '@/components/text_loader';
@@ -8,6 +9,7 @@ import '@/pages/checkout/return/index.scss';
 
 function Return() {
   // Contexts
+  const { fetchProducts } = useContext(ProductsContext);
   const { dispatch } = useContext(ShoppingBagContext);
 
   // States
@@ -59,10 +61,8 @@ function Return() {
           <p>
             The checkout session is invalid or has expired. Please try again.
           </p>
-          <Link to={'/shopping-bag'} className="checkout-error-button-wrapper">
-            <div className="checkout-error-button link-button">
-              Go to Shopping Bag
-            </div>
+          <Link to={'/shopping-bag'} className="link-button">
+            Go to Shopping Bag
           </Link>
         </div>
       </div>
@@ -89,6 +89,8 @@ function Return() {
 
   // If checkout completed, prompt message
   if (status === 'complete') {
+    fetchProducts();
+
     return (
       <section id="success" className="return-complete">
         <p>

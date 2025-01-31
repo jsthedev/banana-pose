@@ -4,27 +4,81 @@
   padding-top: 30vh;
   font-family: 'HK Grotesk';
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
   .checkout-error {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 
-    h2 {
-      padding-bottom: 10px;
+    padding-bottom: 20px;
+
+    h3 {
+      padding-bottom: 20px;
     }
 
-    p {
-      padding-bottom: 15px;
+    .checkout-error-inventories {
+      padding-bottom: 5px;
+      color: red;
+
+      p {
+        padding-bottom: 10px;
+      }
     }
 
-    .checkout-error-button-wrapper {
+    .checkout-error-message {
+      color: red;
+    }
+
+    .checkout-error-button {
       text-decoration: none;
+      text-align: center;
+      width: 100%;
+      font-size: 14px;
+    }
+  }
+}
 
-      .checkout-error-button {
-        text-align: center;
-        width: 100%;
-        font-size: 14px;
+.empty-prompt-wrapper {
+  font-family: 'HK Grotesk', sans-serif;
+  font-size: 13px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  .empty-prompt {
+    .shopping-bag-page-name {
+      max-width: 1400px;
+      padding-top: 20px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .empty-prompt-contents {
+      padding: 164px 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 408px;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .empty-prompt-wrapper {
+    .empty-prompt {
+      .empty-prompt-contents {
+        padding: 20px 0;
+        height: 123px;
+
+        .link-button {
+          width: 100%;
+        }
       }
     }
   }

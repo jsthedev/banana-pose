@@ -98,27 +98,6 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
-  const updateProductInventory = async (productId, variantId) => {
-    try {
-      const sizesMap = await fetchSizes(productId, variantId);
-      setProducts((oldProducts) => ({
-        ...oldProducts,
-        [productId]: {
-          ...oldProducts[productId],
-          variants: {
-            ...oldProducts[productId].variants,
-            [variantId]: {
-              ...oldProducts[productId].variants[variantId],
-              sizes: sizesMap,
-            },
-          },
-        },
-      }));
-    } catch (error) {
-      console.error('Error updating inventory:', error);
-    }
-  };
-
   const updateSizeInventory = async (productId, variantId, sizeId) => {
     try {
       const sizeData = await getSize(productId, variantId, sizeId);
@@ -153,7 +132,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, loading, updateProductInventory, updateSizeInventory }}
+      value={{ products, loading, fetchProducts, updateSizeInventory }}
     >
       {children}
     </ProductsContext.Provider>

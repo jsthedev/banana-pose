@@ -7,6 +7,15 @@ button {
   border: none;
 }
 
+img {
+  // Prevent click and dragging
+  -webkit-user-drag: none; /* Chrome, Safari, and other WebKit-based browsers */
+  -khtml-user-drag: none; /* Konqueror browser */
+  -moz-user-drag: none; /* Older versions of Firefox */
+  -o-user-drag: none; /* Older versions of Opera */
+  user-drag: none; /* Standard property (not widely supported) */
+}
+
 .normal-link {
   text-decoration: none;
   color: black;
@@ -66,6 +75,7 @@ button {
 
 .link-button {
   text-decoration: none;
+  font-family: 'HK Grotesk', sans-serif;
   color: white;
   background-color: black;
   padding: 15px 20px 13px 20px;

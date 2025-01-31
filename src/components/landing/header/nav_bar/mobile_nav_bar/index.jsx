@@ -2,11 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBars,
-  faTimes,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import ShoppingBagIcon from '@/components/landing/header/nav_bar/icons/shopping_bag/index.jsx';
 import MobileCurrencySelector from '@/components/currency_selector/mobile_currency_selector/index.jsx';
@@ -35,7 +31,7 @@ function MobileNavBar() {
             className="nav-bar-home-link"
             onClick={closeMobileMenu}
           >
-            <div className="banana-pose">Banana Pose</div>
+            Banana Pose
           </Link>
         </div>
         <div className="mobile-nav-bar-contents">

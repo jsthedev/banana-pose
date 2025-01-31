@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -11,32 +11,47 @@ import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
 
 import '@/components/product_details/size_chart_drawer/index.scss';
 
-function SizeChartDrawer({ isDrawerOpen, setIsDrawerOpen }) {
+function SizeChartDrawer({ text = 'Size Guide' }) {
   // Contexts
   const { products } = useContext(ProductsContext);
   const { productId } = useContext(ProductVariantIdsContext);
+
+  // State
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const openSizeChartDrawer = () => {
+    setIsDrawerOpen(true);
+  };
 
   // Variable
   const type = products[productId].type;
   const typeCapital = type.charAt(0).toUpperCase() + type.slice(1);
 
   // Functions
-  const closeDrawer = () => {
+  const closeSizeChartDrawer = () => {
     setIsDrawerOpen(false);
   };
 
   return (
     <>
+      <div
+        className="size-chart-click normal-link"
+        onClick={openSizeChartDrawer}
+      >
+        {text}
+      </div>
       {isDrawerOpen && (
         <div
           className={`size-chart-drawer-overlay ${isDrawerOpen ? 'open' : ''}`}
-          onClick={closeDrawer}
+          onClick={closeSizeChartDrawer}
         ></div>
       )}
       <div className={`size-chart-drawer ${isDrawerOpen ? 'open' : ''}`}>
         {/* Position fixed in case of adding contents to be scrolled later on */}
         <div className={`close-button-wrapper ${isDrawerOpen ? 'open' : ''}`}>
-          <button className="close-button" onClick={() => closeDrawer()}>
+          <button
+            className="close-button"
+            onClick={() => closeSizeChartDrawer()}
+          >
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>

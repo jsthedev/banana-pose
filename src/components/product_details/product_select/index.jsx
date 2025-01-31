@@ -16,7 +16,7 @@ import '@/components/product_details/product_select/index.scss';
 
 function ProductSelect() {
   // Contexts
-  const { products, updateProductInventory } = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
   const { currency } = useContext(CurrencyContext);
 
@@ -26,21 +26,11 @@ function ProductSelect() {
   const formattedPrice = formatPrice(price, currency.toUpperCase());
 
   const variant = product.variants[variantId];
-  const name = variant.name;
   const color = variant.color;
   const colorCapital = color.charAt(0).toUpperCase() + color.slice(1);
-  const sizes = variant.sizes;
-
-  // Size Chart
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const openSizeChartDrawer = () => {
-    setIsDrawerOpen(true);
-  };
 
   // Size Select
-  const [loadingSizes, setLoadingSizes] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [displaySelectedSize, setDisplaySelectedSize] = useState(null);
   const [sizeSelectError, setSizeSelectError] = useState('');
 
   const [readyForCheckout, setReadyForCheckout] = useState(false);
@@ -84,7 +74,6 @@ function ProductSelect() {
         setIsLastItem(true);
       }
       setReadyForCheckout(true);
-      setSelectedSize(null);
     }
     // If a size is not selected
     else {
@@ -96,12 +85,8 @@ function ProductSelect() {
   const handleSizeSelect = async (size) => {
     setReadyForCheckout(false);
     setIsLastItem(false);
-    setLoadingSizes(true);
-    await updateProductInventory(productId, variantId);
     setSelectedSize(size);
-    setDisplaySelectedSize(size);
     setSizeSelectError('');
-    setLoadingSizes(false);
   };
 
   // Reset selected size when color changes
@@ -115,7 +100,7 @@ function ProductSelect() {
   return (
     <div className="product-select">
       <div className="product-metadata">
-        <div className="product-name">{name}</div>
+        <div className="product-name">{variant.name}</div>
         <div className="product-price">
           <span>{formattedPrice}</span>
         </div>
@@ -128,16 +113,7 @@ function ProductSelect() {
           variant={variant}
         />
         <div className="size-chart-click-wrapper">
-          <div
-            className="size-chart-click normal-link"
-            onClick={openSizeChartDrawer}
-          >
-            Size Guide
-          </div>
-          <SizeChartDrawer
-            isDrawerOpen={isDrawerOpen}
-            setIsDrawerOpen={setIsDrawerOpen}
-          />
+          <SizeChartDrawer text="Size Guide" />
         </div>
         {sizeSelectError && (
           <div className="size-error-message error-style">
@@ -146,7 +122,7 @@ function ProductSelect() {
         )}
         <div className="size-select-button-wrapper">
           <SizeSelector
-            variantSizes={sizes}
+            variantSizes={variant.sizes}
             selectedSize={selectedSize}
             onSizeSelect={handleSizeSelect}
           />
@@ -167,16 +143,13 @@ function ProductSelect() {
             </div>
           ) : (
             <div className="checkout-notice">
-              Size {displaySelectedSize} added to shopping bag.
+              Size {selectedSize} added to shopping bag.
             </div>
           )}
         </div>
       ) : (
         <div className="buy-button-wrapper">
-          <button
-            className={`buy-button ${loadingSizes ? 'loading' : ''}`}
-            onClick={addToShoppingBag}
-          >
+          <button className="buy-button" onClick={addToShoppingBag}>
             Add to Shopping Bag
           </button>
         </div>

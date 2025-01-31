@@ -19,12 +19,6 @@
     .size-chart-click-wrapper {
       text-align: right;
       margin-bottom: 10px;
-
-      .size-chart-click {
-        display: inline-block;
-        padding-bottom: 2px;
-        border-bottom: 1px solid transparent;
-      }
     }
     .size-select-button-wrapper {
       width: 100%;
@@ -86,10 +80,6 @@
       text-align: center;
       background-color: #212121;
       color: white;
-
-      &.loading {
-        background-color: #a4a4a4;
-      }
 
       &:hover {
         cursor: pointer;

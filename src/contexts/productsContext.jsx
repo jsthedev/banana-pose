@@ -10,7 +10,7 @@ import {
 export const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState({});
+  const [products, setProducts] = useState(undefined);
   const [loading, setLoading] = useState(true);
 
   const fetchSizes = async (productId, variantId) => {

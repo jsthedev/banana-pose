@@ -118,6 +118,9 @@ function ShoppingBagItemCard({ item }) {
                 +
               </button>
             </div>
+            {quantity === inventory ? (
+              <div className="last-item-warning">Last item remaining</div>
+            ) : null}
           </div>
           <div className="item-price">
             {price ? formatPrice(price, currency) : 'Price not available'}

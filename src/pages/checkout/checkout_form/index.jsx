@@ -25,7 +25,7 @@ function CheckoutForm() {
     updateSizeInventory,
     fetchProducts,
   } = useContext(ProductsContext);
-  const { state, dispatch } = useContext(ShoppingBagContext);
+  const { state } = useContext(ShoppingBagContext);
 
   // Error
   const [error, setError] = useState(null);
@@ -47,25 +47,30 @@ function CheckoutForm() {
           size
         );
 
-        // If inventory is not enough, return error
+        // If inventory is not enough, record the item
         if (latestInventory < item.quantity) {
-          setError('insufficient inventory');
-          setLackInventoryItems([
-            ...lackInventoryItems,
-            {
-              size: size,
-              productId: productId,
-              variantId: variantId,
-              inventory: latestInventory,
-            },
-          ]);
-          return;
+          console.log(size);
+          return {
+            size: size,
+            productId: productId,
+            variantId: variantId,
+            inventory: latestInventory,
+          };
         }
 
-        return;
+        return null;
       });
 
-      await Promise.all(inventoryPromises);
+      // Temporary array for lackInventoryItems
+      const tempLackItems = (await Promise.all(inventoryPromises)).filter(
+        Boolean
+      );
+
+      if (tempLackItems.length > 0) {
+        setError('lacking inventory');
+        setLackInventoryItems(tempLackItems);
+        return; // Exit early; do not proceed to create checkout session.
+      }
 
       // Create checkout session
       const response = await fetch(
@@ -97,13 +102,7 @@ function CheckoutForm() {
       console.error('Error fetching client secret:', error);
       throw error;
     }
-  }, [
-    currency,
-    products,
-    updateSizeInventory,
-    dispatch,
-    state.shoppingBagItems,
-  ]);
+  }, [currency, products, updateSizeInventory, state.shoppingBagItems]);
 
   // Loading
   if (currencyLoading || productsLoading) {
@@ -117,7 +116,7 @@ function CheckoutForm() {
         <div className="empty-prompt">
           <div className="shopping-bag-page-name">Checkout</div>
           <div className="empty-prompt-contents">
-            <p>Your shopping bag is empty</p>
+            <p>The items got sold out.</p>
             <Link to={'/products'} className="link-button">
               CONTINUE SHOPPING
             </Link>

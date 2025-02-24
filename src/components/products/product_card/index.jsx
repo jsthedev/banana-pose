@@ -1,18 +1,18 @@
-import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
 
-import ProductCardColorSelect from '@/components/color_select/product_card/index.jsx';
+import ProductCardColorSelect from "@/components/color_select/product_card/index.jsx";
 
-import { formatPrice } from '@/utils/utilities';
+import { formatPrice } from "@/utils/utilities";
 
-import { ProductsContext } from '@/contexts/productsContext';
-import { CurrencyContext } from '@/contexts/currencyContext';
+import { ProductsContext } from "@/contexts/productsContext";
+import { CurrencyContext } from "@/contexts/currencyContext";
 
-import '@/components/products/product_card/index.scss';
+import "@/components/products/product_card/index.scss";
 
 function ProductCard({ productId }) {
   // Contexts
-  const { products } = useContext(ProductsContext);
+  const { products, isSoldOut } = useContext(ProductsContext);
   const { currency } = useContext(CurrencyContext);
 
   // Product
@@ -24,8 +24,12 @@ function ProductCard({ productId }) {
   const [variantId, setVariantId] = useState(variantIds[0]);
   const variant = variants[variantId];
 
+  // Sold Out
+  const isVariantSoldOut = isSoldOut(productId, variantId);
+  console.log(isVariantSoldOut);
+
   // Variables to be shown
-  const name = variant?.name || '';
+  const name = variant?.name || "";
   const price = product?.price[currency];
 
   // Color Select
@@ -44,6 +48,9 @@ function ProductCard({ productId }) {
         <div className="product-image-content">
           <div className="product-img-wrapper normal-link">
             <Link to={`/products/${productId}_${variantId}`}>
+              {isVariantSoldOut ? (
+                <div className="sold-out">Sold Out</div>
+              ) : null}
               <img src={variant.thumbnail} alt={name} className="product-img" />
             </Link>
           </div>

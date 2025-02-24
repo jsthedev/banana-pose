@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
 
-  font-family: 'HK Grotesk';
+  font-family: "HK Grotesk";
 
   padding-left: 30px;
   padding-right: 30px;
@@ -13,11 +13,22 @@
     border-bottom: 1px solid transparent;
 
     .product-img-wrapper {
+      position: relative;
+      display: inline-block;
       width: 100%;
       aspect-ratio: 2 / 3;
       overflow: hidden;
 
       background-color: #e0e0e0;
+
+      .sold-out {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+
+        font-size: 13px;
+        color: #a5a3a3;
+      }
 
       .product-img {
         width: 100%;

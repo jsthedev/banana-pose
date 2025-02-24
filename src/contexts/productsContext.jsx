@@ -1,11 +1,11 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from "react";
 
 import {
   listProducts,
   listVariants,
   listSizes,
   getSize,
-} from '@/firebase/productsDB';
+} from "@/firebase/productsDB";
 
 export const ProductsContext = createContext();
 
@@ -91,7 +91,7 @@ export const ProductsProvider = ({ children }) => {
 
       setProducts(productsData);
     } catch (error) {
-      console.error('Error fetching products:', error);
+      console.error("Error fetching products:", error);
     } finally {
       // Finish products loading
       setLoading(false);
@@ -121,8 +121,23 @@ export const ProductsProvider = ({ children }) => {
 
       return sizeInventory;
     } catch (error) {
-      console.error('Error updating inventory:', error);
+      console.error("Error updating inventory:", error);
       throw error;
+    }
+  };
+
+  const isSoldOut = (productId, variantId) => {
+    try {
+      const sizeMap = products[productId].variants[variantId].sizes;
+      const totalInventory = Object.values(sizeMap).reduce(
+        (acc, cur) => acc + cur,
+        0
+      );
+      console.log(totalInventory);
+      return totalInventory === 0;
+    } catch (e) {
+      console.error("Error checking sold out status:", e);
+      throw e;
     }
   };
 
@@ -132,7 +147,13 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, loading, fetchProducts, updateSizeInventory }}
+      value={{
+        products,
+        loading,
+        fetchProducts,
+        updateSizeInventory,
+        isSoldOut,
+      }}
     >
       {children}
     </ProductsContext.Provider>

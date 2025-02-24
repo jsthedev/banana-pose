@@ -26,7 +26,6 @@ function ProductCard({ productId }) {
 
   // Sold Out
   const isVariantSoldOut = isSoldOut(productId, variantId);
-  console.log(isVariantSoldOut);
 
   // Variables to be shown
   const name = variant?.name || "";

@@ -1,16 +1,16 @@
-import { useCallback, useContext, useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
+import { useCallback, useContext, useState } from "react";
+import { loadStripe } from "@stripe/stripe-js";
 import {
   EmbeddedCheckoutProvider,
   EmbeddedCheckout,
-} from '@stripe/react-stripe-js';
-import { Link } from 'react-router-dom';
+} from "@stripe/react-stripe-js";
+import { Link } from "react-router-dom";
 
-import { ShoppingBagContext } from '@/contexts/shoppingBagContext';
-import { CurrencyContext } from '@/contexts/currencyContext';
-import { ProductsContext } from '@/contexts/productsContext';
+import { ShoppingBagContext } from "@/contexts/shoppingBagContext";
+import { CurrencyContext } from "@/contexts/currencyContext";
+import { ProductsContext } from "@/contexts/productsContext";
 
-import '@/pages/checkout/checkout_form/index.scss';
+import "@/pages/checkout/checkout_form/index.scss";
 
 const stripePromise = loadStripe(
   import.meta.env.VITE_TEST_REACT_APP_STRIPE_PUBLISHABLE_KEY
@@ -49,7 +49,6 @@ function CheckoutForm() {
 
         // If inventory is not enough, record the item
         if (latestInventory < item.quantity) {
-          console.log(size);
           return {
             size: size,
             productId: productId,
@@ -67,7 +66,7 @@ function CheckoutForm() {
       );
 
       if (tempLackItems.length > 0) {
-        setError('lacking inventory');
+        setError("lacking inventory");
         setLackInventoryItems(tempLackItems);
         return; // Exit early; do not proceed to create checkout session.
       }
@@ -76,8 +75,8 @@ function CheckoutForm() {
       const response = await fetch(
         `${import.meta.env.VITE_FIREBASE_FUNCTIONS_CREATECHECKOUTSESSION}`,
         {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             shoppingBagItems: state.shoppingBagItems,
             currency: currency,
@@ -90,7 +89,7 @@ function CheckoutForm() {
         const errorData = await response.json();
         setError(
           errorData.error ||
-            'An error occurred while creating checkout session.'
+            "An error occurred while creating checkout session."
         );
         throw new Error(errorData.error);
       }
@@ -99,7 +98,7 @@ function CheckoutForm() {
 
       return data.clientSecret;
     } catch (error) {
-      console.error('Error fetching client secret:', error);
+      console.error("Error fetching client secret:", error);
       throw error;
     }
   }, [currency, products, updateSizeInventory, state.shoppingBagItems]);
@@ -117,7 +116,7 @@ function CheckoutForm() {
           <div className="shopping-bag-page-name">Checkout</div>
           <div className="empty-prompt-contents">
             <p>The items got sold out.</p>
-            <Link to={'/products'} className="link-button">
+            <Link to={"/products"} className="link-button">
               CONTINUE SHOPPING
             </Link>
           </div>
@@ -136,8 +135,8 @@ function CheckoutForm() {
             <div className="checkout-error-inventories">
               {lackInventoryItems.map((item, index) => (
                 <p key={index}>
-                  {products[item.productId].variants[item.variantId].name} color{' '}
-                  {products[item.productId].variants[item.variantId].color} size{' '}
+                  {products[item.productId].variants[item.variantId].name} color{" "}
+                  {products[item.productId].variants[item.variantId].color} size{" "}
                   {item.size} has {item.inventory} items left.
                 </p>
               ))}
@@ -148,7 +147,7 @@ function CheckoutForm() {
           <p>Please try again.</p>
         </div>
         <Link
-          to={'/shopping-bag'}
+          to={"/shopping-bag"}
           className="checkout-error-button link-button"
           onClick={fetchProducts}
         >

@@ -133,7 +133,6 @@ export const ProductsProvider = ({ children }) => {
         (acc, cur) => acc + cur,
         0
       );
-      console.log(totalInventory);
       return totalInventory === 0;
     } catch (e) {
       console.error("Error checking sold out status:", e);

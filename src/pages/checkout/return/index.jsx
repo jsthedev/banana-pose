@@ -57,8 +57,8 @@ function Return() {
 
   if (status === "invalid") {
     return (
-      <div className="checkout-error-wrapper">
-        <div className="checkout-error">
+      <div className="return-error-wrapper">
+        <div className="return-error">
           <h2>Invalid Session</h2>
           <p>
             The checkout session is invalid or has expired. Please try again.
@@ -73,14 +73,14 @@ function Return() {
 
   if (status === "error") {
     return (
-      <div className="checkout-error-wrapper">
-        <div className="checkout-error">
+      <div className="return-error-wrapper">
+        <div className="return-error">
           <h2>Checkout Error</h2>
           <p>
             An error occurred while processing your checkout. Please try again.
           </p>
-          <Link to={"/shopping-bag"} className="checkout-error-button-wrapper">
-            <div className="checkout-error-button link-button">
+          <Link to={"/shopping-bag"} className="return-error-button-wrapper">
+            <div className="return-error-button link-button">
               Go to Shopping Bag
             </div>
           </Link>

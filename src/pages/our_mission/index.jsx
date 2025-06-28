@@ -1,9 +1,9 @@
-import '@/pages/our_mission/index.scss';
+import "@/pages/our_mission/index.scss";
 
-import LogoImage from '@/assets/images/logo/seal_logo.png';
-import QualityImage from '@/assets/images/our_mission/quality.webp';
-import ComfortImage from '@/assets/images/our_mission/IMG_0558.jpg';
-import SustainabilityImage from '@/assets/images/our_mission/Cotton_field_kv17.jpg';
+import LogoImage from "@/assets/images/logo/seal_logo.png";
+import QualityImage from "@/assets/images/our_mission/quality.jpg";
+import ComfortImage from "@/assets/images/our_mission/comfort.jpg";
+import SustainabilityImage from "@/assets/images/our_mission/Cotton_field_kv17.jpg";
 
 // TODO: Replace placeholder images
 function OurMission() {

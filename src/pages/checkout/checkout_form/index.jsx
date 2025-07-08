@@ -13,7 +13,7 @@ import { ProductsContext } from "@/contexts/productsContext";
 import "@/pages/checkout/checkout_form/index.scss";
 
 const stripePromise = loadStripe(
-  import.meta.env.VITE_TEST_REACT_APP_STRIPE_PUBLISHABLE_KEY
+  import.meta.env.VITE_REACT_APP_STRIPE_PUBLISHABLE_KEY
 );
 
 function CheckoutForm() {

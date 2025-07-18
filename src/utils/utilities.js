@@ -2,7 +2,7 @@
 export const formatPrice = (unitAmount, currency) => {
   const currencyCapital = currency.toUpperCase();
   const formatter = new Intl.NumberFormat(undefined, {
-    style: 'currency',
+    style: "currency",
     currency: currencyCapital,
   });
 

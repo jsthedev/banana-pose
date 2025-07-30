@@ -16,8 +16,8 @@ function DimensionChartTable({ dimensionChart }) {
             ))}
           </tr>
           {rows.map(({ measurement, values }) => (
-            <tr>
-              <th key={measurement}>{measurement}</th>
+            <tr key={measurement}>
+              <th>{measurement}</th>
               {values.map((val, idx) => (
                 <td key={idx}>{val}</td>
               ))}

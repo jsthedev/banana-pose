@@ -30,8 +30,6 @@ function SizeChartDrawer({ text = "Size Guide" }) {
 
   const dimension = products[productId].dimension;
 
-  console.log(products);
-
   // Functions
   const closeSizeChartDrawer = () => {
     setIsDrawerOpen(false);

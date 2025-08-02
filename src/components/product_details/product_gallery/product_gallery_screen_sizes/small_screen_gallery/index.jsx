@@ -1,18 +1,16 @@
-import { useContext } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import ProductInfo from '@/components/product_details/product_info/index.jsx';
+import { ProductsContext } from "@/contexts/productsContext";
+import { ProductVariantIdsContext } from "@/contexts/productVariantIdsContext";
 
-import { ProductsContext } from '@/contexts/productsContext';
-import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
+import "@/components/product_details/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss";
 
-import '@/components/product_details/product_gallery/product_gallery_screen_sizes/small_screen_gallery/index.scss';
-
-function SmallScreenGallery() {
+function SmallScreenGallery({ onImageClick }) {
   // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
@@ -32,14 +30,17 @@ function SmallScreenGallery() {
         height={0}
       >
         {images.map((photo, index) => (
-          <SwiperSlide className="carousel-cell" key={index}>
+          <SwiperSlide
+            className="carousel-cell"
+            key={index}
+            onClick={() => {
+              onImageClick(index);
+            }}
+          >
             <img src={photo} alt={`Thumbnail ${index + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="product-info-container">
-        <ProductInfo />
-      </div>
     </div>
   );
 }

@@ -1,13 +1,11 @@
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useRef, useState, useContext } from "react";
 
-import ProductInfo from '@/components/product_details/product_info/index.jsx';
+import { ProductsContext } from "@/contexts/productsContext";
+import { ProductVariantIdsContext } from "@/contexts/productVariantIdsContext";
 
-import { ProductsContext } from '@/contexts/productsContext';
-import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
+import "@/components/product_details/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss";
 
-import '@/components/product_details/product_gallery/product_gallery_screen_sizes/wide_screen_gallery/index.scss';
-
-function WideScreenGallery() {
+function WideScreenGallery({ onImageClick }) {
   // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
@@ -44,11 +42,11 @@ function WideScreenGallery() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Unmount Cleanup
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [selectedIndex]);
 
@@ -60,7 +58,7 @@ function WideScreenGallery() {
         element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - navBarHeight;
 
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      window.scrollTo({ top: offsetPosition, behavior: "smooth" });
     } else {
       console.warn(
         `element ID ${sectionId} is invalid. Check src/data/products.json.`
@@ -73,7 +71,7 @@ function WideScreenGallery() {
       <div className="carousel-nav">
         {images.map((photo, index) => (
           <div
-            className={`carousel-cell ${selectedIndex === index ? 'is-selected' : ''}`}
+            className={`carousel-cell ${selectedIndex === index ? "is-selected" : ""}`}
             key={index}
             onClick={() => scrollToSection(photo)}
           >
@@ -90,13 +88,13 @@ function WideScreenGallery() {
             ref={(currentImage) =>
               (currentImageRefs.current[index] = currentImage)
             }
+            onClick={() => {
+              onImageClick(index);
+            }}
           >
             <img src={photo} alt={`Main ${index + 1}`} />
           </div>
         ))}
-      </div>
-      <div className="product-info-container">
-        <ProductInfo />
       </div>
     </div>
   );

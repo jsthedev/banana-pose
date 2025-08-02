@@ -1,3 +1,21 @@
 .product-gallery {
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .product-info-container {
+    position: sticky;
+    top: 56px; // same height as nav-bar
+    align-self: flex-start;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 1007px) {
+  .product-gallery {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
 }

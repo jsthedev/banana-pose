@@ -1,13 +1,11 @@
-import { useContext } from 'react';
+import { useContext } from "react";
 
-import ProductInfo from '@/components/product_details/product_info/index.jsx';
-
-import '@/components/product_details/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss';
-import { ProductsContext } from '@/contexts/productsContext';
-import { ProductVariantIdsContext } from '@/contexts/productVariantIdsContext';
+import "@/components/product_details/product_gallery/product_gallery_screen_sizes/mid_screen_gallery/index.scss";
+import { ProductsContext } from "@/contexts/productsContext";
+import { ProductVariantIdsContext } from "@/contexts/productVariantIdsContext";
 
 // at 1139px, carousel-nav should disappear
-function MidScreenGallery() {
+function MidScreenGallery({ onImageClick }) {
   // Contexts
   const { products } = useContext(ProductsContext);
   const { productId, variantId } = useContext(ProductVariantIdsContext);
@@ -20,13 +18,17 @@ function MidScreenGallery() {
     <div className="mid-screen-gallery">
       <div className="carousel-main">
         {images.map((photo, index) => (
-          <div className="carousel-cell" key={index} id={photo}>
+          <div
+            className="carousel-cell"
+            key={index}
+            id={photo}
+            onClick={() => {
+              onImageClick(index);
+            }}
+          >
             <img src={photo} alt={`Thumbnail ${index + 1}`} />
           </div>
         ))}
-      </div>
-      <div className="product-info-container">
-        <ProductInfo />
       </div>
     </div>
   );

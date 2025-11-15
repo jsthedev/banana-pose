@@ -4,6 +4,8 @@ import ProductCard from "@/components/products/product_card/index.jsx";
 import LoadingProductCard from "@/components/products/product_card/loading_product_card";
 
 import { ProductsContext } from "@/contexts/productsContext";
+import { Helmet } from "react-helmet-async";
+import { ReadyToWearSEO } from "@/components/seo/products";
 
 import "@/pages/products/index.scss";
 
@@ -13,6 +15,7 @@ function Products() {
 
   return (
     <div className="products">
+      <Helmet>{ReadyToWearSEO}</Helmet>
       <div className="products-page-main">
         <div className="product-list-wrapper">
           <div className="product-list">

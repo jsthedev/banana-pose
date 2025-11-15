@@ -1,3 +1,6 @@
+import { Helmet } from "react-helmet-async";
+import { MissionSEO } from "@/components/seo/our_mission";
+
 import "@/pages/our_mission/index.scss";
 
 import LogoImage from "@/assets/images/logo/seal_logo.png";
@@ -5,10 +8,10 @@ import QualityImage from "@/assets/images/our_mission/quality.jpg";
 import ComfortImage from "@/assets/images/our_mission/comfort.jpg";
 import SustainabilityImage from "@/assets/images/our_mission/Cotton_field_kv17.jpg";
 
-// TODO: Replace placeholder images
 function OurMission() {
   return (
     <div className="our-mission">
+      <Helmet>{MissionSEO}</Helmet>
       <div className="our-mission-main-text">
         <div className="logo-image-wrapper">
           <img src={LogoImage} />

@@ -1,4 +1,4 @@
-import { externalLinks } from "@/utils/external_links";
+import { externalLinks } from "@/vars/external_links";
 
 import FooterLink from "@/components/landing/footer/footer_link/index.jsx";
 import SNSIcon from "@/components/landing/footer/SNS_icon/index.jsx";

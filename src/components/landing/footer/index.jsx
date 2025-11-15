@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
+import { externalLinks } from "@/utils/external_links";
 
-import FooterLink from '@/components/landing/footer/footer_link/index.jsx';
-import SNSIcon from '@/components/landing/footer/SNS_icon/index.jsx';
+import FooterLink from "@/components/landing/footer/footer_link/index.jsx";
+import SNSIcon from "@/components/landing/footer/SNS_icon/index.jsx";
 
-import InstagramIcon from '@/assets/images/icons/icons8-instagram-120.png';
-import TiktokIcon from '@/assets/images/icons/icons8-tiktok-120.png';
-import YoutubeIcon from '@/assets/images/icons/icons8-youtube-150.png';
+import InstagramIcon from "@/assets/images/icons/icons8-instagram-120.png";
+import TiktokIcon from "@/assets/images/icons/icons8-tiktok-120.png";
+import YoutubeIcon from "@/assets/images/icons/icons8-youtube-150.png";
 
-import '@/components/landing/footer/index.scss';
+import "@/components/landing/footer/index.scss";
 
 function Footer() {
   return (
@@ -26,18 +26,9 @@ function Footer() {
               />
             </div>
             <div className="footer-icons">
-              <SNSIcon
-                link={'https://www.instagram.com/banana.pose'}
-                icon={InstagramIcon}
-              />
-              <SNSIcon
-                link={'https://www.tiktok.com/@bananapose'}
-                icon={TiktokIcon}
-              />{' '}
-              <SNSIcon
-                link={'https://www.youtube.com/@bananapose'}
-                icon={YoutubeIcon}
-              />
+              <SNSIcon link={externalLinks.instagram} icon={InstagramIcon} />
+              <SNSIcon link={externalLinks.tiktok} icon={TiktokIcon} />{" "}
+              <SNSIcon link={externalLinks.youtube} icon={YoutubeIcon} />
             </div>
           </div>
         </div>

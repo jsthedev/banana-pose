@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { HomeSEO } from "@/seo/home.seo";
+import { HomeSEO } from "@/components/seo/home";
 import { images } from "@/vars/images";
 
 import "@/pages/home/index.scss";
